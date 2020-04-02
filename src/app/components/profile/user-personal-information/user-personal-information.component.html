@@ -1,0 +1,240 @@
+<kt-alert
+	*ngIf="hasFormErrors"
+	type="warn"
+	[showCloseButton]="true"
+	[duration]="10000"
+	(close)="onAlertClose($event)"
+>
+	Oh snap! Change a few things up and try submitting again.
+</kt-alert>
+<div class="row">
+	<div class="col-xl-12">
+		<div
+			class="kt-portlet"
+			[ngClass]="userManagement ? 'n-box-shadow' : null"
+		>
+			<div *ngIf="!userManagement" class="kt-portlet__head">
+				<div class="kt-portlet__head-label full-width">
+					<h3 class="kt-portlet__head-title full-width">
+						Personal Information
+						<small>update your personal informaiton</small>
+					</h3>
+
+					<button
+						class="btn btn-label-light-blue btn-bold btn-sm kt-font-transform-u pull-right"
+						(click)="enableInputs()"
+					>
+						<a href="javascript:;" class="kt-nav__link">
+							<span class="kt-nav__link-text kt-font-bold">
+								{{ !edit ? "Edit" : "Save" }}
+							</span>
+						</a>
+					</button>
+				</div>
+			</div>
+			<kt-portlet-body class="n-padding-l">
+				<form
+					[formGroup]="userForm"
+					class="kt-form kt-form--label-right"
+				>
+					<div class="kt-section kt-section--first">
+						<div class="kt-section__body">
+							<div class="l-padding-l">
+								<kt-alert
+									*ngIf="alert?.showAlert"
+									[type]="alert?.type"
+									[showCloseButton]="true"
+									[duration]="10000"
+									(close)="onAlertClose($event)"
+								>
+									{{ alert.message }}
+								</kt-alert>
+							</div>
+							<div class="row">
+								<div class="col-lg-9 offset-1 col-xl-6">
+									<h3
+										class="kt-section__title kt-section__title-sm kt-font-bold"
+									>
+										Customer Info:
+									</h3>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-xl-3 col-lg-3 col-form-label"
+									>Avatar</label
+								>
+								<div class="col-lg-9 col-xl-6">
+									<div
+										class="kt-avatar kt-avatar--outline kt-avatar--circle"
+										id="kt_apps_user_add_avatar"
+									>
+										<div
+											class="kt-avatar__holder"
+											[ngStyle]="{
+												'background-image':
+													'url(' + pictureUrl + ')'
+											}"
+										></div>
+										<label
+											class="kt-avatar__upload"
+											data-toggle="kt-tooltip"
+											title=""
+											data-original-title="Change avatar"
+										>
+											<i class="fa fa-pen"></i>
+											<input
+												type="file"
+												name="pictureUrl"
+												accept=".png, .jpg, .jpeg"
+												(change)="onFileSelect($event)"
+											/>
+										</label>
+										<span
+											class="kt-avatar__cancel"
+											data-toggle="kt-tooltip"
+											title=""
+											data-original-title="Cancel avatar"
+										>
+											<i class="fa fa-times"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label class="col-xl-3 col-lg-3 col-form-label"
+									>First Name</label
+								>
+								<div class="col-lg-9 col-xl-6">
+									<input
+										class="form-control"
+										type="text"
+										placeholder="Firstname"
+										formControlName="firstname"
+									/>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label class="col-xl-3 col-lg-3 col-form-label"
+									>Last Name</label
+								>
+								<div class="col-lg-9 col-xl-6">
+									<input
+										type="text"
+										class="form-control"
+										placeholder="Lastname"
+										formControlName="lastname"
+									/>
+								</div>
+							</div>
+							<div
+								*ngIf="userManagement && !userForm.valid"
+								class="form-group row"
+							>
+								<div class="col-xl-12">
+									<div class="form-group row">
+										<label
+											class="col-xl-3 col-lg-3 col-form-label"
+											>Password</label
+										>
+										<div class="col-lg-9 col-xl-6">
+											<input
+												type="password"
+												class="form-control"
+												placeholder="Password"
+												formControlName="password"
+											/>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xl-12 l-padding">
+								<mat-divider></mat-divider>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-9 offset-1 col-xl-6">
+									<h3
+										class="kt-section__title kt-section__title-sm kt-font-bold"
+									>
+										Contact Info:
+									</h3>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-xl-3 col-lg-3 col-form-label"
+									>Contact Phone</label
+								>
+								<div class="col-lg-9 col-xl-6">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"
+												><i class="la la-phone"></i
+											></span>
+										</div>
+
+										<input
+											type="text"
+											class="form-control"
+											placeholder="Phone"
+											aria-describedby="basic-addon1"
+											formControlName="phone"
+										/>
+									</div>
+									<span class="form-text text-muted"
+										>We'll never share your email with
+										anyone else.</span
+									>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-xl-3 col-lg-3 col-form-label"
+									>Email Address</label
+								>
+								<div class="col-lg-9 col-xl-6">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"
+												><i class="la la-at"></i
+											></span>
+										</div>
+										<input
+											type="text"
+											class="form-control"
+											placeholder="Email"
+											aria-describedby="basic-addon1"
+											formControlName="email"
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</kt-portlet-body>
+			<kt-portlet-footer *ngIf="!userManagement">
+				<div class="kt-form__actions">
+					<div class="row">
+						<div class="col-lg-12 col-xl-12 text-right">
+							<button type="reset" class="btn btn-secondary">
+								Cancel</button
+							>&nbsp;
+							<button
+								type="reset"
+								class="btn btn-brand btn-bold"
+								(click)="onSubmit()"
+								[ngClass]="{
+									'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading
+								}"
+							>
+								Update</button
+							>&nbsp;
+						</div>
+					</div>
+				</div>
+			</kt-portlet-footer>
+		</div>
+	</div>
+</div>

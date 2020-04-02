@@ -1,0 +1,32 @@
+<!-- <kt-splash-screen *ngIf="loader"></kt-splash-screen> -->
+<div class="row">
+	<div class="col-xl-12">
+		<div class="row row-full-height">
+			<div
+				class="col-sm-12 col-md-12"
+				[ngClass]="auth.getMijnMenuPlus() ? 'col-lg-8' : 'col-lg-12'"
+			>
+				<mm-create-menu></mm-create-menu>
+			</div>
+
+			<div
+				*ngIf="auth.getMijnMenuPlus()"
+				class="col-sm-12 col-md-12 col-lg-4"
+			>
+				<mm-top-menu-items></mm-top-menu-items>
+			</div>
+		</div>
+	</div>
+	<ng-container *ngIf="auth.getMijnMenuPlus()">
+		<div class="col-12">
+			<mm-discount-bar></mm-discount-bar>
+		</div>
+
+		<div class="col-xl-9">
+			<mm-menu-performance></mm-menu-performance>
+		</div>
+		<div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
+			<mm-review-items></mm-review-items>
+		</div>
+	</ng-container>
+</div>

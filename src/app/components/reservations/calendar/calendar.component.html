@@ -1,0 +1,95 @@
+<kt-portlet
+	[class]="'kt-portlet--height-fluid kt-portlet--border-bottom-brand'"
+>
+	<kt-portlet-header [title]="'Calendar'">
+		<ng-container ktPortletTools>
+			<button
+				mat-raised-button
+				color="primary"
+				class="s-padding-l"
+				(click)="addEvent()"
+			>
+				<mat-icon
+					class="add-icon"
+					aria-hidden="false"
+					aria-label="add category"
+					>add</mat-icon
+				>
+				Add Event
+			</button>
+		</ng-container>
+	</kt-portlet-header>
+
+	<kt-portlet-body>
+		<full-calendar
+			defaultView="dayGridMonth"
+			[editable]="true"
+			[eventLimit]="5"
+			[slotDuration]="'00:15:00'"
+			[snapDuration]="'00:15:00'"
+			[nowIndicator]="true"
+			[slotLabelFormat]="timeFormat"
+			[eventTimeFormat]="timeFormat"
+			[minTime]="'08:00:00'"
+			[maxTime]="'24:00:00'"
+			[header]="{
+				left: 'prev,next today',
+				center: 'title',
+				right: 'dayGridMonth, timeGridWeek, timeGridDay, listWeek'
+			}"
+			[plugins]="calendarPlugins"
+			[events]="calendarEvents"
+			(eventLongPressDelay)="(1000)"
+			(eventRender)="renderTooltip($event)"
+			(eventDestroy)="destroyTooltip($event)"
+			(eventDrop)="updateReservation($event)"
+			(eventClick)="togglePopover($event)"
+		></full-calendar>
+		<ng-template #popoverTmpl let-event="event">
+			<div class="popover-wrapper">
+				<h3 class="popover-header">
+					<div class="row">
+						<div class="col-6">
+							{{ event.title }}
+						</div>
+						<div class="col-6 text-right">
+							<div class="event-type">
+								<span
+									class="event-dot fc-event-{{
+										event.extendedProps.eventType.class
+									}}"
+								></span>
+								{{ event.extendedProps.eventType.type }}
+							</div>
+						</div>
+					</div>
+				</h3>
+				<div class="popover-body reservation-popover">
+					<div *ngIf="event.extendedProps.personQty">
+						<h6>Persons:</h6>
+						<p>{{ event.extendedProps.personQty }}</p>
+					</div>
+					<div class="comment" *ngIf="event.extendedProps.comments">
+						<h6>Comments:</h6>
+						<p>{{ event.extendedProps.comments }}</p>
+					</div>
+
+					<div *ngIf="event.extendedProps.restaurant">
+						<h6>Restaurant:</h6>
+						<p>{{ event.extendedProps.restaurant }}</p>
+					</div>
+
+					<div *ngIf="event.extendedProps.reservationCode">
+						<h6>Reservation Code:</h6>
+						<p>{{ event.extendedProps.reservationCode }}</p>
+					</div>
+
+					<div *ngIf="event.extendedProps.phoneNumber">
+						<h6>Phone number:</h6>
+						<p>{{ event.extendedProps.phoneNumber }}</p>
+					</div>
+				</div>
+			</div>
+		</ng-template>
+	</kt-portlet-body>
+</kt-portlet>

@@ -1,0 +1,271 @@
+<!--begin::Body-->
+<div class="kt-login__body">
+	<!--begin::Signin-->
+	<div class="kt-login__form">
+		<div class="kt-login__title">
+			<h3>{{ "AUTH.REGISTER.TITLE" | translate }}</h3>
+		</div>
+
+		<kt-auth-notice></kt-auth-notice>
+
+		<form
+			class="kt-login__form kt-form"
+			[formGroup]="registerForm"
+			autocomplete="off"
+		>
+			<div class="row">
+				<div class="col-6 form-group margin-b">
+					<label>FirstName</label>
+					<input
+						type="text"
+						class="form-control n-margin-t"
+						placeholder="firstname"
+						formControlName="firstname"
+						[ngClass]="{
+							'is-invalid':
+								isControlHasError('firstname', 'required') ||
+								isControlHasError('firstname', 'minLength') ||
+								isControlHasError('firstname', 'maxLength')
+						}"
+					/>
+					<span
+						*ngIf="isControlHasError('firstname', 'required')"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+					</span>
+					<span
+						*ngIf="isControlHasError('firstname', 'minLength')"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.MIN_LENGTH_FIELD" | translate }} 3
+					</span>
+					<span
+						*ngIf="isControlHasError('firstname', 'maxLength')"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.MAX_LENGTH_FIELD" | translate }} 100
+					</span>
+				</div>
+
+				<div class="col-6 form-group margin-b">
+					<label>LastName</label>
+					<input
+						type="text"
+						class="form-control n-margin-t"
+						placeholder="lastname"
+						formControlName="lastname"
+						[ngClass]="{
+							'is-invalid':
+								isControlHasError('lastname', 'required') ||
+								isControlHasError('lastname', 'minLength') ||
+								isControlHasError('lastname', 'maxLength')
+						}"
+					/>
+					<span
+						*ngIf="isControlHasError('lastname', 'required')"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+					</span>
+					<span
+						*ngIf="isControlHasError('lastname', 'minLength')"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.MIN_LENGTH_FIELD" | translate }} 3
+					</span>
+					<span
+						*ngIf="isControlHasError('lastname', 'maxLength')"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.MAX_LENGTH_FIELD" | translate }} 100
+					</span>
+				</div>
+
+				<div class="col-12 form-group margin-b">
+					<label>
+						{{ "AUTH.INPUT.EMAIL" | translate }}
+					</label>
+					<input
+						type="email"
+						class="form-control n-margin-t"
+						placeholder="{{ 'AUTH.INPUT.EMAIL' | translate }}"
+						formControlName="email"
+						autocomplete="off"
+						[ngClass]="{
+							'is-invalid':
+								isControlHasError('email', 'required') ||
+								isControlHasError('email', 'email') ||
+								isControlHasError('email', 'minLength') ||
+								isControlHasError('email', 'maxLength')
+						}"
+					/>
+					<span
+						*ngIf="isControlHasError('email', 'required')"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+					</span>
+					<span
+						*ngIf="isControlHasError('email', 'email')"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.INVALID_FIELD" | translate }}
+					</span>
+					<span
+						*ngIf="isControlHasError('email', 'minLength')"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.MIN_LENGTH_FIELD" | translate }} 3
+					</span>
+					<span
+						*ngIf="isControlHasError('email', 'maxLength')"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.MAX_LENGTH_FIELD" | translate }} 320
+					</span>
+				</div>
+
+				<div class="col-12 form-group margin-b">
+					<label>
+						{{ "AUTH.INPUT.PASSWORD" | translate }}
+					</label>
+					<input
+						type="password"
+						class="form-control n-margin-t"
+						placeholder="{{ 'AUTH.INPUT.PASSWORD' | translate }}"
+						formControlName="password"
+						autocomplete="off"
+						[ngClass]="{
+							'is-invalid':
+								isControlHasError('password', 'required') ||
+								isControlHasError('password', 'minLength') ||
+								isControlHasError('password', 'maxLength')
+						}"
+					/>
+					<span
+						*ngIf="isControlHasError('password', 'required')"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+					</span>
+					<span
+						*ngIf="isControlHasError('password', 'minLength')"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.MIN_LENGTH_FIELD" | translate }} 3
+					</span>
+					<span
+						*ngIf="isControlHasError('password', 'maxLength')"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.MAX_LENGTH_FIELD" | translate }} 100
+					</span>
+				</div>
+
+				<div class="col-12 form-group margin-b">
+					<label>
+						{{ "AUTH.INPUT.PASSWORD" | translate }}
+					</label>
+					<input
+						type="password"
+						class="form-control n-margin-t"
+						placeholder="{{
+							'AUTH.INPUT.CONFIRM_PASSWORD' | translate
+						}}"
+						formControlName="confirmPassword"
+						autocomplete="off"
+						[ngClass]="{
+							'is-invalid':
+								isControlHasError(
+									'confirmPassword',
+									'required'
+								) ||
+								isControlHasError(
+									'confirmPassword',
+									'minLength'
+								) ||
+								isControlHasError(
+									'confirmPassword',
+									'maxLength'
+								) ||
+								isControlHasError(
+									'confirmPassword',
+									'ConfirmPassword'
+								)
+						}"
+					/>
+					<span
+						*ngIf="isControlHasError('confirmPassword', 'required')"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+					</span>
+					<span
+						*ngIf="
+							isControlHasError('confirmPassword', 'minLength')
+						"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.MIN_LENGTH_FIELD" | translate }} 3
+					</span>
+					<span
+						*ngIf="
+							isControlHasError('confirmPassword', 'maxLength')
+						"
+						class="invalid-feedback kt-font-bold"
+					>
+						{{ "AUTH.VALIDATION.MAX_LENGTH_FIELD" | translate }} 100
+					</span>
+					<span
+						*ngIf="
+							registerForm.get('confirmPassword').errors &&
+							registerForm.get('confirmPassword').errors
+								.ConfirmPassword
+						"
+						class="invalid-feedback kt-font-bold"
+					>
+						Passswords didn't match.
+					</span>
+				</div>
+
+				<div class="form-group col-12">
+					<mat-checkbox name="agree" formControlName="agree">
+						I agree the
+						<a href="javascript:;">terms & conditions</a>
+					</mat-checkbox>
+				</div>
+			</div>
+
+			<!--begin::Action-->
+			<div class="kt-login__actions">
+				<a
+					href="javascript:;"
+					routerLink="/auth/forgot-password"
+					class="kt-link kt-login__link-forgot"
+				>
+					{{ "AUTH.GENERAL.FORGOT_BUTTON" | translate }}
+				</a>
+				<button
+					routerLink="/auth/login"
+					[disabled]="loading"
+					id="kt_login_signup_cancel"
+					class="btn btn-secondary btn-elevate kt-login__btn-secondary"
+				>
+					{{ "AUTH.GENERAL.BACK_BUTTON" | translate }}
+				</button>
+				<button
+					(click)="submit()"
+					id="kt_login_signin_submit"
+					class="btn btn-primary btn-elevate kt-login__btn-primary"
+					[ngClass]="{
+						'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading
+					}"
+				>
+					{{ "AUTH.GENERAL.SUBMIT_BUTTON" | translate }}
+				</button>
+			</div>
+			<!--end::Action-->
+		</form>
+	</div>
+</div>

@@ -1,0 +1,21 @@
+
+.user-avatar {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.mat-card-header {
+    &.no-avatar {
+        &::ng-deep .mat-card-header-text {
+            margin: 0 !important;
+        }
+    }
+}
+::ng-deep .mat-card-header-text {
+    width: 100%;
+    // margin: 0 !important;
+}
+
+.full {
+    color: #ffb822;
+}

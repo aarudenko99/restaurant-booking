@@ -1,0 +1,11 @@
+.chip-control {
+    height: 50px;
+
+    .mat-chip-input {
+        border: none;
+        
+        &:focus {
+            outline: none;
+        }
+    }
+}

@@ -1,0 +1,72 @@
+// Buttons
+.mat-fab,
+.mat-mini-fab,
+.mat-button,
+.mat-raised-button,
+.mat-stroked-button,
+.mat-icon-button {
+  outline: none !important;
+}
+
+.more-action-fab {
+  background-color: var(--ng-color-light-blue) !important;
+  border: 1px solid var(--ng-color-light-blue) !important;
+  color: var(--ng-color-grey) !important;
+  width: 30px !important;
+  height: 30px !important;
+
+  &:hover {
+    background-color: var(--ng-color-darken-blue) !important;
+  }
+  .mat-button-wrapper {
+    padding: 0 !important;
+    .mat-icon {
+      line-height: 14px !important;
+    }
+  }
+}
+
+.mat-icon-button {
+  .mat-icon-v-align {
+    vertical-align: top !important;
+    line-height: 14px !important;
+  }
+}
+
+.btn.btn-label-light-blue {
+  background: white;
+  color: var(--ng-color-primary) !important;
+  border: 1px solid var(--ng-color-light-blue);
+  &:hover {
+    background: var(--ng-color-darken-blue);
+    .kt-nav__link-text,
+    .kt-nav__link-icon {
+      color: var(--ng-color-primary);
+    }
+  }
+}
+
+// Global Mat-Button Styling
+.rounded-button {
+  border-radius: 20px !important;
+}
+
+.mat-raised-button {
+  .material-icons {
+    font-size: 22px !important;
+  }
+}
+
+.chip-btn {
+  line-height: 30px !important;
+}
+
+mat-radio-button {
+  padding-right: 16px;
+}
+
+mat-radio-button {
+  .mat-radio-label {
+    margin-bottom: 4px;
+  }
+}

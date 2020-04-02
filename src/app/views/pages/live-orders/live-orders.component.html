@@ -1,0 +1,31 @@
+<kt-portlet class="n-padding-l">
+	<div class="kt-portlet__head">
+		<div class="kt-portlet__head-label">
+			<h3 class="kt-portlet__head-title">
+				Live Orders
+				<span class="kt-block-inline margin-l"></span>
+			</h3>
+		</div>
+		<div class="kt-portlet__head-toolbar">
+			<ng-container ktPortletTools>
+				<div class="kt-header__topbar">
+					<kt-search-dropdown
+						[pageType]="'orders'"
+						[icon]="'./assets/media/icons/svg/General/Search.svg'"
+						[useSVG]="true"
+						(filterItems)="filteredOrders($event)"
+					></kt-search-dropdown>
+				</div>
+
+				<kt-context-menu2
+					[title]="selectedState"
+					[class]="'btn-label-brand'"
+					[menuItems]="liveOrderStates"
+					(menuItemClicked)="filterOrders($event.text)"
+				></kt-context-menu2>
+			</ng-container>
+		</div>
+	</div>
+</kt-portlet>
+
+<mm-order-tickets [tableOrders]="tableOrders"></mm-order-tickets>

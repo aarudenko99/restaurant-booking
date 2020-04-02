@@ -1,0 +1,44 @@
+<form class="form-group" [formGroup]="form">
+	<label>Restaurant Category</label>
+	<select2
+		id="restaurantCategory"
+		*ngIf="restaurantCategories"
+		dropdownCssClass="'test'"
+		formControlName="category"
+		[cssImport]="true"
+		[ngClass]="{
+			'is-invalid':
+				form.controls.category.invalid &&
+				(form.controls.category.dirty ||
+					form.controls.category.touched),
+			'is-valid': form.controls.category.valid
+		}"
+		[(value)]="wizardService.formData.RestaurantCategoryId"
+		(valueChanged)="changed($event)"
+		(closeOnSelect)="(false)"
+		style="position: relative; max-width: 600px; max-height: 400px; font-family:Arial, FontAwesome"
+		[perfectScrollbar]="{ wheelPropagation: true }"
+	>
+		<option value="0">Select category</option>
+		<option value="add_category" class="fa fa-plus kt-font-primary">
+			&#xf067; ADD NEW CATEGORY
+		</option>
+		<option
+			value="{{ category._id }}"
+			*ngFor="let category of restaurantCategories"
+		>
+			{{ category.Name }}
+		</option>
+	</select2>
+	<ng-container
+		*ngFor="let validation of validationMessages.category"
+		class="s-margin-t invalid-feedback"
+	>
+		<div
+			*ngIf="wizardService.isControlHasError('category', validation.type)"
+			class="kt-font-bold s-margin-t error-message"
+		>
+			{{ validation.message }}
+		</div>
+	</ng-container>
+</form>

@@ -1,0 +1,65 @@
+<div class="notification">
+	<div class="kt-notification-v2__item padding-h">
+		<div
+			class="kt-notification-v2__item-icon"
+			[ngClass]="
+				type === 'Check-In'
+					? 'purple-light-bg'
+					: type === 'Order'
+					? 'Done-light-bg'
+					: type === 'Transaction'
+					? 'Received-light-bg'
+					: type === 'Check-Out'
+					? 'yellow-light-bg'
+					: type === 'Cash-Payment'
+					? 'Serving-light-bg'
+					: 'primary-inverse'
+			"
+		>
+			<i
+				class="kt-svg-icon kt-font-md"
+				[ngClass]="
+					type === 'Check-In'
+						? 'notification-svg-icon'
+						: type === 'Order'
+						? 'kt-svg-icon--success'
+						: type === 'Transaction'
+						? 'kt-svg-icon--turqoise'
+						: type === 'Check-Out'
+						? 'kt-svg-icon--yellow'
+						: type === 'Cash-Payment'
+						? 'kt-svg-icon--danger'
+						: ''
+				"
+				[inlineSVG]="
+					type === 'Check-In'
+						? 'assets/media/icons/svg/Notification/CheckIn-Toastr.svg'
+						: type === 'Order'
+						? '/assets/media/icons/svg/Cooking/Knife&fork2.svg'
+						: type === 'Transaction'
+						? 'assets/media/icons/svg/Shopping/Credit-card.svg'
+						: type === 'Call-Waiter'
+						? 'assets/media/icons/svg/General/Notifications.svg'
+						: type === 'Cash-Payment'
+						? 'assets/media/icons/svg/Shopping/Wallet.svg'
+						: type === 'Check-Out'
+						? 'assets/media/icons/svg/Home/Door-open.svg'
+						: ''
+				"
+			></i>
+		</div>
+		<div class="kt-notification-v2__itek-wrapper">
+			<div class="kt-notification-v2__item-title">
+				{{ type }}
+			</div>
+			<div class="kt-notification-v2__item-desc">
+				{{ text }}
+			</div>
+			<div
+				class="kt-notification-v2__item-time kt-font-primary kt-font-bold"
+			>
+				{{ time }}
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,27 @@
+#mollie-connect-btn {
+  color: #fff;
+  display: inline-block;
+  height: 44px;
+  text-decoration: none;
+
+  #mollie-connect-btn-m {
+    background: #0163e2 url('../../../../../assets/media/mollie/mollie-logo.png') no-repeat center;
+    background-size: 26px 15px;
+    border-radius: 3px 0 0 3px;
+    display: block;
+    float: left;
+    height: 44px;
+    width: 50px;
+  }
+  #mollie-connect-btn-label {
+    background: #006fff;
+    border-radius: 0 3px 3px 0;
+    display: block;
+    float: left;
+    height: 44px;
+    padding: 7px 13px;
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 600;
+  }
+}

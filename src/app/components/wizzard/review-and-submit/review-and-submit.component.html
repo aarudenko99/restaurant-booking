@@ -1,0 +1,150 @@
+<div class="kt-heading kt-heading--md">Review your Details and Submit</div>
+<div class="kt-form__section kt-form__section--first row">
+	<div class="kt-wizard-v1__review col-lg-6">
+		<div class="kt-wizard-v1__review-item xs-padding-v">
+			<div class="kt-wizard-v1__review-title">
+				<span class="kt-font-bold">Restaurant Name </span>:
+				{{ wizardService.formData.Name }}
+			</div>
+		</div>
+		<div class="kt-wizard-v1__review-item xs-padding-v">
+			<div class="kt-wizard-v1__review-title">
+				<span class="kt-font-bold">Address </span>:
+				{{ wizardService.formData.Address }}
+			</div>
+		</div>
+		<div class="kt-wizard-v1__review-item xs-padding-v">
+			<div class="kt-wizard-v1__review-title">
+				<span class="kt-font-bold">Postcode</span> :
+				{{ wizardService.formData.Zip }}
+			</div>
+		</div>
+		<div class="kt-wizard-v1__review-item xs-padding-v">
+			<div class="kt-wizard-v1__review-title">
+				<span class="kt-font-bold">City </span>:
+				{{ wizardService.formData.City }}
+			</div>
+		</div>
+		<div class="kt-wizard-v1__review-item xs-padding-v">
+			<div class="kt-wizard-v1__review-title">
+				<span class="kt-font-bold">state </span>:
+				{{ wizardService.formData.State }}
+			</div>
+		</div>
+		<div class="kt-wizard-v1__review-item xs-padding-v">
+			<div class="kt-wizard-v1__review-title">
+				<span class="kt-font-bold">Land </span>:
+				{{ wizardService.formData.Country }}
+			</div>
+		</div>
+		<div class="kt-wizard-v1__review-item xs-padding-v">
+			<div class="kt-wizard-v1__review-title">
+				<span class="kt-font-bold">Restaurant Category</span> :
+				{{ wizardService.formData.RestaurantCategoryName }}
+			</div>
+		</div>
+		<div class="kt-wizard-v1__review-item xs-padding-v">
+			<div class="kt-wizard-v1__review-title">
+				<span class="kt-font-bold">Number</span> :
+				{{ wizardService.formData.PhoneNumber }}
+			</div>
+		</div>
+		<div class="kt-wizard-v1__review-item xs-padding-v">
+			<div class="kt-wizard-v1__review-title">
+				<span class="kt-font-bold">Email Address</span>:
+				{{ wizardService.formData.Email }}
+			</div>
+		</div>
+		<div class="kt-wizard-v1__review-item xs-padding-v">
+			<div class="kt-wizard-v1__review-title">
+				<span class="kt-font-bold">Total Seats</span> :
+				{{ wizardService.formData.TotalSeats }}
+			</div>
+		</div>
+		<div
+			*ngIf="wizardService.formData.RestaurantFeatures"
+			class="kt-wizard-v1__review-item xs-padding-v"
+		>
+			<div class="kt-wizard-v1__review-title">
+				<span class="kt-font-bold">Facility</span>
+			</div>
+			<div class="row n-margin-l">
+				<div
+					*ngFor="
+						let item of wizardService.formData.RestaurantFeatures;
+						let i = index
+					"
+				>
+					{{ item.Name }}
+					<span
+						*ngIf="
+							wizardService.formData.RestaurantFeatures.length -
+								1 !==
+							i
+						"
+						>,
+					</span>
+				</div>
+			</div>
+		</div>
+		<div
+			*ngIf="wizardService.formData.Tags"
+			class="kt-wizard-v1__review-item xs-padding-v"
+		>
+			<div class="kt-wizard-v1__review-title">
+				<span class="kt-font-bold">Restaurant Tags</span>
+			</div>
+			<div>
+				<mat-chip-list>
+					<mat-chip *ngFor="let tag of wizardService.formData.Tags">
+						{{ tag.name }}
+					</mat-chip>
+				</mat-chip-list>
+			</div>
+		</div>
+	</div>
+	<div class="kt-wizard-v1__review col-lg-6">
+		<div class="row kt-font-bold">
+			<div class="col-md-4">
+				Day
+			</div>
+			<div class="col-md-5">
+				OpeningHours
+			</div>
+			<div class="col-md-3">
+				status
+			</div>
+		</div>
+		<div
+			class="row"
+			*ngFor="let item of wizardService.formData.OpeningHours"
+		>
+			<div class="col-md-4">
+				{{ item.day }}
+			</div>
+			<div class="col-md-5">
+				{{ item.openingTime }} - {{ item.closingTime }}
+			</div>
+			<div class="col-md-3">
+				{{ item.isClosed ? "Closed" : "" }}
+			</div>
+		</div>
+		<div class="row kt-font-bold margin-t">
+			<div class="col-md-4">
+				Type
+			</div>
+			<div class="col-md-5">
+				Timeslots
+			</div>
+		</div>
+		<div class="row" *ngFor="let item of timeslot; let i = index">
+			<div class="col-md-4">
+				{{ item.type }}
+			</div>
+			<div class="col-md-5">
+				{{ item.from.hour }} : {{ item.from.minute }} -
+				{{ item.till.hour }} : {{ item.till.minute }}
+			</div>
+		</div>
+	</div>
+</div>

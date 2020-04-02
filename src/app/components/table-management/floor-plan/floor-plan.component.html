@@ -1,0 +1,43 @@
+<div id="container" cdkDropListGroup>
+	<div id="floor" class="floorplan-boundary">
+		<div
+			*ngIf="enableEdit"
+			class="zoom-controls s-margin-r s-margin-b text-right"
+		>
+			<button
+				mat-icon-button
+				class="btn btn-label-light-blue btn-bold btn-sm kt-font-transform-u s-padding s-margin-l"
+				(click)="zoom('zoomOut')"
+			>
+				<mat-icon class="mat-icon-v-align"><i class="fa fa-minus"></i></mat-icon>
+			</button>
+			<button
+				mat-icon-button
+				class="btn btn-label-light-blue btn-bold btn-sm kt-font-transform-u s-padding s-margin-l"
+				(click)="zoom('zoomIn')"
+			>
+				<mat-icon class="mat-icon-v-align"><i class="fa fa-plus"></i></mat-icon>
+			</button>
+        </div> 
+        <mm-table
+            *ngIf="!id"
+            #emptyTableComp
+            [table]="tables[0]"
+            [elementIndex]="0"
+            [floorSize]="containerSize"
+        ></mm-table>
+		<ng-container *ngIf="id">
+			<mm-table
+				#tableComp
+				*ngFor="let table of tables; let i = index"
+				[table]="table"
+				[editFloorplan]="enableEdit"
+				[elementIndex]="i"
+				[floorSize]="containerSize"
+				(close)="deleteTable($event)"
+				(save)="updateTable($event)"
+				(edit)="editTable($event)"
+			></mm-table>
+		</ng-container>
+	</div>
+</div>

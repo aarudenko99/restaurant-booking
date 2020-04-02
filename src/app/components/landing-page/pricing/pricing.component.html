@@ -1,0 +1,224 @@
+<!--    header Section-->
+<section class="hero-tarieven the_app">
+	<div class="container">
+		<div
+			class="row align-content-center align-items-center justify-content-center"
+		>
+			<div class="col-md-12">
+				<div class="hero-content-wrap">
+					<div class="hero-text-content">
+						<h4>
+							Mijn Menu is er voor u!
+						</h4>
+						<p>Uit eten begint en eindigt met Mijn Menu.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section-shape">
+		<img
+			src="assets/media/landing-page-imgs/waves-shape.svg"
+			alt="shape image"
+		/>
+	</div>
+</section>
+<!--    Hero Section End-->
+<section class="App">
+	<section class="pricing py-5">
+		<div class="container">
+			<div class="section-heading text-center" [@slideInUp]="slideInUp">
+				<h3>
+					<span class="color-heading">Transparant</span> &
+					<span class="color-heading">Eerlijke</span>
+					Tarieven
+				</h3>
+				<p>Mobiel Reserveren, Bestellen en Betalen</p>
+			</div>
+			<div class="row" [@slideInDown]="slideInDown">
+				<!-- Free Tier -->
+				<div class="col-lg-6">
+					<div class="card mb-5 mb-lg-0">
+						<div class="card-body">
+							<h5
+								class="card-title text-muted text-uppercase text-center"
+							>
+								Gratis
+							</h5>
+							<h6 class="card-price text-center">
+								€0<span class="period">/maand</span>
+							</h6>
+							<hr />
+							<ul class="fa-ul">
+								<li>
+									<span class="fa-li">
+										<i class="fa fa-check"></i>
+									</span>
+									1 Gebruiker
+								</li>
+								<li>
+									<span class="fa-li">
+										<i class="fa fa-check"></i>
+									</span>
+									Restaurants Aanmaken
+								</li>
+								<li>
+									<span class="fa-li">
+										<i class="fa fa-check"></i>
+									</span>
+									Je eigen menukaart in Mijn Menu
+								</li>
+								<li class="text-muted">
+									<span class="fa-li">
+										<i class="fa fa-times"></i>
+									</span>
+									Toegang tot het Mijn Restaurant Dashboard
+								</li>
+								<li class="text-muted">
+									<span class="fa-li">
+										<i class="fa fa-times"></i>
+									</span>
+									Ontvang Reserveringen
+								</li>
+								<li class="text-muted">
+									<span class="fa-li">
+										<i class="fa fa-times"></i>
+									</span>
+									Onbeperkt aanntal Bestellingen
+								</li>
+								<li class="text-muted">
+									<span class="fa-li">
+										<i class="fa fa-times"></i>
+									</span>
+									Real-time Rekeningen
+								</li>
+								<li class="text-muted">
+									<span class="fa-li">
+										<i class="fa fa-times"></i>
+									</span>
+									Instellen van verschillende betaalmethodes
+									zoals iDeal, PayPal of CreditCard
+								</li>
+								<li class="text-muted">
+									<span class="fa-li">
+										<i class="fa fa-times"></i>
+									</span>
+									Toegang tot de uitgebreide statistieken
+								</li>
+								<li class="text-muted">
+									<span class="fa-li">
+										<i class="fa fa-times"></i>
+									</span>
+									Direct gekoppeld aan uw eigen kassasysteem
+								</li>
+							</ul>
+							<a
+								href="#"
+								class="btn btn-block color-primary-bg text-white text-uppercase"
+								[routerLink]="['/auth/register']"
+							>
+								Aanmelden
+							</a>
+						</div>
+					</div>
+				</div>
+				<!-- Mijn Menu Plus -->
+				<div class="col-lg-6">
+					<div class="card">
+						<div class="card-body">
+							<h5
+								class="card-title text-muted text-uppercase text-center"
+							>
+								Mijn Menu Plus
+							</h5>
+							<h6 class="card-price text-center">
+								€200<span class="period">/maand</span>
+							</h6>
+							<hr />
+							<ul class="fa-ul">
+								<li>
+									<span class="fa-li">
+										<i class="fa fa-check"></i>
+									</span>
+									<strong>Onbeperkt</strong> Gebruikers
+								</li>
+								<li>
+									<span class="fa-li">
+										<i class="fa fa-check"></i>
+									</span>
+									Restaurants Aanmaken
+								</li>
+								<li>
+									<span class="fa-li">
+										<i class="fa fa-check"></i>
+									</span>
+									Je eigen menukaart in Mijn Menu
+								</li>
+								<li>
+									<span class="fa-li">
+										<i class="fa fa-check"></i>
+									</span>
+									Toegang tot het Mijn Restaurant Dashboard
+								</li>
+								<li>
+									<span class="fa-li">
+										<i class="fa fa-check"></i>
+									</span>
+									Ontvang Reserveringen
+								</li>
+								<li>
+									<span class="fa-li">
+										<i class="fa fa-check"></i>
+									</span>
+									Onbeperkt aantal Bestellingen
+								</li>
+								<li>
+									<span class="fa-li">
+										<i class="fa fa-check"></i>
+									</span>
+									Real-time Rekeningen
+								</li>
+								<li>
+									<span class="fa-li">
+										<i class="fa fa-check"></i>
+									</span>
+									Instellen van verschillende betaalmethodes
+									zoals iDeal, PayPal of CreditCard
+								</li>
+								<li>
+									<span class="fa-li">
+										<i class="fa fa-check"></i>
+									</span>
+									Toegang tot de uitgebreide statistieken
+								</li>
+
+								<li>
+									<span class="fa-li">
+										<i class="fa fa-check"></i>
+									</span>
+									Direct gekoppeld aan uw eigen kassasysteem
+								</li>
+							</ul>
+							<a
+								href="javascript:;"
+								class="btn btn-block color-primary-bg text-white text-uppercase"
+								(click)="openSignUpDialog()"
+							>
+								Aanmelden
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<swal
+	#mmPlusSwal
+	title="Succesvol verstuurd!"
+	text="Je aanvraag is verzonden, we nemen zo snel mogelijk contact me je op. Je kunt "
+	type="success"
+	timer="10000"
+	[swalOptions]="{ confirmButtonColor: '#ffa000' }"
+></swal>

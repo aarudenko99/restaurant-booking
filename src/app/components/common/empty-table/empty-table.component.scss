@@ -1,0 +1,17 @@
+.mat-table__empty {
+  .empty-img {
+    background: var(--ng-color-light-grey);
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    border: 6px solid white;
+    -webkit-box-shadow: 0px 4px 8px 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 4px 8px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px 1px rgba(0, 0, 0, 0.1);
+  }
+
+  .no-result-img {
+    max-width: 80px;
+  }
+}

@@ -1,0 +1,128 @@
+<kt-portlet
+	[class]="'kt-portlet--height-fluid kt-portlet--border-bottom-brand'"
+>
+	<kt-portlet-header
+		[title]="'Top menu items'"
+		class="kt-portlet-light-blue"
+	></kt-portlet-header>
+	<kt-portlet-body class="n-padding">
+		<div class="row" *ngIf="dataSource">
+			<div class="col-10 n-padding-r">
+				<div class="l-padding-l s-margin-t">
+					<mat-form-field>
+						<input
+							matInput
+							(keyup)="applyFilter($event.target.value)"
+							placeholder="Search"
+						/>
+					</mat-form-field>
+				</div>
+			</div>
+		</div>
+
+		<mat-table
+			class="table-scroll"
+			#table
+			[hidden]="!dataSource || !dataSource.data.length"
+			[dataSource]="dataSource"
+			matSort
+			matSortActive="Quantity"
+			matSortDirection="desc"
+		>
+			<!-- Name Column -->
+			<ng-container matColumnDef="name">
+				<mat-header-cell
+					*matHeaderCellDef
+					class="col-8 kt-font-transform-u"
+				>
+					<span class="kt-font-transform-u">NAME</span>
+				</mat-header-cell>
+				<mat-cell *matCellDef="let element" class="col-md-4 col-lg-6">
+					<div class="row">
+						<div class="col-12 kt-font-bold kt-font-18">
+							<strong>{{ element.Name }}</strong>
+							<div class="kt-font-16 description hidden-md">
+								{{ element.Description }}
+							</div>
+						</div>
+					</div>
+				</mat-cell>
+			</ng-container>
+			<ng-container matColumnDef="price">
+				<mat-header-cell
+					*matHeaderCellDef
+					mat-sort-header
+					class="col-2"
+				>
+					<span class="kt-font-transform-u" text-center>
+						Price
+					</span>
+				</mat-header-cell>
+				<mat-cell
+					*matCellDef="let element"
+					class="col-md-4 col-lg-3 kt-font-bold"
+				>
+					<div class="row full-width">
+						<div class="col-12 kt-font-bold price-box text-center">
+							<div class="kt-font-18 price-color">
+								{{
+									element.Price
+										| currency: "EUR":"symbol":"1.0-2"
+								}}
+							</div>
+							<div><strong class="kt-font-16">Price</strong></div>
+						</div>
+					</div>
+				</mat-cell>
+			</ng-container>
+			<ng-container matColumnDef="Quantity">
+				<mat-header-cell
+					*matHeaderCellDef
+					mat-sort-header
+					class="col-2"
+				>
+					<span class="kt-font-transform-u" text-center>
+						Orders
+					</span>
+				</mat-header-cell>
+				<mat-cell
+					*matCellDef="let element"
+					class="col-md-4 col-lg-3 kt-font-bold"
+				>
+					<div class="row full-width">
+						<div class="col-12 kt-font-bold kt-font-18 order-box">
+							<div class="kt-font-18 text-center">
+								{{ element.Quantity }}
+							</div>
+							<div class="text-center">
+								<strong class="kt-font-16">Orders</strong>
+							</div>
+						</div>
+					</div>
+				</mat-cell>
+			</ng-container>
+			<mat-header-row
+				*matHeaderRowDef="displayedColumns"
+				style="display: none;"
+			></mat-header-row>
+			<mat-row
+				*matRowDef="let row; columns: displayedColumns"
+				class="padding-v"
+			></mat-row>
+		</mat-table>
+		<!-- Empty data table -->
+		<mm-empty-table
+			*ngIf="!dataSource || !dataSource.data.length"
+			[displayedColumns]="displayedColumns"
+			class="mm-empty-table"
+		></mm-empty-table>
+		<!-- <mat-paginator [pageSizeOptions]="[10, 25, 100]" [pageSize]="4" [showFirstLastButtons]="true"></mat-paginator> -->
+	</kt-portlet-body>
+	<kt-portlet-footer class="n-padding">
+		<mat-paginator
+			[pageSize]="3"
+			[pageSizeOptions]="[4, 25, 100]"
+			[showFirstLastButtons]="true"
+		></mat-paginator>
+	</kt-portlet-footer>
+</kt-portlet>

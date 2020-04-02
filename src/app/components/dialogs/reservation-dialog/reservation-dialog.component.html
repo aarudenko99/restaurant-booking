@@ -1,0 +1,97 @@
+<div class="padding">
+	<h1 mat-dialog-title class="text-center">
+		Reservation
+	</h1>
+	<div mat-dialog-content>
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="form-group margin-b">
+					<label>Reservation Name</label>
+					<input
+						type="text"
+						name="height"
+						class="form-control"
+						[disabled]="!edit"
+						[(ngModel)]="reservation.FullName"
+					/>
+					<span class="form-text text-muted"
+						>Please enter the name of your menu category.</span
+					>
+				</div>
+			</div>
+			<div class="col-xl-12">
+				<div class="form-group margin-b">
+					<label>Reservation Date</label>
+					<div class="input-group date">
+						<div class="input-group-append">
+							<span class="input-group-text n-padding">
+								<mat-datetimepicker-toggle
+									[for]="datetimePicker"
+									matSuffix
+								></mat-datetimepicker-toggle>
+							</span>
+						</div>
+						<mat-datetimepicker
+							#datetimePicker
+							type="datetime"
+							openOnFocus="true"
+							timeInterval="5"
+						></mat-datetimepicker>
+						<input
+							[(ngModel)]="reservation.TableReservationDate"
+							class="form-control"
+							[disabled]="!edit"
+							[matDatetimepicker]="datetimePicker"
+							required
+							autocomplete="false"
+						/>
+					</div>
+					<span class="form-text text-muted"
+						>Please enter the name of your menu category.</span
+					>
+				</div>
+			</div>
+			<div class="col-xl-12">
+				<div class="form-group margin-b">
+					<label>Person(s)</label>
+					<input
+						type="text"
+						name="height"
+						class="form-control"
+						[disabled]="!edit"
+						[(ngModel)]="reservation.TableReservationQuantity"
+					/>
+					<span class="form-text text-muted"
+						>Please enter the name of your menu category.</span
+					>
+				</div>
+			</div>
+			<div class="col-xl-12">
+				<div class="form-group margin-b">
+					<label>Reservation Code</label>
+					<input
+						type="text"
+						name="height"
+						class="form-control"
+						[(ngModel)]="reservation.ReservationCode"
+						disabled="data?.reservation"
+					/>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-12 margin-t"></div>
+	</div>
+	<div *ngIf="edit" mat-dialog-actions align="end" class="margin-t">
+		<!-- [mat-dialog-close]="data.category" -->
+		<button mat-button mat-dialog-close tabindex="-1">Cancel</button>
+		<button
+			mat-raised-button
+			color="primary"
+			type="submit"
+			(click)="updateReservation()"
+			cdkFocusInitial
+		>
+			Update
+		</button>
+	</div>
+</div>

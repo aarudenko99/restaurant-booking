@@ -1,0 +1,17 @@
+::ng-deep .mat-datetimepicker-calendar {
+    .mat-datetimepicker-calendar-header {
+        color: black !important;
+    }
+}
+
+
+::ng-deep .mat-datetimepicker-toggle {
+    .mat-icon-button {
+        width: 35px;
+        height: 36px;
+    }
+    .mat-icon {
+        height: 18px !important;
+        width: 18px !important;
+    }
+}

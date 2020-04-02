@@ -1,0 +1,22 @@
+.top-data-card {
+  border-radius: var(--ng-border-radius-s);
+}
+
+.kt-border-radius {
+  border-radius: var(--ng-border-radius-lm);
+}
+
+.mm-card__icon {
+  height: 20px;
+  width: 20px;
+
+  svg {
+    height: 20px;
+    width: 20px;
+  }
+}
+.mm-card__icon {
+  svg {
+    width: 58px !important;
+  }
+}

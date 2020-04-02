@@ -1,0 +1,22 @@
+<kt-portlet
+	*ngIf="data"
+	class="mm-top-data-card card-height padding-h s-padding-v left-border-{{
+		data.className
+	}}"
+>
+	<div class="row top-data-card margin-auto">
+		<div class="col-8 col-md-6 col-lg-8 n-padding-r">
+			<span
+				class="kt-font-24 kt-font-boldest color-{{ data.className }}"
+				>{{ data.value }}</span
+			>
+			<p class="kt-font-12">{{ data.title }}</p>
+		</div>
+		<div class="col-4 col-md-6 col-lg-4 text-right margin-auto">
+			<span
+				class="mm-card__icon kt-svg-icon--sm"
+				[inlineSVG]="data.icon"
+			></span>
+		</div>
+	</div>
+</kt-portlet>

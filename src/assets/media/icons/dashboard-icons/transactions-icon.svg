@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="58" height="58" viewBox="0 0 58 58">
+  <g id="Group_12" data-name="Group 12" transform="translate(-810 -131)">
+    <path id="Fill_1_Copy_2" data-name="Fill 1 Copy 2" d="M58,29.031a73.038,73.038,0,0,1-1.906,17.19c-.261,1.021-.625,2.017-.955,3.02a9.181,9.181,0,0,1-6.058,6,47.065,47.065,0,0,1-10.792,2.266,87.554,87.554,0,0,1-16.981.156A51.412,51.412,0,0,1,9.048,55.3a9.606,9.606,0,0,1-6.354-6.341A47.2,47.2,0,0,1,.585,39.2,88.793,88.793,0,0,1,.277,21.968,52,52,0,0,1,2.663,9.131,9.7,9.7,0,0,1,9.113,2.677,51.6,51.6,0,0,1,21.3.337,88.205,88.205,0,0,1,38.277.489,57.273,57.273,0,0,1,48,2.367a10.435,10.435,0,0,1,7.648,7.75A59.7,59.7,0,0,1,57.71,22.363c.156,2.219.2,4.445.29,6.668" transform="translate(810 131)" fill="rgba(140,84,255,0.1)"/>
+    <g id="Credit-card" transform="translate(827 151)">
+      <rect id="Combined-Shape" width="24.167" height="16.917" rx="2.417" transform="translate(0.417 0.042)" fill="#8c54ff" opacity="0.3"/>
+      <rect id="Rectangle-59" width="24.167" height="3.625" transform="translate(0.417 3.667)" fill="#8c54ff"/>
+      <rect id="Rectangle-59-Copy" width="4.833" height="2.417" rx="1.208" transform="translate(17.333 10.917)" fill="#8c54ff" opacity="0.3"/>
+    </g>
+  </g>
+</svg>

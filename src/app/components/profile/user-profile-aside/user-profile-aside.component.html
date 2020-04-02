@@ -1,0 +1,129 @@
+<div
+	class="kt-grid__item kt-app__toggle kt-app__aside"
+	id="kt_user_profile_aside"
+>
+	<!--begin:: Widgets/Applications/User/Profile1-->
+	<kt-portlet
+		[class]="'kt-portlet--height-fluid kt-portlet--border-bottom-brand'"
+	>
+		<kt-portlet-body>
+			<!--begin::Widget -->
+			<div class="kt-widget kt-widget--user-profile-1">
+				<div class="kt-widget__head">
+					<div class="kt-widget__media">
+						<img
+							alt="image"
+							[src]="
+								user.PictureUrl
+									? user.PictureUrl
+									: './assets/media/users/default-user.png'
+							"
+						/>
+					</div>
+					<div class="kt-widget__content">
+						<div class="kt-widget__section">
+							<a href="#" class="kt-widget__username">
+								{{ user.FullName }}
+							</a>
+							<span class="kt-widget__subtitle">
+								{{ user.Role }}
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="kt-widget__body">
+					<div class="kt-widget__content">
+						<div class="kt-widget__info">
+							<span class="kt-widget__label">Email:</span>
+							<a href="#" class="kt-widget__data"
+								>{{ user.EmailAddress }}
+							</a>
+						</div>
+						<div class="kt-widget__info">
+							<span class="kt-widget__label">Phone:</span>
+							<a href="#" class="kt-widget__data">{{
+								user.PhoneNumber
+							}}</a>
+						</div>
+					</div>
+					<div class="kt-widget__items">
+						<a
+							(click)="navSelected('personal-info')"
+							class="kt-widget__item "
+							[ngClass]="
+								activeNavItem === 'personal-info'
+									? 'kt-widget__item--active'
+									: null
+							"
+						>
+							<span class="kt-widget__section">
+								<span class="kt-widget__icon">
+									<span
+										class="mm-card__icon kt-svg-icon"
+										[inlineSVG]="
+											'./assets/media/icons/svg/General/User.svg'
+										"
+									></span>
+								</span>
+								<span class="kt-widget__desc">
+									Personal Information
+								</span>
+							</span>
+						</a>
+						<a
+							*ngIf="
+								user.Role === 'Admin' && auth.getMijnMenuPlus()
+							"
+							(click)="navSelected('mm-plus')"
+							class="kt-widget__item "
+							[ngClass]="
+								activeNavItem === 'mm-plus'
+									? 'kt-widget__item--active'
+									: null
+							"
+						>
+							<span class="kt-widget__section">
+								<span class="kt-widget__icon">
+									<span
+										class="mm-card__icon kt-svg-icon"
+										[inlineSVG]="
+											'./assets/media/icons/svg/Food/Dinner.svg'
+										"
+									></span>
+								</span>
+								<span class="kt-widget__desc">
+									Mijn Menu Plus
+								</span>
+							</span>
+						</a>
+						<a
+							(click)="navSelected('change-pass')"
+							class="kt-widget__item "
+							[ngClass]="
+								activeNavItem === 'change-pass'
+									? 'kt-widget__item--active'
+									: null
+							"
+						>
+							<span class="kt-widget__section">
+								<span class="kt-widget__icon">
+									<span
+										class="mm-card__icon kt-svg-icon"
+										[inlineSVG]="
+											'./assets/media/icons/svg/General/Shield-protected.svg'
+										"
+									></span>
+								</span>
+								<span class="kt-widget__desc">
+									Change Password
+								</span>
+							</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!--end::Widget -->
+		</kt-portlet-body>
+	</kt-portlet>
+	<!--end:: Widgets/Applications/User/Profile1-->
+</div>

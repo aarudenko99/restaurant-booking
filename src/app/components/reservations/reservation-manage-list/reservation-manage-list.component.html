@@ -1,0 +1,103 @@
+<kt-portlet [class]="'kt-portlet--height kt-portlet--border-bottom-brand'">
+	<kt-portlet-header [title]="'Reservation list'"></kt-portlet-header>
+
+	<kt-portlet-body class="kt-padding-0">
+		<div class="padding-b">
+			<div class="padding-h s-margin-t">
+				<mat-form-field>
+					<input
+						matInput
+						(keyup)="applyFilter($event.target.value)"
+						placeholder="Filter"
+					/>
+				</mat-form-field>
+			</div>
+
+			<div class="loading-shade" *ngIf="isLoadingResults">
+				<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+				<div class="rate-limit-reached" *ngIf="isRateLimitReached">
+					GitHub's API rate limit has been reached. It will be reset
+					in one minute.
+				</div>
+			</div>
+
+			<mat-table #table [dataSource]="reservations" matSort>
+				<!-- Time Column -->
+				<ng-container matColumnDef="TableReservationDate">
+					<mat-header-cell *matHeaderCellDef mat-sort-header>
+						Time
+					</mat-header-cell>
+					<mat-cell *matCellDef="let reservation">
+						{{ reservation.TableReservationDate | date: "HH:mm" }}
+					</mat-cell>
+				</ng-container>
+
+				<!-- Time Column -->
+				<ng-container matColumnDef="date">
+					<mat-header-cell *matHeaderCellDef mat-sort-header>
+						Date
+					</mat-header-cell>
+					<mat-cell *matCellDef="let reservation">
+						{{ reservation.TableReservationDate | date: "d/MM/y" }}
+					</mat-cell>
+				</ng-container>
+
+				<!-- Name Column -->
+				<ng-container matColumnDef="name">
+					<mat-header-cell *matHeaderCellDef mat-sort-header>
+						Name
+					</mat-header-cell>
+					<mat-cell *matCellDef="let reservation">
+						{{ reservation.FirstName }}
+						{{ reservation.LastName }}</mat-cell
+					>
+				</ng-container>
+
+				<!-- Price Column -->
+				<ng-container matColumnDef="action">
+					<mat-header-cell *matHeaderCellDef>
+						Action
+					</mat-header-cell>
+					<!-- Set the assigned table to the reservation -->
+					<mat-cell *matCellDef="let reservation">
+						<mat-select
+							placeholder="Assign table"
+							[(ngModel)]="reservation.TableId"
+							(selectionChange)="
+								assignTable($event.value, reservation)
+							"
+						>
+							<mat-option
+								*ngFor="let table of Tables"
+								[value]="table._id"
+							>
+								Table - {{ table.TableNr }}
+							</mat-option>
+						</mat-select>
+					</mat-cell>
+				</ng-container>
+				<!-- Category Column -->
+				<!-- <ng-container matColumnDef="category">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
+                    <mat-cell *matCellDef="let reservation"> {{reservation.category}} </mat-cell>
+                </ng-container> -->
+				<mat-header-row
+					*matHeaderRowDef="displayedColumns"
+				></mat-header-row>
+				<mat-row
+					*matRowDef="let row; columns: displayedColumns"
+				></mat-row>
+			</mat-table>
+
+			<mat-paginator
+				[length]="resultsLength"
+				[pageSizeOptions]="[5, 10, 25, 100]"
+				[pageSize]="5"
+			></mat-paginator>
+		</div>
+
+		<!-- <div *ngFor="let reservation of Reservations">
+            <kt-context-menu2 [title]="'Assign table'" [menuItems]="menuItems" (menuItemClicked)="assignTable($event.id, reservation)"></kt-context-menu2>
+        </div> -->
+	</kt-portlet-body>
+</kt-portlet>

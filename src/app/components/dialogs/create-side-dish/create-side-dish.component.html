@@ -1,0 +1,53 @@
+<h1 mat-dialog-title class="text-center">
+	Add Side Dish
+</h1>
+<div class="l-padding-h s-padding-v" mat-dialog-content>
+	<div class="row">
+		<div class="col-xl-12">
+			<div class="form-group margin-b">
+				<label>Side Dish Name</label>
+				<input
+					type="text"
+					class="form-control"
+					[(ngModel)]="sideDish.Name"
+					placeholder="Name"
+				/>
+			</div>
+		</div>
+
+		<div class="col-xl-12">
+			<div class="form-group margin-b">
+				<label>Side Description (Optional)</label>
+				<input
+					type="text"
+					class="form-control"
+					[(ngModel)]="sideDish.Description"
+					placeholder="Description"
+				/>
+			</div>
+		</div>
+
+		<div class="col-xl-12">
+			<div class="form-group margin-b">
+				<label>Price (Optional)</label>
+				<input
+					type="number"
+					class="form-control"
+					[(ngModel)]="sideDish.Price"
+					placeholder="Price"
+				/>
+			</div>
+		</div>
+	</div>
+</div>
+<div mat-dialog-actions align="end">
+	<button mat-button mat-dialog-close tabindex="-1">Cancel</button>
+	<button
+		mat-raised-button
+		color="primary"
+		cdkFocusInitial
+		(click)="dismissDialog()"
+	>
+		Add
+	</button>
+</div>

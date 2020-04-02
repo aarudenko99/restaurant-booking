@@ -1,0 +1,19 @@
+<kt-portlet [class]="'kt-portlet--height-fluid'">
+	<kt-portlet-header
+		[title]="'COMMON.RECENT_ACTIVITIES' | translate"
+		class="kt-portlet-light-blue"
+	>
+	</kt-portlet-header>
+	<kt-portlet-body class="n-padding">
+		<div class="kt-notification-v2">
+			<div *ngFor="let activityItem of recentActivities; let last = last">
+				<mm-notification-item
+					[type]="activityItem.Type"
+					[text]="activityItem.Text"
+					[time]="activityItem.CreatedAt | date: 'H:mm'"
+				></mm-notification-item>
+				<mat-divider *ngIf="!last"></mat-divider>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

@@ -1,0 +1,32 @@
+@import '../../../../assets/css/landing-page-styles/bootstrap.min.css';
+@import '../../../../assets/css/landing-page-styles/responsive.css';
+@import '../../../../assets/css/landing-page-styles/style';
+@import '../../../../assets/css/landing-page-styles/font.css';
+@import '../../../../assets/css/landing-page-styles/font-awesome.css';
+
+.app-slide-img {
+  border-radius: 20px;
+}
+
+@media (min-width: 576px) {
+  .landing-page-cont {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .landing-page-cont {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .landing-page-cont {
+    margin-top: -130px;
+  }
+}
+@media (min-width: 1399px) {
+  .landing-page-cont {
+    margin-top: -130px;
+  }
+}

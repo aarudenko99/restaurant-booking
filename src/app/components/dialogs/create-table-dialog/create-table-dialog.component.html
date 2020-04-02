@@ -1,0 +1,164 @@
+<div class="padding-h">
+	<h1 mat-dialog-title class="text-center">
+		{{ edit ? "Edit Table" : "Add Table" }}
+	</h1>
+	<div mat-dialog-content>
+		<div class="row">
+			<div class="col-xl-12">
+				<!-- <div class="form-group margin-b">
+					<label>Name</label>
+					<input
+						type="text"
+						name="title"
+						class="form-control"
+						[(ngModel)]="table.Name"
+						placeholder="Enter Category Title"
+					/>
+					<span class="form-text text-muted"
+						>Please enter category title.</span
+					>
+				</div> -->
+				<div class="form-group margin-b">
+					<label>Table Nr.</label>
+					<input
+						type="number"
+						name="title"
+						class="form-control"
+						[(ngModel)]="table.TableNr"
+						placeholder="Enter a table number"
+						mmNumberOnly
+						[ngClass]="{ 'is-invalid': isTableNumberError }"
+					/>
+
+					<div *ngIf="isTableNumberError" class="invalid-feedback">
+						<div *ngIf="isTableNumberError">
+							Table number required
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row s-margin-b">
+			<div class="col-6">
+				Disable reservations
+
+				<ng-template #tipContent>
+					If you toggle this than this table will be excluded from
+					reservations
+				</ng-template>
+				<i
+					class="flaticon2-information s-margin-l"
+					placement="top"
+					[ngbTooltip]="tipContent"
+				></i>
+			</div>
+			<div class="col-6">
+				<span class="kt-switch kt-switch--sm">
+					<label>
+						<input
+							type="checkbox"
+							[(ngModel)]="DisabledReservation"
+							(change)="toggleReservation($event)"
+						/>
+						<span></span>
+					</label>
+				</span>
+			</div>
+		</div>
+		<div class="row s-margin-b">
+			<div class="col-6">
+				Instant payments
+
+				<ng-template #tipContent>
+					If you toggle this than instant payments will be enabled.
+				</ng-template>
+				<i
+					class="flaticon2-information s-margin-l"
+					placement="top"
+					[ngbTooltip]="tipContent"
+				></i>
+			</div>
+			<div class="col-6">
+				<span class="kt-switch kt-switch--sm">
+					<label>
+						<input
+							type="checkbox"
+							[(ngModel)]="InstantPayment"
+							(change)="toggleInstantPayment($event)"
+						/>
+						<span></span>
+					</label>
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="form-group margin-b">
+					<label>Table Shape</label>
+					<select
+						(change)="changeTableShape(table.Shape)"
+						name="TableShape"
+						[(ngModel)]="table.Shape"
+						class="form-control"
+						id="TableType"
+					>
+						<option value="0">--Select--</option>
+						<option
+							[ngValue]="table.value"
+							*ngFor="let table of tableShapes"
+						>
+							{{ table.label }}
+						</option>
+					</select>
+					<span class="form-text text-muted"
+						>Please select table shape.</span
+					>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="form-group margin-b">
+					<label>Seats/Persons</label>
+					<select
+						name="Seats"
+                        [(ngModel)]="table.Seats"
+						class="form-control"
+						id="Seats"
+					>
+						<option
+							[ngValue]="seat.value"
+							*ngFor="let seat of seatsOption"
+						>
+							{{ seat.label }}
+						</option>
+					</select>
+					<span class="form-text text-muted"
+						>Please select seats/person.</span
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div mat-dialog-actions align="end">
+		<button mat-button mat-dialog-close tabindex="-1">Cancel</button>
+		<button
+			mat-raised-button
+			*ngIf="!edit"
+			color="primary"
+			cdkFocusInitial
+			(click)="dismissDialog()"
+		>
+			Add
+		</button>
+		<button
+			mat-raised-button
+			*ngIf="edit"
+			color="primary"
+			cdkFocusInitial
+			(click)="editTable()"
+		>
+			Update
+		</button>
+	</div>
+</div>

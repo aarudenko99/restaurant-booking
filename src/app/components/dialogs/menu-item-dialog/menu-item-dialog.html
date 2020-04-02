@@ -1,0 +1,339 @@
+<div class="padding-h">
+	<h1 mat-dialog-title class="text-center">
+		<span class="kt-font-transform-c">{{ data.type }}</span> Menu Item
+		<h6>Item will be add to category: {{ data.category.CategoryName }}</h6>
+	</h1>
+	<div
+		mat-dialog-content
+		[perfectScrollbar]="{ wheelPropagation: false }"
+		[ngStyle]="{ 'max-height': '50vh', position: 'relative' }"
+	>
+		<form *ngIf="menuItemForm" [formGroup]="menuItemForm">
+			<div class="row">
+				<div
+					*ngIf="subCategories.length"
+					class="col-xl-6 form-group margin-b"
+				>
+					<label>Select Subcategory</label>
+					<select
+						class="form-control"
+						[(ngModel)]="selectedSubcategory"
+						(change)="subCategoryChange(selectedSubcategory)"
+						[ngModelOptions]="{ standalone: true }"
+					>
+						<option disabled>Select</option>
+						<option
+							*ngFor="let item of subCategories"
+							[ngValue]="item"
+							>{{ item.SubCategoryName }}</option
+						>
+					</select>
+					<span class="form-text text-muted"
+						>Please enter your Package Width in CM.</span
+					>
+				</div>
+				<div class="col-xl-6 form-group margin-b">
+					<label>Menu Item Name</label>
+					<input
+						type="text"
+						class="form-control"
+						formControlName="Name"
+						name="height"
+						placeholder="Enter Menu Item Name"
+						[ngClass]="{ 'is-invalid': submitted && f.Name.errors }"
+					/>
+					<div
+						*ngIf="submitted && f.Name.errors"
+						class="invalid-feedback"
+					>
+						<div *ngIf="f.Name.errors.required">
+							Item name is required
+						</div>
+					</div>
+				</div>
+				<div class="col-6 form-group margin-b">
+					<label>Ingredients</label>
+					<input
+						type="text"
+						class="form-control"
+						formControlName="Ingredients"
+						name="width"
+						placeholder="Tomato, Onion, Spices etc.."
+						[ngClass]="{ 'is-invalid': submitted && f.Ingredients.errors }"
+					/>
+
+					<div
+						*ngIf="submitted && f.Ingredients.errors"
+						class="invalid-feedback"
+					>
+						<div *ngIf="f.Ingredients.errors.required">
+							Item name is required
+						</div>
+					</div>
+				</div>
+				<div
+					*ngIf="data.category.Type !== 'Drinks'"
+					class="col-6 form-group margin-b"
+				>
+					<label>Side Dish (Optional)</label>
+
+					<mm-multiselect-dropdown
+						[data]="sideDishes"
+						formControlName="SideMenu"
+						[settings]="dropdownSettings"
+						[(ngModel)]="selectedSideDishes"
+						(onSelect)="onItemSelect($event)"
+						(onDeSelect)="OnItemDeSelect($event)"
+						(onSelectAll)="onSelectAll($event)"
+						(onDeSelectAll)="onDeSelectAll($event)"
+					>
+					</mm-multiselect-dropdown>
+				</div>
+				<div class="col-xl-6 form-group margin-b">
+					<label>Menu Item Price</label>
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<i class="la la-eur"></i>
+							</span>
+						</div>
+						<input
+							type="number"
+							class="form-control"
+							formControlName="Price"
+							name="length"
+							placeholder="Enter Price in Euros"
+							[ngClass]="{ 'is-invalid': submitted && f.Price.errors }"
+						/>
+						<div
+							*ngIf="submitted && f.Price.errors"
+							class="invalid-feedback"
+						>
+							<div *ngIf="f.Price.errors.required">
+								Item name is required
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-12 l-margin-v">
+					<mat-divider></mat-divider>
+				</div>
+
+				<div
+					class="row full-width s-padding-l form-group s-margin-b"
+					*ngFor="let item of extraOptions; let i = index"
+				>
+					<div class="col-6 form-group n-margin-b">
+						<label>
+							Extra's (Optional)
+							<ng-template #tipContent>
+								Try to find your restaurant in the predictions
+								and select it.
+							</ng-template>
+							<i
+								*ngIf="i < 1"
+								class="flaticon2-information s-margin-l"
+								placement="top"
+								[ngbTooltip]="tipContent"
+							></i>
+						</label>
+						<input
+							type="text"
+							class="form-control"
+							[(ngModel)]="extraOptions[i].name"
+							[ngModelOptions]="{ standalone: true }"
+							placeholder="Extra Cheese Topping"
+						/>
+						<div class="row">
+							<span class="form-text text-muted col-xl-8"
+								>Give your menu items extra options.</span
+							>
+							<a
+								*ngIf="i < 1"
+								href="javascript:;"
+								(click)="addExtraOption()"
+								class="s-margin-v kt-font-bold col-xl-4"
+								>+ Add Extra Options</a
+							>
+						</div>
+					</div>
+
+					<div class="col-6 form-group s-margin-b">
+						<label>Extra's Price (Optional)</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">
+									<i class="la la-eur"></i>
+								</span>
+							</div>
+							<input
+								type="number"
+								class="form-control"
+								[(ngModel)]="extraOptions[i].price"
+								[ngModelOptions]="{ standalone: true }"
+								placeholder="Enter Price in Euros"
+							/>
+							<button
+								*ngIf="i > 0"
+								mat-icon-button
+								color="primary"
+								(click)="deleteExtraOption(i)"
+							>
+								<mat-icon mat-icon class="delete-extra-option"
+									>close</mat-icon
+								>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-12 l-margin-v">
+					<mat-divider></mat-divider>
+				</div>
+
+				<div class="col-xl-12 margin-b">
+					<mm-image-gallery
+						[title]="'Menu Item Photo'"
+						[multiple]="false"
+						[height]="'100px'"
+					></mm-image-gallery>
+				</div>
+
+				<div class="col-xl-12">
+					<div class="form-group n-margin-b">
+						<label>Menu Item Description</label>
+						<textarea
+							class="form-control"
+							formControlName="Description"
+							placeholder="Enter Description for your Menu Item"
+							rows="3"
+							maxlength="240"
+							[ngClass]="{ 'is-invalid': submitted && f.Description.errors }"
+						></textarea>
+						<span
+							class="form-text text-muted text-right kt-font-bold"
+							>Up to 240 words</span
+						>
+					</div>
+				</div>
+
+				<div class="col-xl-12 l-margin-v">
+					<mat-divider></mat-divider>
+				</div>
+
+				<div class="col-xl-6 form-group margin-b">
+					<label>
+						Beschikbaarheid Dagdelen
+
+						<ng-template #tipContent>
+							If you select one of the checkboxes the menu item
+							will only show in that time of the day. If you want
+							a menu item to show in all select all.
+						</ng-template>
+						<i
+							class="flaticon2-information s-margin-l"
+							placement="top"
+							[ngbTooltip]="tipContent"
+						></i>
+					</label>
+					<div class="kt-checkbox-inline">
+						<div class="row">
+							<div class="col-4">
+								<mat-checkbox
+									formControlName="selectAll"
+									class="example-ripple-checkbox"
+								>
+									Select/Unselect all
+								</mat-checkbox>
+							</div>
+							<div
+								class="col-4"
+								formArrayName="MenuRestrictionType"
+								*ngFor="let item of menuItemForm.controls['MenuRestrictionType'].controls; let i = index"
+							>
+								<mat-checkbox
+									[formControlName]="i"
+									class="example-ripple-checkbox"
+								>
+									{{ MenuRestrictionType[i].name }}
+								</mat-checkbox>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-6 form-group margin-b">
+					<label>
+						Dietary types
+					</label>
+					<div class="kt-checkbox-inline">
+						<div class="row">
+							<div
+								class="col-4"
+								formArrayName="DietaryType"
+								*ngFor="let item of menuItemForm.controls['DietaryType'].controls; let i = index">
+									<mat-checkbox
+										[formControlName]="i" [(ngModel)]="diateryObjectArray[i]"
+										class="example-ripple-checkbox">
+										{{ DietaryType[i]?.Name }}
+									</mat-checkbox>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-6 form-group margin-b">
+					<label>
+						Allergic types
+					</label>
+
+					<div class="kt-checkbox-inline">
+						<div class="kt-checkbox-inline">
+							<div class="row">
+								<div
+									class="col-4"
+									formArrayName="AllergicTypes"
+									*ngFor="let item of menuItemForm.controls['AllergicTypes'].controls; let i = index"
+								>
+									<!-- [formControlName]="i" -->
+									<mat-checkbox
+										[formControlName]="i" [(ngModel)]="allergicTypesObjectArray[i]"
+										class="example-ripple-checkbox"
+									>
+										<!--<input type="checkbox" [formControlName]="i" class="example-ripple-checkbox">-->
+										{{ AllergicTypes[i]?.Name }}
+									</mat-checkbox>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="l-margin-v">
+				<mat-divider></mat-divider>
+			</div>
+		</form>
+	</div>
+	<div mat-dialog-actions align="end">
+		<button mat-button mat-dialog-close tabindex="-1">Cancel</button>
+		<button
+			*ngIf="data.type === 'add'"
+			mat-raised-button
+			color="primary"
+			cdkFocusInitial
+			(click)="addMenuItem(menuItemForm.value)"
+		>
+			Add
+		</button>
+		<button
+			*ngIf="data.type === 'edit'"
+			mat-raised-button
+			color="primary"
+			cdkFocusInitial
+			(click)="updateMenuItem(menuItemForm.value)"
+		>
+			Update
+		</button>
+	</div>
+</div>

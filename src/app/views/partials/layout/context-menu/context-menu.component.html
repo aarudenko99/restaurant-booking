@@ -1,0 +1,28 @@
+<button
+	mat-mini-fab
+	autoClose="true"
+	container="body"
+	#p1="ngbPopover"
+	[ngbPopover]="popContent"
+	data-placement="bottom"
+    ngbTooltip="More Actions"
+	class="more-action-fab n-box-shadow kt-font-11 s-margin-r"
+>
+	<mat-icon>more_horiz</mat-icon>
+</button>
+<ng-template #popContent let-language="language">
+	<button
+		mat-menu-item
+		*ngFor="let menuItem of menuItems"
+		class="kt-btn-bottom-border popover-menu-item"
+		(click)="itemClicked(menuItem)"
+	>
+		<mat-icon color="primary">
+			<i class="kt-nav__link-icon {{ menuItem.icon }}"></i>
+		</mat-icon>
+		<span>
+			{{ menuItem.value ? menuItem.value : "" }}
+			{{ menuItem.text }}
+		</span>
+	</button>
+</ng-template>

@@ -1,0 +1,18 @@
+
+
+<div class="input-group">                    
+    <div class="input-group-prepend" (click)="d.toggle(); isOpen = !isOpen">
+        <span class="input-group-text"><i class="la la-calendar"></i></span>
+    </div>         
+    <input class="form-control" id="dateRange" name="dp" [value]="formattedDateRange" ngbDatepicker
+        #d="ngbDatepicker" (dateSelect)="onDateChange($event)" [displayMonths]="2" [dayTemplate]="t" [autoClose]="false"
+        (click)="d.toggle(); isOpen = !isOpen" readonly />
+
+    <ng-template #t let-date="date" let-focused="focused">
+        <span class="custom-day" [class.focused]="focused"
+            [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)" [class.faded]="isHovered(date) || isInside(date)"
+            (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+            {{ date.day }}
+        </span>
+    </ng-template>
+</div>

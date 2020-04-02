@@ -1,0 +1,252 @@
+<!--begin: Form Wizard Step 1-->
+<div class="kt-heading kt-heading--md">Setup Your Current Location</div>
+<div class="kt-form__section kt-form__section--first">
+	<form class="kt-form" [formGroup]="form">
+		<div class="kt-wizard-v1__form">
+			<div class="form-group">
+				<label>
+					{{ "WIZARD.SETUP.NAME" | translate }}
+					<ng-template #tipContent>
+						Try to find your restaurant in the predictions and
+						select it.
+					</ng-template>
+					<i
+						class="flaticon2-information s-margin-l"
+						placement="top"
+						[ngbTooltip]="tipContent"
+					></i>
+				</label>
+				<input
+					ngx-google-places-autocomplete
+					name="name"
+					autocomplete="off"
+					type="search"
+					[ngClass]="{
+						'is-invalid':
+							name.invalid && (name.dirty || name.touched),
+						'is-valid': name.valid
+					}"
+					formControlName="name"
+					[options]="options"
+					#placesRef="ngx-places"
+					placeholder="Restaurant Name"
+					class="form-control"
+					(input)="handleInputChange($event.target.value)"
+					(onAddressChange)="handleAddressChange($event)"
+				/>
+				<!-- [(ngModel)]="placeName" -->
+				<ng-container
+					*ngFor="let validation of validationMessages.name"
+					class="s-margin-t invalid-feedback"
+				>
+					<div
+						*ngIf="
+							wizardService.isControlHasError(
+								'name',
+								validation.type
+							)
+						"
+						class="kt-font-bold s-margin-t error-message"
+					>
+						{{ validation.message }}
+					</div>
+				</ng-container>
+				<!-- <span class="form-text text-muted">Please enter your Restaurant Name.</span> -->
+			</div>
+			<div class="form-group">
+				<label>{{ "WIZARD.SETUP.ADDRESS" | translate }}</label>
+				<input
+					formControlName="address"
+					type="text"
+					class="form-control"
+					name="address"
+					required
+					[ngClass]="{
+						'is-invalid':
+							address.invalid &&
+							(address.dirty || address.touched),
+						'is-valid': address.valid
+					}"
+					[(ngModel)]="wizardService.formData.Address"
+					placeholder="Address Line 2"
+					value="Address Line 2"
+				/>
+				<ng-container
+					*ngFor="let validation of validationMessages.address"
+					class="s-margin-t invalid-feedback"
+				>
+					<div
+						*ngIf="
+							wizardService.isControlHasError(
+								'address',
+								validation.type
+							)
+						"
+						class="kt-font-bold s-margin-t error-message"
+					>
+						{{ validation.message }}
+					</div>
+				</ng-container>
+			</div>
+			<div class="row">
+				<div class="col-xl-6">
+					<div class="form-group">
+						<label>{{ "WIZARD.SETUP.ZIPCODE" | translate }}</label>
+						<input
+							formControlName="postalcode"
+							[ngClass]="{
+								'is-invalid':
+									postalcode.invalid &&
+									(postalcode.dirty || postalcode.touched),
+								'is-valid': postalcode.valid
+							}"
+							type="text"
+							class="form-control"
+							name="postcode"
+							required
+							[(ngModel)]="wizardService.formData.Zip"
+							placeholder="Postcode"
+							value="4876"
+						/>
+						<ng-container
+							*ngFor="
+								let validation of validationMessages.postalcode
+							"
+							class="s-margin-t invalid-feedback"
+						>
+							<div
+								*ngIf="
+									wizardService.isControlHasError(
+										'postalcode',
+										validation.type
+									)
+								"
+								class="kt-font-bold s-margin-t error-message"
+							>
+								{{ validation.message }}
+							</div>
+						</ng-container>
+					</div>
+				</div>
+				<div class="col-xl-6">
+					<div class="form-group">
+						<label>{{ "WIZARD.SETUP.CITY" | translate }}</label>
+						<input
+							formControlName="city"
+							type="text"
+							class="form-control"
+							name="city"
+							required
+							[ngClass]="{
+								'is-invalid':
+									city.invalid &&
+									(city.dirty || city.touched),
+								'is-valid': city.valid
+							}"
+							[(ngModel)]="wizardService.formData.City"
+							placeholder="City"
+							value="Breda"
+						/>
+						<ng-container
+							*ngFor="let validation of validationMessages.city"
+							class="s-margin-t invalid-feedback"
+						>
+							<div
+								*ngIf="
+									wizardService.isControlHasError(
+										'city',
+										validation.type
+									)
+								"
+								class="kt-font-bold s-margin-t error-message"
+							>
+								{{ validation.message }}
+							</div>
+						</ng-container>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-6">
+					<div class="form-group">
+						<label>{{ "WIZARD.SETUP.STATE" | translate }}</label>
+						<input
+							formControlName="state"
+							type="text"
+							class="form-control"
+							name="state"
+							required
+							[ngClass]="{
+								'is-invalid':
+									states.invalid &&
+									(states.dirty || states.touched),
+								'is-valid': states.valid
+							}"
+							[(ngModel)]="wizardService.formData.State"
+							placeholder="State"
+							value="Noord-Brabant"
+						/>
+						<ng-container
+							*ngFor="let validation of validationMessages.state"
+							class="s-margin-t invalid-feedback"
+						>
+							<div
+								*ngIf="
+									wizardService.isControlHasError(
+										'states',
+										validation.type
+									)
+								"
+								class="kt-font-bold s-margin-t error-message"
+							>
+								{{ validation.message }}
+							</div>
+						</ng-container>
+					</div>
+				</div>
+				<div class="col-xl-6">
+					<div class="form-group">
+						<label>Land</label>
+						<select
+							formControlName="country"
+							name="country"
+							required
+							[ngClass]="{
+								'is-invalid':
+									country.invalid &&
+									(country.dirty || country.touched),
+								'is-valid': country.valid
+							}"
+							[(ngModel)]="wizardService.formData.Country"
+							class="form-control"
+						>
+							<option value="">Select</option>
+							<option value="NL" selected>Nederland</option>
+							<option value="BE">België</option>
+						</select>
+						<ng-container
+							*ngFor="
+								let validation of validationMessages.country
+							"
+							class="s-margin-t invalid-feedback"
+						>
+							<div
+								*ngIf="
+									wizardService.isControlHasError(
+										'country',
+										validation.type
+									)
+								"
+								class="kt-font-bold s-margin-t error-message"
+							>
+								{{ validation.message }}
+							</div>
+						</ng-container>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<!--end: Form Wizard Step 1-->

@@ -1,0 +1,221 @@
+.hero {
+  background: center/cover url(assets/media/landing-page-imgs/The_App_bg.png) no-repeat !important;
+}
+
+.hero-mijn-restaurant {
+  background: center/cover url(assets/media/landing-page-imgs/MijnRestaurant.png) no-repeat !important;
+}
+
+.hero-tarieven {
+  background: center/cover url(assets/media/landing-page-imgs/tarieven-header-img.png) no-repeat !important;
+}
+
+@media (min-width: 768px) {
+  section.hero {
+    min-height: 439px !important;
+  }
+}
+
+.hero-content-wrap {
+  height: 300px !important;
+}
+
+.hero-text-content h4 {
+  text-align: left;
+  font: Bold 53px/64px 'Montserrat';
+  letter-spacing: 0;
+  color: #ffffff;
+  opacity: 1;
+  transition: all 0.4s ease-in;
+}
+
+.hero-text-content p {
+  text-align: left;
+  font: Semibold 20px/27px 'Open Sans';
+  letter-spacing: 0;
+  color: #ffffff;
+  opacity: 1;
+  transition: all 0.4s ease-in;
+}
+
+.App .section-heading {
+  margin-bottom: 20px;
+}
+
+.App .text p {
+  text-align: left;
+  font: lighter 16px/26px 'Open Sans' !important;
+  letter-spacing: 0;
+  color: #555555;
+  opacity: 1;
+  transition: all 0.4s ease-in;
+}
+
+.payment_image img {
+  width: 100%;
+}
+
+.overlay-1 {
+  background: rgba(0, 0, 0, 0.69) !important;
+  padding: 43px 0;
+  overflow: hidden;
+}
+
+.video-app,
+.video-app-1 {
+  height: 607px !important;
+}
+
+.video-app-1 .section-heading h3 {
+  color: #fff !important;
+}
+
+.video-app-1 .section-heading p {
+  color: #fff;
+}
+
+.iframe {
+  min-width: 800px;
+  min-height: 324px;
+  position: relative;
+  transition: all 0.4s ease-in;
+}
+
+.iframe iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: all 0.4s ease-in;
+}
+
+.increase-turn-over {
+  padding: 40px 0;
+}
+
+.in-feature-img {
+  width: 100%;
+}
+
+.in-feature-content h3 {
+  text-align: left;
+  font: Bold 37px/45px 'Montserrat';
+  letter-spacing: 0;
+  color: #2e2e2e;
+  opacity: 1;
+  margin-bottom: 20px;
+  transition: all 0.4s ease-in;
+}
+
+.in-feature-content p {
+  text-align: left;
+  font: lighter 16px/26px 'Open Sans';
+  letter-spacing: 0;
+  color: #555555;
+  opacity: 1;
+  transition: all 0.4s ease-in;
+}
+
+.help-your-guest {
+  min-height: 610px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.help-container {
+  min-height: 410px;
+  width: 100%;
+  background: center/cover url('assets/media/landing-page-imgs/background-mirch.png') no-repeat;
+}
+
+.help-guest-text h3 {
+  text-align: left;
+  font: Bold 28px/34px 'Montserrat';
+  letter-spacing: 0;
+  color: #ffa000;
+  opacity: 1;
+  margin-bottom: 20px;
+}
+
+.help-guest-text p {
+  text-align: left;
+  font: Light 16px/26px 'Open Sans';
+  letter-spacing: 0;
+  color: #ffffff;
+  opacity: 1;
+}
+
+.phone-image-help {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  transition: all 0.4s ease-in;
+}
+
+.help-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    background: transparent linear-gradient(180deg, #ffbb47 0%, #ffa000 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 4px #00000080;
+    opacity: 1;
+    border-bottom: 0;
+  }
+
+  header {
+    min-height: 130px;
+  }
+}
+@media (min-width: 992px) {
+  .hide-on-big {
+    display: none;
+    transition: all 0.4s ease-in;
+  }
+}
+
+@media (min-width: 200px) and (max-width: 991px) {
+  header {
+    min-height: 80px;
+  }
+
+  .help-your-guest {
+    min-height: 100%;
+    transition: all 0.4s ease-in;
+  }
+
+  .help-your-guest .phone-image-help {
+    display: none;
+    transition: all 0.4s ease-in;
+  }
+
+  .hide-on-big {
+    text-align: center;
+    transition: all 0.4s ease-in;
+  }
+
+  .help-guest-text {
+    padding: 50px 0 !important;
+    transition: all 0.4s ease-in;
+  }
+
+  .iframe iframe {
+    height: 100%;
+    transition: all 0.4s ease-in;
+  }
+
+  .iframe {
+    min-width: 100%;
+    min-height: 200px;
+    transition: all 0.4s ease-in;
+  }
+}

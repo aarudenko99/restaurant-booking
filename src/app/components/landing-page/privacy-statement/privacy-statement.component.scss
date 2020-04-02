@@ -1,0 +1,29 @@
+@import '../../../../assets/css/landing-page-styles/bootstrap.min.css';
+@import '../../../../assets/css/landing-page-styles/responsive.css';
+@import '../../../../assets/css/landing-page-styles/style';
+@import '../../../../assets/css/landing-page-styles/font.css';
+@import '../../../../assets/css/landing-page-styles/font-awesome.css';
+@import '../../../../assets/css/landing-page-styles/signup';
+
+.container {
+  margin-top: 100px;
+}
+
+.fa-feature-icon {
+  font-size: 21px !important;
+}
+
+.list-style-disc {
+  list-style: disc;
+}
+
+p {
+  padding: 6px;
+}
+
+.text-decoration {
+  text-decoration: underline;
+}
+.text-bold {
+  font-weight: bold;
+}

@@ -1,0 +1,52 @@
+<kt-portlet [class]="'kt-portlet--height-fluid'" tourAnchor="testId">
+	<kt-portlet-header
+		[title]="'COMMON.ORDER_QUANTITY' | translate"
+		class="n-border"
+	>
+		<ng-container ktPortletTools>
+			<div class="row s-margin-r">
+				<div
+					class="col-6 orders active-orders s-padding margin-auto kt-checkbox-inline"
+				>
+					<span class="dot dot-red xs-margin-r margin-auto"></span>
+					Active:
+					<span class="color-red xs-padding-l">
+						{{ activeOrders }}
+					</span>
+				</div>
+				<div class="col-6 orders average-orders s-padding margin-auto">
+					<span
+						class="dot dot-primary xs-margin-r margin-auto"
+					></span>
+					Avg:
+					<span class="color-primary xs-padding-l">
+						{{ averageOrders }}
+					</span>
+				</div>
+			</div>
+
+			<kt-context-menu2
+				[class]="'btn-label-brand'"
+				[title]="selectedFilter"
+				[menuItems]="filters"
+				(menuItemClicked)="filerBySelection($event)"
+			></kt-context-menu2>
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body class="padding-t">
+		<div *ngIf="showDateFilter" class="row">
+			<div class="col-2 offset-10 xl-padding-l">
+				<mm-graph-date-filter
+					[selectedFilter]="selectedFilter"
+					(filterSelected)="filterGraphData($event)"
+				></mm-graph-date-filter>
+			</div>
+		</div>
+		<kt-widget12
+			*ngIf="graphData"
+			[data]="graphData"
+			[euro]="false"
+			[type]="'bar'"
+		></kt-widget12>
+	</kt-portlet-body>
+</kt-portlet>

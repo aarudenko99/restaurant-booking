@@ -1,0 +1,34 @@
+<kt-portlet [class]="'kt-portlet--height-fluid transparent n-box-shadow'">
+	<kt-portlet-header class="n-padding">
+		<ng-container ktPortletTools>
+			<div class="float-right">
+				<button
+					mat-icon-button
+					class="icon-button"
+					[ngClass]="view === 'calendar' ? 'active' : null"
+					(click)="setType('calendar')"
+				>
+					<i class="flaticon2-calendar-8 kt-font-28"></i>
+				</button>
+				<button
+					mat-icon-button
+					class="icon-button"
+					[ngClass]="view === 'list' ? 'active' : null"
+					(click)="setType('list')"
+				>
+					<i class="fa fa-clipboard-list kt-font-30"></i>
+					<!-- <mat-icon class="list-icon kt-font-30" aria-hidden="false" aria-label="select list">list</mat-icon> -->
+				</button>
+			</div>
+		</ng-container>
+	</kt-portlet-header>
+
+	<ng-container [ngSwitch]="view">
+		<ng-container *ngSwitchCase="'list'">
+			<mm-reservation-table-list></mm-reservation-table-list>
+		</ng-container>
+		<ng-container *ngSwitchCase="'calendar'">
+			<mm-calendar></mm-calendar>
+		</ng-container>
+	</ng-container>
+</kt-portlet>

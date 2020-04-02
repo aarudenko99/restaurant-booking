@@ -1,0 +1,138 @@
+<div class="kt-widget kt-widget--user-profile-3">
+    <div class="kt-widget__top">
+        <div class="kt-widget__media kt-hidden-">
+            <img src="./assets/media/users/100_1.jpg" alt="image">
+        </div>
+        <div class="kt-widget__pic kt-widget__pic--danger kt-font-danger kt-font-boldest kt-font-light kt-hidden">
+            JM
+        </div>
+        <div class="kt-widget__content">
+            <div class="kt-widget__head">
+                <a href="#" class="kt-widget__username">
+                    {{ restaurant.Restaurant.Name }}
+                    <i class="flaticon2-correct kt-font-success"></i>                       
+                </a>
+                <div *ngIf="read">
+                    <div class="kt-widget__action">
+                        <button type="button" class="btn btn-sm btn-upper" style="background: #edeff6" [routerLink]="['/dashboard/edit-restaurant']" [queryParams]="{ id: restaurant.Restaurant._id}">edit</button>&nbsp;
+                        <button type="button" class="btn btn-label-brand btn-sm btn-upper" [routerLink]="['/dashboard/user-management/users/add']">add user</button>&nbsp;
+                        <!-- <button type="button" class="btn btn-brand btn-sm btn-upper">new task</button> -->
+                    </div>
+                </div>
+                <div *ngIf="!read" class="kt-widget__action">
+                    <button type="button" class="btn btn-label-success btn-sm btn-upper" (click)="selectRestaurant(restaurant)">Select restaurant</button>
+
+                    <!-- TO DO REWORK KT-CONTEXT-2 MENU INCLUDE IT HERE -->
+                    <!-- <kt-context-menu [menuItems]="menuItems" (menuItemClicked)="loadRestauranReviews($event.value)"></kt-context-menu>    -->
+                    <span ngbDropdown [placement]="'bottom-right'" class="dropdown">
+                        <button ngbDropdownToggle type="button" class="btn btn-label-brand btn-sm btn-icon btn-icon-md">
+                            <i class="flaticon2-gear"></i>
+                        </button>
+                        <div ngbDropdownMenu class="dropdown-menu dropdown-menu-fit">
+                            <ul class="kt-nav">
+                                <li class="kt-nav__section kt-nav__section--first">
+                                    <span class="kt-nav__section-text">Actions</span>
+                                </li>
+                                <li class="kt-nav__item">
+                                    <a class="kt-nav__link" [routerLink]="['/dashboard/edit-restaurant']" [queryParams]="{id: restaurant.Restaurant._id}">
+                                        <mat-icon aria-label="Edit restaurant">edit</mat-icon>
+                                        <span class="kt-nav__link-text">Edit</span>
+                                    </a>
+                                </li>
+                                <li class="kt-nav__item">
+                                    <a href="javascript:;" class="kt-nav__link" (click)="deleteRestaurant(restaurant.Restaurant)">
+                                        <mat-icon aria-label="Delete restaurant">delete_outline</mat-icon>
+                                        <span class="kt-nav__link-text">Delete</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </span>             
+                </div>                        
+            </div>
+                 
+            <div class="kt-widget__subhead">
+                <a href="#"><i class="la la-phone"></i>{{ restaurant.Restaurant.PhoneNumber ? restaurant.Restaurant.PhoneNumber : '----'  }}</a> 
+                <a href="#"><i class="flaticon2-calendar-3"></i>PR Manager </a> 
+                <a href="#"><i class="flaticon-placeholder-1"></i>{{ restaurant.Restaurant.Address }}</a>                        
+            </div> 
+            <div class="n-padding-l col-8 kt-widget__info">
+                <p>{{ restaurant.Restaurant.Description }}</p>
+            </div>
+        </div>    
+    </div>
+    <div class="kt-widget__bottom">
+        <div class="kt-widget__item">
+            <div class="kt-widget__icon">
+                <i class="flaticon-piggy-bank"></i>    
+            </div>
+            <div class="kt-widget__details">
+                <span class="kt-widget__title">Earnings</span>
+                <span class="kt-widget__value"><span>$</span>249,500</span>  
+            </div>
+        </div>
+
+        <div class="kt-widget__item">
+            <div class="kt-widget__icon">
+                <i class="flaticon-confetti"></i>    
+            </div>
+            <div class="kt-widget__details">
+                <span class="kt-widget__title">Expenses</span>
+                <span class="kt-widget__value"><span>$</span>164,700</span>  
+            </div>
+        </div>
+
+        <div class="kt-widget__item">
+            <div class="kt-widget__icon">
+                <i class="flaticon-pie-chart"></i>    
+            </div>
+            <div class="kt-widget__details">
+                <span class="kt-widget__title">Net</span>
+                <span class="kt-widget__value"><span>$</span>782,300</span>  
+            </div>
+        </div>
+
+        <ng-container *ngIf="read">
+            <div class="kt-widget__item">
+                <div class="kt-widget__icon">
+                    <i class="flaticon-file-2"></i>    
+                </div>
+                <div class="kt-widget__details">
+                    <span class="kt-widget__title">73 Tasks</span>
+                    <a href="#" class="kt-widget__value kt-font-brand">View</a>  
+                </div>
+            </div>
+    
+            <div class="kt-widget__item">
+                <div class="kt-widget__icon">
+                    <i class="flaticon-chat-1"></i>    
+                </div>
+                <div class="kt-widget__details">
+                    <span class="kt-widget__title">648 Comments</span>
+                    <a href="#" class="kt-widget__value kt-font-brand">View</a>  
+                </div>
+            </div>
+        </ng-container>
+        
+
+        <div class="kt-widget__item">
+            <div class="kt-widget__icon">
+                <i class="flaticon-network"></i>    
+            </div>
+            <div class="kt-widget__details">
+                <div class="kt-section__content kt-section__content--solid">
+                    <div class="kt-badge kt-badge__pics">
+                        <ng-container *ngIf="restaurantUsers">
+                            <a href="javascript:;" class="kt-badge__pic" *ngFor="let user of restaurantUsers" data-toggle="kt-tooltip" data-skin="brand" data-placement="top" title="" data-original-title="John Myer">
+                                <img [src]="user.PictureUrl ? user.PictureUrl : './assets/media/users/100_7.jpg'" alt="image">
+                            </a>
+                        </ng-container>
+                        <a href="#" class="kt-badge__pic kt-badge__pic--last kt-font-brand">
+                            +7
+                        </a>
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="kt-section padding-v l-padding-h">
+	<div class="row">
+		<div class="col-3 margin-auto">
+			<h5 class="n-margin-b">
+				{{ category.CategoryName }}
+			</h5>
+		</div>
+		<div class="col-8 text-right">
+			<button
+				mat-raised-button
+				color="warn"
+				type="submit"
+				(click)="deleteMainCategory(category._id)"
+				cdkFocusInitial
+			>
+				Delete
+			</button>
+		</div>
+	</div>
+	<div class="col-xl-12 l-margin-v n-padding-h">
+		<mat-divider></mat-divider>
+	</div>
+	<div>
+		<div class="form-group row">
+			<label class="col-lg-3 col-form-label">Main Category</label>
+			<div class="col-lg-6">
+				<input
+					type="text"
+					name="height"
+					class="form-control"
+					[(ngModel)]="category.CategoryName"
+					placeholder="Enter Category Name"
+				/>
+				<span class="form-text text-muted">
+					Please enter the name of your menu category.
+				</span>
+			</div>
+		</div>
+		<div class="col-xl-12 l-margin-v n-padding-h">
+			<mat-divider></mat-divider>
+		</div>
+		<ng-container
+			*ngFor="let subcategory of category.SubCategories; let i = index"
+		>
+			SUBCAT 1: {{ subcategory | json }}
+			<!-- -->
+			<div class="form-group row">
+				<label class="col-lg-3 col-form-label">Sub Category</label>
+				<div class="col-lg-6">
+					<input
+						type="text"
+						name="height"
+						class="form-control"
+						[(ngModel)]="subcategory.SubCategoryName"
+						placeholder="Enter Category Name"
+					/>
+					<span class="form-text text-muted"
+						>Please enter the name of your menu category.</span
+					>
+				</div>
+				<div class="col-lg-3 text-center">
+					<button
+						mat-icon-button
+						color="primary"
+						(click)="
+							deleteSubCategory(category._id, subcategory._id)
+						"
+					>
+						<mat-icon mat-icon>close</mat-icon>
+					</button>
+				</div>
+			</div>
+		</ng-container>
+		<a href="javascript:;" class="kt-font-bold" (click)="addSubCategory()"
+			>Add Sub Category</a
+		>
+	</div>
+</div>

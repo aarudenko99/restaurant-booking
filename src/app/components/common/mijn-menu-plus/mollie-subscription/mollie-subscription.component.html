@@ -1,0 +1,95 @@
+<div *ngIf="userInformation" class="row">
+	<div class="col-6 form-group margin-b">
+		<label>
+			<i
+				class="kt-svg-icon kt-font-md kt-svg-icon--primary s-margin-r"
+				[inlineSVG]="'./assets/media/icons/svg/General/User.svg'"
+			></i>
+			Customer Name
+		</label>
+		<input
+			type="text"
+			class="form-control"
+			[disabled]="!edit"
+			[(ngModel)]="userInformation.consumerName"
+		/>
+	</div>
+	<div class="col-6 form-group margin-b">
+		<label>
+			<i
+				class="kt-svg-icon kt-font-md kt-svg-icon--primary s-margin-r"
+				[inlineSVG]="
+					'./assets/media/icons/svg/Shopping/Credit-card.svg'
+				"
+			></i>
+			IBAN
+		</label>
+		<input
+			type="text"
+			class="form-control"
+			[disabled]="!edit"
+			[(ngModel)]="userInformation.consumerAccount"
+		/>
+	</div>
+	<div *ngIf="subscriptionInformation" class="col-xl-12 form-group margin-b">
+		<div class="kt-section__body row">
+			<div class="col-4">
+				<div class="xs-padding">
+					<i
+						class="kt-svg-icon kt-font-md kt-svg-icon--primary s-margin-r"
+						[inlineSVG]="
+							'./assets/media/icons/svg/Navigation/Waiting.svg'
+						"
+					></i>
+					Status
+				</div>
+				<div class="grey-slot s-padding-v text-center kt-border-radius">
+					<span
+						class="status-indicator {{
+							subscriptionInformation.status
+						}} primary-dot xs-margin-r"
+					></span>
+					{{ subscriptionInformation.status }}
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="xs-padding">
+					<i
+						class="kt-svg-icon kt-font-md kt-svg-icon--primary s-margin-r"
+						[inlineSVG]="
+							'./assets/media/icons/svg/Shopping/Euro.svg'
+						"
+					></i>
+					Tarief
+				</div>
+				<div class="grey-slot s-padding-v text-center kt-border-radius">
+					{{ subscriptionInformation.amount.currency }}
+					{{ subscriptionInformation.amount.value }}
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="xs-padding">
+					<i
+						class="kt-svg-icon kt-font-md kt-svg-icon--primary s-margin-r"
+						[inlineSVG]="
+							'./assets/media/icons/svg/General/Unlock.svg'
+						"
+					></i>
+					Start datum
+				</div>
+				<div class="grey-slot s-padding-v text-center kt-border-radius">
+					{{ subscriptionInformation.startDate | date: "dd MMMM y" }}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-12">
+		<button
+			type="button"
+			class="btn btn-label-danger btn-bold btn-block kt-margin-t-5 kt-margin-b-5"
+			(click)="disableMijnMenuPlus()"
+		>
+			Deactivate Mijn Menu Plus
+		</button>
+	</div>
+</div>

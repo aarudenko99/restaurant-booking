@@ -1,0 +1,64 @@
+
+<!-- <form [formGroup]="offerItemForm"> -->
+    <div class="row">    
+        <div class="col-xl-12 form-group margin-b">
+            <label>Discount on</label>
+            <span [ngSwitch]="offerType">
+                <span *ngSwitchCase="'MenuItem'">
+                    <select value="select" class="form-control">
+                        <option value="select">Select Item</option>
+                        <option *ngFor="let item of subCategories" [value]="item.subcategory">{{ item.subcategory }}</option>
+                    </select>
+                </span>
+                <span *ngSwitchCase="'Billing'">
+                    <select value="select" class="form-control">
+                        <option value="select">Select Option</option>
+                        <option *ngFor="let item of subCategories" [value]="item.subcategory">{{ item.subcategory }}</option>
+                    </select>
+                </span>
+                <span *ngSwitchCase="'DiscountCode'">
+                    Generate Discount Code
+                </span>
+            </span>
+        </div>
+
+        <div class="col-xl-12 form-group margin-b">
+            <label>Discount Name</label>
+            <input type="text" name="height" [(ngModel)]="offer.Title" class="form-control" placeholder="Enter Category Name">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-3 form-group margin-b">
+            <label>Reduction Amount</label>
+            <div class="input-group">                    
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="la la-euro"></i></span>
+                </div>
+                
+                <input type="text" name="height" class="form-control" placeholder="10">
+            </div>
+        </div>
+        <div class="col-xl-9 form-group margin-b">
+            <label>Select Discount Period</label>
+            <mm-date-range-picker (dateRangeSelection)="date($event)"></mm-date-range-picker>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12 form-group margin-b">
+            <label>Event Description</label>
+            <textarea class="form-control" [(ngModel)]="offer.Description" placeholder="Enter Description for your Menu Item" rows="3" maxlength="240"></textarea>
+            <span class="form-text text-muted text-right kt-font-bold">Up to 240 words</span>
+        </div>
+
+        <div class="col-xl-12 form-group margin-b">
+            <label>Reservation Code</label>
+            <input type="text" name="height" class="form-control" placeholder="Enter Category Name">
+            <span class="form-text text-muted">Please enter the name of your menu category.</span>
+        </div>
+    </div>
+    <div *ngIf="offerType === 'menuItem'">Menu Item</div>
+    <div *ngIf="offerType === 'bill'">Bill</div>
+    <div *ngIf="offerType === 'discountCode'">Menu Item</div>
+<!-- </form> -->

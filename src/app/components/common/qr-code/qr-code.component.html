@@ -1,0 +1,8 @@
+<h1 mat-dialog-title class="text-center n-margin-b">
+	QR-CODE Table {{ table.TableNr }}
+	<p class="n-margin-b">Reservation Code #{{ table.ReservationCode }}</p>
+</h1>
+
+<div class="l-padding-h s-padding-v text-center" mat-dialog-content>
+	<img [src]="imageSrc" alt="" />
+</div>

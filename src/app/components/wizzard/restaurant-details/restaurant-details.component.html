@@ -1,0 +1,223 @@
+<div class="kt-heading kt-heading--md">
+	Enter the Details of your Restaurant
+</div>
+<div class="kt-form__section kt-form__section--first">
+	<form class="kt-form" [formGroup]="form">
+		<div class="kt-section kt-wizard-v1__form">
+			<mm-restaurant-categories
+				[form]="form"
+				(validateForm)="updateFrom($event)"
+				[validationMessages]="validationMessages"
+				(categorySelected)="selectValue($event)"
+			></mm-restaurant-categories>
+
+			<mm-image-gallery [title]="'Restaurant Photos'"></mm-image-gallery>
+
+			<div class="kt-section__title s-margin-b margin-t">Contact details</div>
+			<div class="row">
+				<div class="col-xl-6">
+					<div class="form-group">
+						<label>Restaurant Phone Number</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"
+									><i class="la la-phone"></i
+								></span>
+							</div>
+							<input
+								type="text"
+								class="form-control"
+								formControlName="phone"
+								placeholder="Phone"
+								aria-describedby="basic-addon1"
+								[value]="
+									wizardService.formData.PhoneNumber
+										? wizardService.formData.PhoneNumber
+										: null
+								"
+								[ngClass]="{
+									'is-invalid':
+										phone.invalid &&
+										(phone.dirty || phone.touched),
+									'is-valid': phone.valid
+								}"
+								[(ngModel)]="wizardService.formData.PhoneNumber"
+							/>
+						</div>
+						<ng-container
+							*ngFor="let validation of validationMessages.phone"
+							class="s-margin-t invalid-feedback"
+						>
+							<div
+								*ngIf="
+									wizardService.isControlHasError(
+										'phone',
+										validation.type
+									)
+								"
+								class="kt-font-bold s-margin-t error-message"
+							>
+								{{ validation.message }}
+							</div>
+						</ng-container>
+						<span class="form-text text-muted"
+							>Please enter the Restaurants Phone Number.</span
+						>
+					</div>
+				</div>
+				<div class="col-xl-6">
+					<div class="form-group">
+						<label>Email Address</label>
+
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"
+									><i class="la la-at"></i
+								></span>
+							</div>
+							<input
+								type="email"
+								formControlName="email"
+								class="form-control"
+								placeholder="email@gmail.com"
+								[ngClass]="{
+									'is-invalid':
+										email.invalid &&
+										(email.dirty || email.touched),
+									'is-valid': email.valid
+								}"
+								[(ngModel)]="wizardService.formData.Email"
+							/>
+						</div>
+						<ng-container
+							*ngFor="let validation of validationMessages.email"
+							class="s-margin-t invalid-feedback"
+						>
+							<div
+								*ngIf="
+									wizardService.isControlHasError(
+										'email',
+										validation.type
+									)
+								"
+								class="kt-font-bold s-margin-t error-message"
+							>
+								{{ validation.message }}
+							</div>
+						</ng-container>
+						<span class="form-text text-muted"
+							>Please enter the Restaurants Email Address.</span
+						>
+					</div>
+				</div>
+
+				<div class="col-xl-12 margin-b">
+					<div class="kt-section__title s-margin-b">Opening Hours</div>
+					<div class="row">
+						<div class="col-md-3">
+							Day
+						</div>
+						<div class="col-md-3">
+							Open
+						</div>
+						<div class="col-md-3">
+							Close
+						</div>
+						<div class="col-md-3">
+							Status
+						</div>
+					</div>
+					<div class="row" *ngFor="let day of days; let i = index">
+						<div class="col-md-3 margin-auto">
+							{{ day.day }}
+						</div>
+						<div class="col-md-3">
+							<ngb-timepicker
+								[disabled]="day.isClosed"
+								[spinners]="false"
+								[(ngModel)]="day.selectedOpeningTime"
+								[ngModelOptions]="{ standalone: true }"
+								(ngModelChange)="changeTime(day, i, '')"
+							></ngb-timepicker>
+						</div>
+						<div class="col-md-3">
+							<ngb-timepicker
+								[disabled]="day.isClosed"
+								[spinners]="false"
+								[(ngModel)]="day.selectedClosingTime"
+								[ngModelOptions]="{ standalone: true }"
+								(ngModelChange)="changeTime(day, i, '')"
+							></ngb-timepicker>
+						</div>
+						<div class="col-md-3 margin-auto">
+							<mat-checkbox
+								[(ngModel)]="days[i].isClosed"
+								[ngModelOptions]="{ standalone: true }"
+								(change)="checkIsCloesed($event, i)"
+								id="{{ day.day }}"
+								value="{{ day.isClosed }}"
+								>closed</mat-checkbox
+							>
+						</div>
+						<div
+							class="col-md-12 error-message"
+							*ngIf="!day.validate && validateTime"
+						>
+							Please enter opening or closing time or select
+							closed
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-12">
+					<div class="kt-section__title s-margin-b">Timeslots</div>
+					<div class="row">
+						<div class="col-lg-3">
+							Type
+						</div>
+						<div class="col-lg-3">
+							From
+						</div>
+						<div class="col-lg-3">
+							Till
+						</div>
+					</div>
+					<div
+						class="row"
+						*ngFor="let item of timeSlotArray; let i = index"
+					>
+						<div class="col-lg-3 margin-auto">
+							{{ item.type }}
+						</div>
+						<div class="col-lg-3">
+							<ngb-timepicker
+								[spinners]="false"
+								[(ngModel)]="timeSlotArray[i].from"
+								[ngModelOptions]="{ standalone: true }"
+								(ngModelChange)="
+									timeSlotValidate(timeSlotArray[i], i)
+								"
+							></ngb-timepicker>
+						</div>
+						<div class="col-md-3">
+							<ngb-timepicker
+								[spinners]="false"
+								[(ngModel)]="timeSlotArray[i].till"
+								[ngModelOptions]="{ standalone: true }"
+								(ngModelChange)="
+									timeSlotValidate(timeSlotArray[i], i)
+								"
+							></ngb-timepicker>
+						</div>
+						<div
+							class="col-md-12 error-message"
+							*ngIf="!item.validate && validateTime"
+						>
+							Please enter from and till time
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,225 @@
+{
+	"name": "mijnmenu",
+	"version": "0.0.1",
+	"config": {
+		"demo": "",
+		"debug": false,
+		"compile": {
+			"rtl": {
+				"enabled": true,
+				"skip": [
+					"socicon",
+					"line-awesome",
+					"flaticon",
+					"flaticon2",
+					"fontawesome5",
+					"fontawesome-free"
+				]
+			},
+			"jsUglify": false,
+			"cssMinify": false,
+			"jsSourcemaps": false,
+			"cssSourcemaps": false
+		},
+		"path": {
+			"src": "./../src/app/theme",
+			"node_modules": "./node_modules"
+		},
+		"dist": ["./../src/assets"]
+	},
+	"build": {
+		"vendors": {
+			"base": {
+				"src": {
+					"mandatory": {
+						"popper.js": {
+							"scripts": [
+								"{$config.path.node_modules}/popper.js/dist/umd/popper.js"
+							]
+						},
+						"tooltip.js": {
+							"scripts": [
+								"{$config.path.node_modules}/tooltip.js/dist/umd/tooltip.min.js"
+							]
+						},
+						"perfect-scrollbar": {
+							"styles": [
+								"{$config.path.node_modules}/perfect-scrollbar/css/perfect-scrollbar.css"
+							],
+							"scripts": [
+								"{$config.path.node_modules}/perfect-scrollbar/dist/perfect-scrollbar.js"
+							]
+						}
+					},
+					"optional": {
+						"Montserrat": {
+							"fonts": [
+								"{$config.path.src}/vendors/Montserrat/**"
+							]
+						},
+						"socicon": {
+							"styles": [
+								"{$config.path.node_modules}/socicon/css/socicon.css"
+							],
+							"fonts": [
+								"{$config.path.node_modules}/socicon/font/**"
+							]
+						},
+						"line-awesome": {
+							"styles": [
+								"{$config.path.src}/vendors/line-awesome/css/line-awesome.css"
+							],
+							"fonts": [
+								"{$config.path.src}/vendors/line-awesome/fonts/**"
+							]
+						},
+						"flaticon": {
+							"styles": [
+								"{$config.path.src}/vendors/flaticon/flaticon.css"
+							],
+							"fonts": [
+								"{$config.path.src}/vendors/flaticon/font/**"
+							]
+						},
+						"flaticon2": {
+							"styles": [
+								"{$config.path.src}/vendors/flaticon2/flaticon.css"
+							],
+							"fonts": [
+								"{$config.path.src}/vendors/flaticon2/font/**"
+							]
+						},
+						"@fortawesome": {
+							"styles": [
+								"{$config.path.node_modules}/@fortawesome/fontawesome-free/css/all.min.css"
+							],
+							"fonts": [
+								"{$config.path.node_modules}/@fortawesome/fontawesome-free/webfonts/**"
+							]
+						}
+					}
+				},
+				"bundle": {
+					"styles": "{$config.dist}/vendors/global/vendors.bundle.css",
+					"scripts": "{$config.dist}/vendors/global/vendors.bundle.js",
+					"images": "{$config.dist}/vendors/global/img",
+					"fonts": "{$config.dist}/vendors/global/fonts"
+				}
+			},
+			"custom": []
+		},
+		"demos": {
+			"mijn-menu-dashboard": {
+				"base": {
+					"src": {
+						"styles": [
+							"{$config.path.src}/sass/theme/mijn-menu-dashboard/style-angular.scss"
+						],
+						"scripts": [
+							"{$config.path.src}/js/theme/core/util.js",
+							"{$config.path.src}/js/theme/core/base/header.js",
+							"{$config.path.src}/js/theme/core/base/menu.js",
+							"{$config.path.src}/js/theme/core/base/offcanvas.js",
+							"{$config.path.src}/js/theme/core/base/scrolltop.js",
+							"{$config.path.src}/js/theme/core/base/toggle.js",
+							"{$config.path.src}/js/theme/core/base/dialog.js",
+							"{$config.path.src}/js/theme/core/base/wizard.js"
+						]
+					},
+					"bundle": {
+						"styles": "{$config.dist}/css/mijn-menu-dashboard/style.bundle.css",
+						"scripts": "{$config.dist}/js/mijn-menu-dashboard/scripts.bundle.js"
+					}
+				},
+				"skins": {
+					"header": {
+						"src": {
+							"styles": [
+								"{$config.path.src}/sass/theme/mijn-menu-dashboard/header/skins/**/*.scss"
+							]
+						},
+						"output": {
+							"styles": "{$config.dist}/css/mijn-menu-dashboard/skins/header/"
+						}
+					},
+					"brand": {
+						"src": {
+							"styles": [
+								"{$config.path.src}/sass/theme/mijn-menu-dashboard/brand/skins/**/*.scss"
+							]
+						},
+						"output": {
+							"styles": "{$config.dist}/css/mijn-menu-dashboard/skins/brand/"
+						}
+					},
+					"aside": {
+						"src": {
+							"styles": [
+								"{$config.path.src}/sass/theme/mijn-menu-dashboard/aside/skins/**/*.scss"
+							]
+						},
+						"output": {
+							"styles": "{$config.dist}/css/mijn-menu-dashboard/skins/aside/"
+						}
+					}
+				},
+				"pages": {
+					"src": {
+						"styles-by-demo": [
+							"{$config.path.src}/sass/theme/pages/**/*.scss"
+						],
+						"scripts": ["{$config.path.src}/js/theme/pages/**/*.js"]
+					},
+					"output": {
+						"styles-by-demo": "{$config.dist}/css/mijn-menu-dashboard/pages/",
+						"scripts": "{$config.dist}/js/mijn-menu-dashboard/pages/"
+					}
+				}
+			}
+		},
+		"media": {
+			"src": {
+				"media": ["{$config.path.src}/media/**/*.*"]
+			},
+			"output": {
+				"media": "{$config.dist}/media/"
+			}
+		},
+		"icons": {
+			"src": {
+				"landing-page-icons": ["{$config.path.src}/icons/**/*.*"]
+			},
+			"output": {
+				"landing-page-icons": "{$config.dist}/icons/"
+			}
+		},
+		"landing-page-styles": {
+			"src": {
+				"landing-page-styles": [
+					"{$config.path.src}/css/landing-page-styles/*"
+				]
+			},
+			"output": {
+				"landing-page-styles": "{$config.dist}/css/landing-page-styles/"
+			}
+		},
+		"landing-page-scripts": {
+			"src": {
+				"landing-page-scripts": [
+					"{$config.path.src}/js/landing-page-scripts/*"
+				]
+			},
+			"output": {
+				"landing-page-scripts": "{$config.dist}/js/landing-page-scripts/"
+			}
+		},
+		"fonts": {
+			"src": {
+				"fonts": ["{$config.path.src}/fonts/**/*.*"]
+			},
+			"output": {
+				"fonts": "{$config.dist}/fonts/"
+			}
+		}
+	}
+}

@@ -1,0 +1,170 @@
+<header class="header">
+	<!--start navbar-->
+	<nav
+		[class]="
+			activeLinkId == 0
+				? 'navbar navbar-expand-lg navbar-light fixed-top home-nav top-nav-collapse-rm-bx'
+				: 'navbar navbar-expand-lg navbar-light fixed-top'
+		"
+	>
+		<div class="container">
+			<div class="navbar-header page-scroll">
+				<a class="navbar-brand" href="#"
+					><img
+						src="assets/media/landing-page-imgs/logo.png"
+						alt="logo"
+				/></a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-toggle="collapse"
+					data-target="#navbarResponsive"
+					aria-controls="navbarResponsive"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li
+						class="nav-item "
+						(click)="changeActiveLink(0)"
+						[ngClass]="activeLinkId == 0 ? 'active  home-nav' : ''"
+					>
+						<a class="nav-link" routerLink="/home"
+							>Home
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+					<li
+						class="nav-item "
+						(click)="changeActiveLink(1)"
+						[ngClass]="activeLinkId == 1 ? 'active' : ''"
+					>
+						<a class="nav-link" routerLink="/mijn-menu"
+							>Mijn Menu</a
+						>
+					</li>
+					<li
+						class="nav-item"
+						(click)="changeActiveLink(2)"
+						[ngClass]="activeLinkId == 2 ? 'active' : ''"
+					>
+						<a class="nav-link" routerLink="/mijn-restaurant">
+							Mijn Restaurant
+						</a>
+					</li>
+					<li
+						class="nav-item"
+						(click)="changeActiveLink(3)"
+						[ngClass]="activeLinkId == 3 ? 'active' : ''"
+					>
+						<a class="nav-link" routerLink="/about">
+							Over Ons
+						</a>
+					</li>
+					<li
+						class="nav-item "
+						(click)="changeActiveLink(4)"
+						[ngClass]="activeLinkId == 4 ? 'active' : ''"
+					>
+						<a class="nav-link" routerLink="/tarieven">
+							Tarieven
+						</a>
+					</li>
+					<!-- <li
+						class="nav-item"
+						(click)="changeActiveLink(5)"
+						[ngClass]="activeLinkId == 5 ? 'active' : ''"
+					>
+						<a class="nav-link" routerLink="/contact">Contact</a>
+					</li> -->
+					<li
+						class="nav-item"
+						(click)="changeActiveLink(5)"
+						[ngClass]="activeLinkId == 5 ? 'active' : ''"
+					>
+						<a class="nav-link" routerLink="/auth/login">Login</a>
+					</li>
+					<li
+						class="nav-item"
+						(click)="changeActiveLink(6)"
+						[ngClass]="activeLinkId == 6 ? 'active' : ''"
+					>
+						<a class="nav-link" routerLink="/auth/register">
+							Aanmelden
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!--end navbar-->
+</header>
+<div>
+	<router-outlet></router-outlet>
+</div>
+<footer class="footer-section  ptb-60">
+	<div class="footer-section-shape">
+		<img
+			src="assets/media/landing-page-imgs/waves-shape.svg"
+			alt="shape image"
+		/>
+	</div>
+	<div class="footer-wrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="footer-single-col text-center">
+						<img
+							src="assets/media/landing-page-imgs/logo.png"
+							alt="footer logo"
+						/>
+						<div class="footer-social-list">
+							<ul class="list-inline">
+								<li
+									style="padding: 5px;"
+									class="social-media-icon insta-icon"
+								>
+									<a
+										href="https://www.instagram.com/mijnmenu/"
+										target="_blank"
+									>
+										<i class="fa fa-instagram"></i>
+									</a>
+								</li>
+								<li
+									style="padding: 5px;"
+									class="social-media-icon fb-icon"
+								>
+									<a
+										href="https://www.facebook.com/Mijn-Menu-2157186020987086/"
+										target="_blank"
+									>
+										<i class="fa fa-facebook"></i>
+									</a>
+								</li>
+								<li
+									style="padding: 5px;"
+									class="social-media-icon linkedin-icon"
+								>
+									<a href="" target="_blank">
+										<i class="fa fa-linkedin"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="copyright-text">
+							<p>© copyright Mijn Menu 2020</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<div id="toTop" style="display: block;">
+	<span><i class="fa fa-angle-down"></i></span>
+</div>

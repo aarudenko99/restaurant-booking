@@ -1,0 +1,63 @@
+<div class="row">
+	<div class="col">
+		<kt-alert
+			*ngIf="alert?.showAlert"
+			[iconSvg]="'/assets/media/icons/svg/Layout/Layout-arrange.svg'"
+			[type]="alert?.type"
+			[showCloseButton]="false"
+			[showActionButton]="true"
+			(actionClicked)="goToTableManagement()"
+			(close)="onAlertClose($event)"
+		>
+			{{ alert.message }}
+		</kt-alert>
+	</div>
+</div>
+<ng-container *ngIf="setupProgressDone; else setupProgress">
+	<ng-container
+		*ngIf="
+			auth.selectedRestaurantId.value
+				? auth.selectedRestaurantId.value
+				: auth.getRestaurantId()
+		"
+	>
+		<mm-top-data-item [type]="'dashboard'"></mm-top-data-item>
+
+		<div class="row">
+			<div class="col-md-12 col-lg-6">
+				<mm-revenue-chart></mm-revenue-chart>
+			</div>
+			<div class="col-md-6 col-lg-6">
+				<mm-recent-activity></mm-recent-activity>
+			</div>
+			<!-- <mm-print></mm-print> -->
+			<div class="col-md-6 col-lg-6">
+				<mm-top-menu-items></mm-top-menu-items>
+			</div>
+			<div class="col-md-6 col-lg-3">
+				<mm-new-users></mm-new-users>
+			</div>
+			<div class="col-md-6 col-lg-3">
+				<mm-review-items></mm-review-items>
+			</div>
+			<div class="col-md-12">
+				<mm-order-quantity></mm-order-quantity>
+			</div>
+		</div>
+	</ng-container>
+</ng-container>
+<ng-template #setupProgress>
+	<mm-setup-steps
+		*ngIf="setupSteps"
+		[setupSteps]="setupSteps"
+	></mm-setup-steps>
+</ng-template>
+
+<swal
+	#mollieConnectSwal
+	title="Your Mollie Account is connected"
+	text="We are happy that we can help you :)"
+	type="success"
+	timer="5000"
+	[swalOptions]="{ confirmButtonColor: '#ffa000' }"
+></swal>

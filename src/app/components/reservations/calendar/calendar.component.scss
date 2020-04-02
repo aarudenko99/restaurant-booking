@@ -1,0 +1,28 @@
+.add-icon {
+  font-size: 22px !important;
+}
+
+.popover-wrapper {
+  .popover-header {
+    width: 250px;
+
+    .event-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .fc-event-brandeis {
+      background: #005fff;
+    }
+
+    .fc-event-flame {
+      background: #d34e24;
+    }
+
+    .fc-event-amber {
+      background: #ffa000;
+    }
+  }
+}

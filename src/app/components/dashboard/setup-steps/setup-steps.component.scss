@@ -1,0 +1,21 @@
+.no-result-img {
+  max-width: 150px;
+}
+
+.kt-subheader__desc {
+  color: #000000;
+}
+.setup-steps {
+  position: relative;
+  background: #ffffff;
+  border-radius: var(--ng-border-radius-lm);
+  width: 80%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translateX(-50%);
+
+  .notification-item-icon {
+    height: 55px;
+    width: 55px;
+  }
+}

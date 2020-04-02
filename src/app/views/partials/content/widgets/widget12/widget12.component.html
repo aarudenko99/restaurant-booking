@@ -1,0 +1,23 @@
+<div class="kt-widget12">
+	<div class="kt-widget12__content">
+		<div *ngIf="data?.title && data.title.length" class="kt-widget12__item">
+			<div
+				class="kt-widget12__info xs-margin s-padding-v padding-h primary-inverse"
+				*ngFor="let item of data.title"
+			>
+				<span class="kt-widget12__value color-primary">
+					{{ item.value ? item.value : "--" }}
+				</span>
+				<span class="kt-widget12__desc">{{ item.title }}</span>
+			</div>
+		</div>
+	</div>
+	<div class="kt-widget12__chart" style="height:250px;">
+		<canvas
+			#chart
+			id="kt_chart_order_statistics"
+			width="683"
+			height="312"
+		></canvas>
+	</div>
+</div>

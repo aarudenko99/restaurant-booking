@@ -1,0 +1,17 @@
+:host {
+  width: 50%;
+
+  .kt-header-menu-wrapper {
+    height: 100%;
+  }
+
+  .kt-menu__item--hover {
+    left: 0 !important;
+  }
+
+  .btn-label-light-blue {
+    &:hover {
+      background: var(--ng-color-darken-blue);
+    }
+  }
+}

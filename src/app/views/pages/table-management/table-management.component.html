@@ -1,0 +1,100 @@
+<mm-top-data-item [type]="'table-management'"></mm-top-data-item>
+<kt-portlet class="transparent n-box-shadow s-padding-b">
+	<div class="kt-portlet__head n-padding-h">
+		<div class="kt-portlet__head-label">
+			<h3 class="kt-portlet__head-title">
+				{{ "MENU.TABLE_MANAGEMENT" | translate }}
+				<span class="kt-block-inline margin-l">
+					<kt-context-menu2
+						*ngIf="floorplans.length; else addFloorplan"
+						[class]="'btn-label-brand'"
+						[title]="
+							!title && floorplans ? floorplans[0]?.Name : title
+						"
+						[menuItems]="floorplans"
+						(menuItemClicked)="selectFloorPlan($event)"
+					></kt-context-menu2>
+
+					<ng-template #addFloorplan>
+						<button
+							class="btn btn-label-brand btn-bold btn-sm add-floorplan-btn s-padding"
+							(click)="openFloorPlanDialog()"
+						>
+							<a href="javascript:;" class="kt-nav__link">
+								<i class="kt-nav__link-icon fa fa-plus"></i>
+								<span class="kt-nav__link-text kt-font-bold">
+									Add Floorplan
+								</span>
+							</a>
+						</button>
+					</ng-template>
+				</span>
+			</h3>
+		</div>
+		<div *ngIf="floorPlanId" class="kt-portlet__head-toolbar">
+			<ng-container ktPortletTools>
+				<!-- <kt-context-menu
+					[menuItems]="floorplanActions"
+					(menuItemClicked)="
+						handleAction(floorplans[selectedIndex], $event.event)
+					"
+                ></kt-context-menu> -->
+                
+                <kt-context-menu2
+                    [class]="'btn-label-brand'"
+                    [title]="'COMMON.MORE_ACTIONS' | translate"
+					[menuItems]="floorplanActions"
+					(menuItemClicked)="
+						handleAction(floorplans[selectedIndex], $event.event)
+					"
+                ></kt-context-menu2>
+				<button
+					class="btn btn-label-light-blue btn-bold btn-sm kt-font-transform-u s-padding s-margin-l"
+					(click)="editStatus()"
+				>
+					<a href="javascript:;" class="kt-nav__link">
+						<span
+							class="kt-nav__link-text kt-font-bold"
+							[innerHTML]="
+								enableEdit
+									? ('FLOORPLAN.SAVE_FLOORPLAN' | translate)
+									: ('FLOORPLAN.CHANGE_FLOORPLAN' | translate)
+							"
+						>
+						</span>
+					</a>
+				</button>
+			</ng-container>
+		</div>
+	</div>
+</kt-portlet>
+
+<div *ngIf="Tables.length" class="row">
+	<div class="col-xl-12">
+		<div class="row">
+			<div class="floor-plan-wrapper">
+				<div class="col-lg-12">
+					<mm-floor-plan
+						[id]="floorPlanId"
+						[tables]="Tables"
+						[zoomLevel]="zoomLevel"
+						[enableEdit]="enableEdit"
+						(edit)="openAddTableDialog($event)"
+						(close)="deleteTable($event)"
+						(saveFloor)="saveFloor($event)"
+					></mm-floor-plan>
+				</div>
+			</div>
+
+			<div *ngIf="allTables.length" class="col-lg-4">
+				<mm-reservation-manage-list
+					[Tables]="allTables"
+				></mm-reservation-manage-list>
+			</div>
+
+			<div class="col-sm-12 col-md-12 col-lg-8">
+				<mm-order-quantity></mm-order-quantity>
+			</div>
+		</div>
+	</div>
+</div>

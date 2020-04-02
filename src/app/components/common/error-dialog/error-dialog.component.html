@@ -1,0 +1,24 @@
+<kt-portlet [class]="'kt-portlet--height-fluid'">
+	<kt-portlet-header
+		[title]="data.title ? data.title : 'Fout melding'"
+		[class]="'kt-portlet-light-blue'"
+		text-center
+	>
+		<ng-container ktPortletTools>
+			<a
+				href="javascript:;"
+				class="kt-nav__link"
+				(click)="dialogRef.close()"
+			>
+				<i class="flaticon2-delete"></i>
+			</a>
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body>
+		{{
+			data.message
+				? data.message
+				: "Er is een fout opgetreden probeer het opnieuw."
+		}}
+	</kt-portlet-body>
+</kt-portlet>

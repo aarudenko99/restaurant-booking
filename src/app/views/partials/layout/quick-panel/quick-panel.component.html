@@ -1,0 +1,266 @@
+<!-- begin::Offcanvas Toolbar Quick Actions -->
+<div
+	ktOffcanvas
+	[options]="offcanvasOptions"
+	id="kt_quick_panel"
+	class="kt-quick-panel"
+	[ngStyle]="{ overflow: 'hidden' }"
+>
+	<a
+		href="javascript:;"
+		class="kt-quick-panel__close"
+		id="kt_quick_panel_close_btn"
+		><i class="flaticon2-delete"></i
+	></a>
+
+	<div class="kt-quick-panel__nav">
+		<ul
+			ktTabClickEvent
+			class="nav nav-tabs nav-tabs-line nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand kt-notification-item-padding-x"
+			role="tablist"
+		>
+			<li class="nav-item">
+				<a
+					class="nav-link active"
+					href="javascript:;"
+					(click)="tab.select('tab-id-1')"
+					role="tab"
+					>All Notifications</a
+				>
+			</li>
+			<li class="nav-item">
+				<a
+					class="nav-link"
+					href="javascript:;"
+					(click)="tab.select('tab-id-2')"
+					role="tab"
+					>Check-ins</a
+				>
+			</li>
+			<li class="nav-item">
+				<a
+					class="nav-link"
+					href="javascript:;"
+					(click)="tab.select('tab-id-3')"
+					role="tab"
+					>Orders</a
+				>
+			</li>
+			<li class="nav-item">
+				<a
+					class="nav-link"
+					href="javascript:;"
+					(click)="tab.select('tab-id-4')"
+					role="tab"
+					>Payments</a
+				>
+			</li>
+		</ul>
+	</div>
+
+	<div class="kt-quick-panel__content">
+		<ngb-tabset #tab="ngbTabset">
+			<ngb-tab id="tab-id-1">
+				<ng-template ngbTabContent>
+					<div
+						[perfectScrollbar]="{ wheelPropagation: false }"
+						[ngStyle]="{
+							'max-height': '85vh',
+							position: 'relative'
+						}"
+						class="kt-notification-v2"
+					>
+						<div
+							*ngFor="
+								let notification of notifications;
+								let last = last
+							"
+						>
+							<mm-notification-item
+								[type]="notification.Type"
+								[text]="notification.Text"
+								[time]="
+									!notification.Time
+										? (notification.CreatedAt
+										  | date: 'H:mm')
+										: notification.Time
+								"
+							></mm-notification-item>
+							<mat-divider *ngIf="!last"></mat-divider>
+						</div>
+						<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+							<div
+								class="ps__thumb-x"
+								tabindex="0"
+								style="left: 0px; width: 0px;"
+							></div>
+						</div>
+						<div class="ps__rail-y" style="top: 0px; right: 0px;">
+							<div
+								class="ps__thumb-y"
+								tabindex="0"
+								style="top: 0px; height: 0px;"
+							></div>
+						</div>
+						<ng-container *ngIf="!notifications.length">
+							<ng-container
+								*ngTemplateOutlet="noNotifications"
+							></ng-container>
+						</ng-container>
+					</div>
+				</ng-template>
+			</ngb-tab>
+			<ngb-tab id="tab-id-2">
+				<ng-template ngbTabContent>
+					<div
+						perfectScrollbar
+						[ngStyle]="{
+							'max-height': '85vh',
+							position: 'relative'
+						}"
+						class="kt-notification-v2"
+					>
+						<div
+							*ngFor="
+								let notification of checkInNotifications;
+								let last = last
+							"
+						>
+							<mm-notification-item
+								[type]="notification.Type"
+								[text]="notification.Text"
+								[time]="notification.Time"
+							></mm-notification-item>
+							<mat-divider *ngIf="!last"></mat-divider>
+						</div>
+						<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+							<div
+								class="ps__thumb-x"
+								tabindex="0"
+								style="left: 0px; width: 0px;"
+							></div>
+						</div>
+						<div class="ps__rail-y" style="top: 0px; right: 0px;">
+							<div
+								class="ps__thumb-y"
+								tabindex="0"
+								style="top: 0px; height: 0px;"
+							></div>
+						</div>
+
+						<ng-container *ngIf="!checkInNotifications.length">
+							<ng-container
+								*ngTemplateOutlet="noNotifications"
+							></ng-container>
+						</ng-container>
+					</div>
+				</ng-template>
+			</ngb-tab>
+			<ngb-tab id="tab-id-3">
+				<ng-template ngbTabContent>
+					<div
+						perfectScrollbar
+						[ngStyle]="{
+							'max-height': '85vh',
+							position: 'relative'
+						}"
+						class="kt-notification-v2"
+					>
+						<div
+							*ngFor="
+								let notification of orderNotifications;
+								let last = last
+							"
+						>
+							<mm-notification-item
+								[type]="notification.Type"
+								[text]="notification.Text"
+								[time]="notification.Time"
+							></mm-notification-item>
+							<mat-divider *ngIf="!last"></mat-divider>
+						</div>
+						<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+							<div
+								class="ps__thumb-x"
+								tabindex="0"
+								style="left: 0px; width: 0px;"
+							></div>
+						</div>
+						<div class="ps__rail-y" style="top: 0px; right: 0px;">
+							<div
+								class="ps__thumb-y"
+								tabindex="0"
+								style="top: 0px; height: 0px;"
+							></div>
+						</div>
+						<ng-container *ngIf="!orderNotifications.length">
+							<ng-container
+								*ngTemplateOutlet="noNotifications"
+							></ng-container>
+						</ng-container>
+					</div>
+				</ng-template>
+			</ngb-tab>
+			<ngb-tab id="tab-id-4">
+				<ng-template ngbTabContent>
+					<div
+						perfectScrollbar
+						[ngStyle]="{
+							'max-height': '85vh',
+							position: 'relative'
+						}"
+						class="kt-notification-v2"
+					>
+						<div
+							*ngFor="
+								let notification of paymentNotifications;
+								let last = last
+							"
+						>
+							<mm-notification-item
+								[type]="notification.Type"
+								[text]="notification.Text"
+								[time]="notification.Time"
+							></mm-notification-item>
+							<mat-divider *ngIf="!last"></mat-divider>
+						</div>
+						<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+							<div
+								class="ps__thumb-x"
+								tabindex="0"
+								style="left: 0px; width: 0px;"
+							></div>
+						</div>
+						<div class="ps__rail-y" style="top: 0px; right: 0px;">
+							<div
+								class="ps__thumb-y"
+								tabindex="0"
+								style="top: 0px; height: 0px;"
+							></div>
+						</div>
+						<ng-container *ngIf="!paymentNotifications.length">
+							<ng-container
+								*ngTemplateOutlet="noNotifications"
+							></ng-container>
+						</ng-container>
+					</div>
+				</ng-template>
+			</ngb-tab>
+		</ngb-tabset>
+	</div>
+</div>
+
+<ng-template #noNotifications>
+	<div class="kt-grid kt-grid--ver" style="min-height: 200px;">
+		<div
+			class="kt-grid kt-grid--hor kt-grid__item kt-grid__item--fluid kt-grid__item--middle"
+		>
+			<div class="kt-grid__item kt-grid__item--middle kt-align-center">
+				All caught up!
+				<br />No new notifications.
+			</div>
+		</div>
+	</div>
+</ng-template>
+
+<!-- end::Offcanvas Toolbar Quick Actions -->

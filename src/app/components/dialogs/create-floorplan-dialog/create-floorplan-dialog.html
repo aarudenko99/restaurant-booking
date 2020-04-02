@@ -1,0 +1,55 @@
+<h1 mat-dialog-title class="text-center">
+	{{ 'FLOORPLAN.DIALOG_TITLE' | translate }}
+</h1>
+<div class="l-padding-h s-padding-v" mat-dialog-content>
+	<div class="row">
+		<div class="col-xl-12">
+			<div class="form-group margin-b">
+                <label>{{ 'FLOORPLAN.FLOORPLAN_NAME' | translate }}</label>
+				<input
+					type="text"
+					class="form-control"
+					[(ngModel)]="floorPlan.Name"
+					placeholder="Name"
+				/>
+			</div>
+		</div>
+
+		<div class="col-6 margin-auto">
+			{{ 'FLOORPLAN.EXCLUDE_TITLE' | translate }}
+
+			<ng-template #tipContent>
+				{{ 'FLOORPLAN.EXCLUDE_INFO' | translate }}
+			</ng-template>
+			<i
+				class="flaticon2-information s-margin-l"
+				placement="top"
+				[ngbTooltip]="tipContent"
+			></i>
+		</div>
+		<div class="col-6 text-right">
+			<span class="kt-switch kt-switch--sm">
+				<label>
+					<input
+						type="checkbox"
+						[(ngModel)]="floorPlan.DisabledReservation"
+						(change)="toggleReservation($event)"
+					/>
+					<span></span>
+				</label>
+			</span>
+		</div>
+	</div>
+</div>
+<div mat-dialog-actions align="end">
+	<button mat-button mat-dialog-close tabindex="-1">Cancel</button>
+	<button
+		mat-raised-button
+		*ngIf="!edit"
+		color="primary"
+		cdkFocusInitial
+		(click)="dismissDialog()"
+	>
+		{{ !data ? 'Add' : 'Save'}}
+	</button>
+</div>

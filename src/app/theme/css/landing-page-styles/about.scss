@@ -1,0 +1,161 @@
+.hero {
+  background: center/cover url(assets/media/landing-page-imgs/dish-about.jpg) no-repeat !important;
+}
+
+@media (min-width: 768px) {
+  section.hero {
+    min-height: 439px !important;
+  }
+}
+
+.about-section,
+section.track {
+  padding: 5% 0;
+}
+
+.hero-content-wrap {
+  max-width: 520px;
+}
+
+.hero-content-wrap {
+  height: 300px !important;
+}
+
+.hero-text-content h4 {
+  text-align: left;
+  font: Bold 53px/64px 'Montserrat';
+  letter-spacing: 0;
+  color: #ffffff;
+  opacity: 1;
+  transition: all 0.4s ease-in;
+}
+
+.hero-text-content p {
+  text-align: left;
+  font: Semibold 20px/27px 'Open Sans';
+  letter-spacing: 0;
+  color: #ffffff;
+  opacity: 1;
+  transition: all 0.4s ease-in;
+}
+
+.about-section .section-heading h3 {
+  margin-bottom: 25px;
+}
+
+.about-section .section-heading p {
+  text-align: left;
+  font: lighter 16px/26px Open Sans;
+  letter-spacing: 0;
+  color: #555555;
+  opacity: 1;
+}
+
+.hospitality {
+  min-height: 260px;
+  width: 100%;
+  display: block;
+  padding: 5% 0;
+  background: center/cover url(assets/media/landing-page-imgs/about-background-hosp.svg) no-repeat;
+}
+
+.hospitality .section-heading {
+  margin-bottom: 0;
+  height: 100%;
+}
+
+.hospitality .section-heading h3 {
+  color: #fff;
+}
+
+.hospitality .section-heading p {
+  color: #fff;
+}
+
+.no-padding {
+  padding-right: 0;
+}
+
+.track-section {
+  max-width: 540px;
+  margin-left: auto;
+  padding-right: 1%;
+}
+
+.track-section h3 {
+  text-align: left;
+  font: Bold 37px/45px 'Montserrat';
+  letter-spacing: 0;
+  color: #4f4f4f;
+}
+
+.track-section .section-heading {
+  padding-right: 10%;
+}
+
+.track-section .section-heading p {
+  text-align: left;
+  font: lighter 16px/26px 'Open Sans';
+  letter-spacing: 0;
+  color: #555555;
+  opacity: 1;
+}
+
+.mijn-menu-track .single-feature {
+  padding: 0 0 4%;
+  align-items: flex-start;
+}
+
+.mijn-menu-track .feature-content h5 {
+  text-align: left;
+  font: Bold 16px/26px 'Open Sans';
+  letter-spacing: 0;
+  color: #555555;
+  margin-bottom: 4px;
+}
+
+.mijn-menu-track .icon-shape i {
+  font-size: 18px;
+}
+
+.mijn-menu-track .feature-icon .icon-shape {
+  align-items: flex-start;
+}
+
+mijn-menu-track .feature-icon {
+  margin-right: 10px;
+}
+
+.mijn-menu-track .feature-content p {
+  font-weight: lighter;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    background: transparent linear-gradient(180deg, #ffbb47 0%, #ffa000 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 4px #00000080;
+    opacity: 1;
+    border-bottom: 0;
+  }
+
+  header {
+    min-height: 130px;
+  }
+}
+
+@media (min-width: 200px) and (max-width: 768px) {
+  header {
+    min-height: 80px;
+  }
+
+  .hero-content-wrap h4 {
+    font-size: 25px;
+  }
+
+  .hero-content-wrap p {
+    line-height: 25px !important;
+    padding-bottom: 20px;
+  }
+}

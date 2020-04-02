@@ -1,0 +1,27 @@
+<kt-portlet [class]="'kt-portlet--height-fluid'">
+	<kt-portlet-header
+		[title]="'Payment Information'"
+		[class]="'kt-portlet-light-blue'"
+		text-center
+	>
+		<ng-container ktPortletTools>
+			<button
+				class="btn btn-label-light-blue btn-bold btn-sm kt-font-transform-u s-padding-v padding-h"
+				(click)="edit = !edit"
+			>
+				<a href="javascript:;" class="kt-nav__link">
+					<span class="kt-nav__link-text kt-font-bold">
+						{{ !edit ? "Edit" : "Save" }}
+					</span>
+				</a>
+			</button>
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body>
+		<mm-mollie-subscription
+			[edit]="edit"
+			[restaurantId]="restaurantId"
+			(cancelSubscription)="closeDialog()"
+		></mm-mollie-subscription>
+	</kt-portlet-body>
+</kt-portlet>

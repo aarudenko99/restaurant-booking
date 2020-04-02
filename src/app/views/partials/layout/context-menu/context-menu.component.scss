@@ -1,0 +1,24 @@
+.more-action-fab {
+	color: #bfc5d2 !important;
+	background-color: var(--ng-color-light) !important;
+	border: 1px solid var(--ng-color-darken-blue) !important;
+
+	&:hover {
+		background-color: var(--ng-color-light-blue) !important;
+	}
+}
+
+.kt-btn-bottom-border {
+	border-bottom: 1px solid var(--ng-color-light-blue);
+}
+
+button.mat-menu-item:hover {
+  background-color: var(--ng-color-light-blue) !important;
+}
+.pop-over-menu-item {
+	border: none !important;
+	padding: 10px !important;
+	width: 100% !important;
+	text-align: left !important;
+	background-color: var(--ng-color-light-blue) !important;
+}

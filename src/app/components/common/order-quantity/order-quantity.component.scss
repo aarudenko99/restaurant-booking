@@ -1,0 +1,27 @@
+.orders {
+  display: inline-flex;
+  border-radius: var(--ng-border-radius-s);
+}
+
+.active-orders {
+  background: var(--ng-color-light-red);
+}
+
+.average-orders {
+  background: var(--ng-color-primary-inverse);
+}
+
+.dot {
+  display: block;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+
+  &.dot-red {
+    background: var(--ng-color-red);
+  }
+
+  &.dot-primary {
+    background: var(--ng-color-primary);
+  }
+}

@@ -1,0 +1,112 @@
+<kt-portlet>
+	<kt-portlet-header
+		[title]="getComponentTitle()"
+		[class]="'kt-portlet__head--lg'"
+		[viewLoading$]="loading$"
+	>
+		<ng-container ktPortletTools>
+			<a
+				[routerLink]="['../../']"
+				class="btn btn-secondary kt-margin-r-10"
+				mat-raised-button
+				matTooltip="Back to the users list"
+			>
+				<i class="la la-arrow-left"></i>
+				<span class="kt-hidden-mobile">Back</span>
+			</a>
+			<a
+				href="javascript:;"
+				class="btn btn-secondary kt-margin-r-10"
+				(click)="reset()"
+				[disabled]="selectedTab !== 0"
+				mat-raised-button
+				matTooltip="Reset changes"
+			>
+				<i class="la la-cog"></i>
+				<span class="kt-hidden-mobile">Reset</span>
+			</a>
+			<a
+				href="javascript:;"
+				class="btn btn-primary kt-margin-r-10"
+				color="primary"
+				(click)="onSumbit(false)"
+				mat-raised-button
+				matTooltip="Save & Continue"
+				[class.disabled]="!formValid"
+			>
+				<span class="kt-hidden-mobile">Save</span>
+			</a>
+			<button mat-icon-button [matMenuTriggerFor]="menu" color="primary">
+				<mat-icon>more_vert</mat-icon>
+			</button>
+			<mat-menu #menu="matMenu">
+				<button
+					mat-menu-item
+					color="primary"
+					[disabled]="!formValid"
+					(click)="onSumbit(true)"
+				>
+					Save & Exit
+				</button>
+				<!-- <button mat-menu-item color="primary">Save & Duplicate</button> -->
+				<button
+					mat-menu-item
+					color="primary"
+					[disabled]="!formValid"
+					(click)="onSumbit(false)"
+				>
+					Save & Continue
+				</button>
+			</mat-menu>
+		</ng-container>
+	</kt-portlet-header>
+
+	<kt-portlet-body>
+		<mat-tab-group [(selectedIndex)]="selectedTab">
+			<mat-tab>
+				<ng-template mat-tab-label>
+					<i class="mat-tab-label-icon fa fa-user"></i>
+					Basic info
+				</ng-template>
+				<ng-template matTabContent>
+					<!--begin::Form-->
+					<div *ngIf="user">
+						<mm-user-personal-information
+							#personalInfo
+							[userManagement]="true"
+							[(userSubject)]="userSubject"
+							(formValid)="basicFormValid($event)"
+						></mm-user-personal-information>
+					</div>
+					<!--end::Form-->
+				</ng-template>
+			</mat-tab>
+			<mat-tab *ngIf="user">
+				<ng-template mat-tab-label>
+					<i class="mat-tab-label-icon fa fa-wrench"></i>
+					User roles
+				</ng-template>
+				<ng-template matTabContent>
+					<kt-user-roles-list
+						[(rolesSubject)]="rolesSubject"
+						(rolesAction)="basicFormValid()"
+					>
+					</kt-user-roles-list>
+				</ng-template>
+			</mat-tab>
+			<mat-tab *ngIf="user && user._id">
+				<ng-template mat-tab-label>
+					<ng-container>
+						<i class="mat-tab-label-icon fa fa-exchange-alt"></i>
+						Change password
+					</ng-container>
+				</ng-template>
+				<ng-template matTabContent>
+					<kt-change-password
+						[userId]="user._id"
+					></kt-change-password>
+				</ng-template>
+			</mat-tab>
+		</mat-tab-group>
+	</kt-portlet-body>
+</kt-portlet>

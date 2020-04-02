@@ -1,0 +1,32 @@
+mat-chip {
+  border-radius: 25px;
+}
+
+.mat-expansion-panel {
+  &.mat-expanded {
+    // box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.2) !important;
+    // border-bottom: none !important;
+  }
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding: 0 !important;
+}
+
+.header-row,
+.mat-expansion-panel {
+  border-bottom: 1px dashed #ebedf2;
+}
+
+.kt-portlet--sticky {
+  position: sticky;
+  top: 0;
+}
+
+.kt-portlet__head-label {
+  flex-wrap: wrap;
+
+  .flex-basis {
+    flex-basis: 100%;
+  }
+}

@@ -1,0 +1,39 @@
+<h1 mat-dialog-title class="text-center">
+	Add Restaurant Category
+</h1>
+<div class="l-padding-h s-padding-v" mat-dialog-content>
+	<div class="row">
+		<div class="col-xl-12">
+			<div class="form-group margin-b">
+				<label>Restaurant Category Name</label>
+				<input
+					type="text"
+					class="form-control"
+					[(ngModel)]="Category.Name"
+					placeholder="Name"
+				/>
+			</div>
+		</div>
+		<div class="col-xl-12">
+			<div class="form-group margin-b">
+				<label>Restaurant Category Omschrijving</label>
+				<input
+					type="text"
+					class="form-control"
+					[(ngModel)]="Category.Description"
+					placeholder="Omschrijving"
+				/>
+			</div>
+		</div>
+	</div>
+</div>
+<div mat-dialog-actions align="end">
+	<button mat-button mat-dialog-close tabindex="-1">Cancel</button>
+	<button
+		cdkFocusInitial
+		class="btn btn-brand btn-md btn-wide kt-font-bold"
+		(click)="saveCategory()"
+	>
+		Save
+	</button>
+</div>

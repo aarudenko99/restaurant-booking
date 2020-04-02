@@ -1,0 +1,18 @@
+.btn {
+	&.btn-sm i {
+		padding-right: 0.25rem;
+	}
+	&.qty-btn {
+		padding-left: 2px !important;
+	}
+
+	&.btn-label-light-blue {
+		border: none !important;
+	}
+}
+
+.kt-svg-icon {
+	&:hover {
+		cursor: pointer;
+	}
+}

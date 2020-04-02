@@ -1,0 +1,154 @@
+<div *ngIf="tableOrders?.length" class="row">
+	<!-- matRipple [matRippleTrigger]="trigger"  -->
+	<div
+		class="col-md-4 col-lg-3 col-xl-2"
+		*ngFor="let tableOrder of tableOrders; let i = index"
+	>
+		<kt-portlet
+			class="kt-portlet--height-fluid order-ticket mm-border-bottom-{{
+				tableOrder.OrderStatus
+			}}"
+			[ngClass]=""
+		>
+			<kt-portlet-header
+				[title]="
+					tableOrder?.TableNr
+						? 'Table ' + tableOrder.TableNr
+						: 'Table --'
+				"
+				class="s-padding-r mm-order-header kt-portlet-light-blue"
+			>
+				<ng-container ktPortletTools>
+					<div
+						class="header-time xs-margin-t margin-r text-{{
+							tableOrder.OrderStatus
+						}}"
+					>
+						<mat-icon mat-icon class="clock-icon"
+							>access_time</mat-icon
+						>
+						<span class="xs-padding-b kt-font-bold">{{
+							tableOrder.Timestamp | date: "H:mm"
+						}}</span>
+					</div>
+					<kt-context-menu
+						[menuItems]="orderMenuItems"
+						(menuItemClicked)="
+							changeStatus(tableOrder, $event.text)
+						"
+					></kt-context-menu>
+				</ng-container>
+			</kt-portlet-header>
+			<!-- #trigger (click)="onTap(i)" -->
+			<kt-portlet-body
+				[perfectScrollbar]="{ wheelPropagation: true }"
+				[ngStyle]="{
+					'max-height': '50vh',
+					position: 'relative',
+					overflow: 'hidden'
+				}"
+			>
+				<div *ngIf="tableOrder.OrderdItems.FoodItems.length">
+					<div
+						class="row s-padding-v"
+						*ngFor="
+							let foodItem of tableOrder.OrderdItems.FoodItems
+						"
+					>
+						<div class="col-md-2 col-sm-2 col-xs-2">
+							<div
+								class="order-qty text-center kt-font-bold {{
+									tableOrder.OrderStatus
+								}}-light-bg"
+							>
+								{{ foodItem.Quantity }}x
+							</div>
+						</div>
+						<div
+							class="col-md-10 col-sm-10 col-xs-10 font-bold-500"
+						>
+							<div
+								class="kt-font-bolder text-{{
+									tableOrder.OrderStatus
+								}}"
+							>
+								{{ foodItem.Name }}
+							</div>
+							<div *ngIf="foodItem.SideMenu">
+								{{ foodItem.SideMenu }}
+							</div>
+
+							<div
+								*ngIf="foodItem.ExtraOptions?.length"
+								class="row s-margin-t"
+							>
+								<div
+									*ngFor="let extras of foodItem.ExtraOptions"
+									class="extra-options col-5 xs-padding xs-margin-r text-center {{
+										tableOrder.OrderStatus
+									}}-light-bg"
+								>
+									{{ extras.name }}
+								</div>
+							</div>
+							<div
+								*ngIf="foodItem.OrderComment"
+								class="order-comment s-margin-t xs-padding s-padding-l"
+							>
+								{{ foodItem.OrderComment }}
+							</div>
+						</div>
+
+						<div class="col-xl-12 l-margin-v">
+							<mat-divider></mat-divider>
+						</div>
+					</div>
+				</div>
+
+				<div
+					*ngIf="
+						role !== 'Kitchen' &&
+						tableOrder.OrderdItems.Drinks.length
+					"
+				>
+					<div
+						class="row s-padding-v"
+						*ngFor="let drinks of tableOrder.OrderdItems.Drinks"
+					>
+						<div class="col-md-2 col-sm-2 col-xs-2">
+							<div
+								class="order-qty text-center kt-font-bold {{
+									tableOrder.OrderStatus
+								}}-light-bg"
+							>
+								{{ drinks.Quantity }}x
+							</div>
+						</div>
+						<div class="col-md-10 col-sm-10 col-xs-10 kt-font-bold">
+							{{ drinks.Name }}
+						</div>
+						<div class="col-xl-12 l-margin-v">
+							<mat-divider></mat-divider>
+						</div>
+					</div>
+				</div>
+			</kt-portlet-body>
+			<kt-portlet-footer class="row s-padding-v xs-padding-r">
+				<div class="col-8 margin-auto">
+					<span class="kt-font-bolder">
+						#{{ tableOrder.ReservationCode }}
+					</span>
+				</div>
+				<div class="col-4">
+					<a
+						href="javascript:;"
+						class="btn btn-clean btn-sm kt-block-inline float-right"
+						(click)="editOrder(tableOrder)"
+					>
+						<i class="fa fa-pen"></i>
+					</a>
+				</div>
+			</kt-portlet-footer>
+		</kt-portlet>
+	</div>
+</div>

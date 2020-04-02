@@ -1,0 +1,65 @@
+.extra-options-row {
+  width: 100%;
+}
+
+.custom-placeholder {
+  background: #ccc;
+  min-height: 60px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.handle {
+  position: relative;
+  font-size: 16px;
+  left: -10px;
+  color: #ccc;
+  cursor: move;
+}
+
+.padding-l-10 {
+  padding-left: 10px;
+}
+
+.edit-input {
+  width: 90% !important;
+}
+
+.mobile-label {
+  display: none;
+}
+
+.mat-mini-fab {
+  &::ng-deep .mat-button-wrapper {
+    line-height: 0;
+  }
+}
+
+.fab-btn {
+  line-height: 10px;
+}
+
+.kt-btn-bottom-border {
+  border-bottom: 1px solid var(--ng-color-light-blue);
+}
+
+button.mat-menu-item:hover {
+  background-color: var(--ng-color-light-blue) !important;
+}
+
+@media (max-width: 600px) {
+  .mobile-label {
+    width: 80px;
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row {
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 24px;
+  }
+}

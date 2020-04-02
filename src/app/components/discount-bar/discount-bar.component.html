@@ -1,0 +1,71 @@
+<kt-portlet [class]="'kt-portlet--height-fluid kt-bg-fill-primary'">
+	<div class="row n-margin-r discount-bar">
+		<div class="col-2 kt-font-white kt-font-22 kt-font-bold text-center margin-auto">
+			Discount <br />
+			Offers
+			<div>
+				<button
+					class="btn btn-outline-white rounded-button s-margin-t l-padding-h kt-font-bold"
+					(click)="openOffersDialog(false, 'MenuItem')"
+				>
+					Add Offers
+				</button>
+			</div>
+		</div>
+		<div class="col-10 kt-portlet-mm-body kt-bg-fill-custom-white">
+			<div class="row">
+				<div class="col-4">
+					<div class="kt-widget12__info">
+						<span class="kt-widget12__desc">Bill Discounts</span>
+						<span class="kt-widget12__value" (click)="openOffersDialog(true, 'Billing')">
+							<span class="discount-value kt-font-18">20%</span>
+							<span class="kt-font-14"> Discount on ribeye steak</span>
+						</span>
+						<span class="kt-widget12__value">
+							<span class="discount-value kt-font-18">20%</span>
+							<span class="kt-font-14"> Discount on ribeye steak</span>
+						</span>
+						<span class="kt-widget12__value">
+							<span class="discount-value kt-font-18">20%</span>
+							<span class="kt-font-14"> Discount on ribeye steak</span>
+						</span>
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="kt-widget12__info" (click)="openOffersDialog(true, 'MenuItem')">
+						<span class="kt-widget12__desc">Menu Items</span>
+						<span class="kt-widget12__value">Ttrsedfsf</span>
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="kt-widget12__info">
+						<span class="kt-widget12__desc">Discount Code</span>
+						<span class="kt-widget12__value" (click)="openOffersDialog(true, 'DiscountCode')">
+							<span class="discount-value kt-font-18">20%</span>
+							<span class="kt-font-14"> Discount on ribeye steak</span>
+						</span>
+						<span class="kt-widget12__value">
+							<span class="discount-value kt-font-18">20%</span>
+							<span class="kt-font-14"> Discount on ribeye steak</span>
+						</span>
+						<span class="kt-widget12__value">
+							<span class="discount-value kt-font-18">20%</span>
+							<span class="kt-font-14"> Discount on ribeye steak</span>
+						</span>
+						<span class="kt-widget12__value">
+							<span class="discount-value kt-font-18">20%</span>
+							<span class="kt-font-14"> Discount on ribeye steak</span>
+						</span>
+						<span class="kt-widget12__value">
+							<span class="discount-value kt-font-18">20%</span>
+							<span class="kt-font-14"> Discount on ribeye steak</span>
+						</span>
+					</div>
+				</div>
+				<div class="col-8 margin-auto" *ngFor="let offer of Offers">
+					{{ offer | json }}
+				</div>
+			</div>
+		</div>
+	</div>
+</kt-portlet>

@@ -1,0 +1,26 @@
+<div class="padding">
+    <h1 mat-dialog-title class="text-center">
+        Create New Discount Offer
+    </h1>
+    
+    <div mat-dialog-content>
+        <mat-tab-group [(selectedIndex)]="selectedIndex" (selectedTabChange)="tabChange($event)">
+            <mat-tab label="Discount on Item" templateLabel="'Billing'">
+                <mm-offer-form-component #menuItem [hidden]="offerType !== 'MenuItem'" [offerType]="'MenuItem'"></mm-offer-form-component>
+            </mat-tab>
+            <mat-tab label="Bill Discounts">
+                <mm-offer-form-component #billing [hidden]="offerType !== 'Billing'" [offerType]="'Billing'"></mm-offer-form-component>
+            </mat-tab>
+            <mat-tab label="Discount Code">
+                <mm-offer-form-component #discountCode [hidden]="offerType !== 'DiscountCode'" [offerType]="'DiscountCode'"></mm-offer-form-component>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+    
+    <div mat-dialog-actions align="end" class="margin-t">
+        <!-- [mat-dialog-close]="data.category" -->
+        <button mat-button mat-dialog-close tabindex="-1">Cancel</button>
+        <button *ngIf="edit" mat-raised-button color="primary" type="submit" (click)="updateReservation()" cdkFocusInitial>Update</button>
+        <button *ngIf="!edit" mat-raised-button color="primary" type="submit" (click)="addOffer()" cdkFocusInitial>Add</button>
+    </div>
+</div>

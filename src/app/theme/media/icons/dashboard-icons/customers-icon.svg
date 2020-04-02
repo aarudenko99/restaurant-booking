@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="58" height="58" viewBox="0 0 58 58">
+  <g id="Group_14" data-name="Group 14" transform="translate(-810 -131)">
+    <path id="Fill_1_Copy_2" data-name="Fill 1 Copy 2" d="M58,29.031a73.038,73.038,0,0,1-1.906,17.19c-.261,1.021-.625,2.017-.955,3.02a9.181,9.181,0,0,1-6.058,6,47.065,47.065,0,0,1-10.792,2.266,87.554,87.554,0,0,1-16.981.156A51.412,51.412,0,0,1,9.048,55.3a9.606,9.606,0,0,1-6.354-6.341A47.2,47.2,0,0,1,.585,39.2,88.793,88.793,0,0,1,.277,21.968,52,52,0,0,1,2.663,9.131,9.7,9.7,0,0,1,9.113,2.677,51.6,51.6,0,0,1,21.3.337,88.205,88.205,0,0,1,38.277.489,57.273,57.273,0,0,1,48,2.367a10.435,10.435,0,0,1,7.648,7.75A59.7,59.7,0,0,1,57.71,22.363c.156,2.219.2,4.445.29,6.668" transform="translate(810 131)" fill="rgba(140,84,255,0.1)"/>
+    <g id="Group_13" data-name="Group 13" transform="translate(6 2)">
+      <g id="Stockholm-icons-_-General-_-User" data-name="Stockholm-icons-/-General-/-User" transform="translate(822.956 148)">
+        <path id="Shape" d="M0,0H20.5V20.5H0Z" fill="none" fill-rule="evenodd"/>
+        <path id="Mask" d="M11.417,9.835a3.417,3.417,0,1,1,3.417-3.417A3.417,3.417,0,0,1,11.417,9.835Z" transform="translate(-1.165 -0.437)" fill="#8c54ff" opacity="0.3"/>
+        <path id="Mask-Copy" d="M3,19.15C3.332,15.073,6.641,13,10.675,13c4.09,0,7.451,1.959,7.7,6.151a.587.587,0,0,1-.642.683H3.622A.946.946,0,0,1,3,19.15Z" transform="translate(-0.437 -1.894)" fill="#8c54ff"/>
+      </g>
+      <g id="Stockholm-icons-_-General-_-User-2" data-name="Stockholm-icons-/-General-/-User" transform="translate(815.5 148)">
+        <path id="Shape-2" data-name="Shape" d="M0,0H17.894V17.894H0Z" fill="none" fill-rule="evenodd"/>
+        <path id="Mask-2" data-name="Mask" d="M10.982,8.965a2.982,2.982,0,1,1,2.982-2.982A2.982,2.982,0,0,1,10.982,8.965Z" transform="translate(-2.035 -0.763)" fill="#8c54ff" opacity="0.3"/>
+        <path id="Mask-Copy-2" data-name="Mask-Copy" d="M3,18.368C3.289,14.809,6.178,13,9.7,13c3.57,0,6.5,1.71,6.721,5.368a.512.512,0,0,1-.56.6H3.542A.825.825,0,0,1,3,18.368Z" transform="translate(-0.763 -3.307)" fill="#8c54ff"/>
+      </g>
+      <g id="Stockholm-icons-_-General-_-User-3" data-name="Stockholm-icons-/-General-/-User" transform="translate(833.394 148)">
+        <path id="Shape-3" data-name="Shape" d="M0,0H17.894V17.894H0Z" fill="none" fill-rule="evenodd"/>
+        <path id="Mask-3" data-name="Mask" d="M10.982,8.965a2.982,2.982,0,1,1,2.982-2.982A2.982,2.982,0,0,1,10.982,8.965Z" transform="translate(-2.035 -0.763)" fill="#8c54ff" opacity="0.3"/>
+        <path id="Mask-Copy-3" data-name="Mask-Copy" d="M3,18.368C3.289,14.809,6.178,13,9.7,13c3.57,0,6.5,1.71,6.721,5.368a.512.512,0,0,1-.56.6H3.542A.825.825,0,0,1,3,18.368Z" transform="translate(-0.763 -3.307)" fill="#8c54ff"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+<input
+	*ngIf="setupLocation"
+	ngx-google-places-autocomplete
+	name="name"
+	autocomplete="off"
+	type="search"
+	formControlName="name"
+	[options]="options"
+	#placesRef="ngx-places"
+	placeholder="Restaurant Name"
+	class="form-control margin-b"
+	(onAddressChange)="selectPlace($event)"
+/>
+<div #gmap style="width:100%;height:250px"></div>

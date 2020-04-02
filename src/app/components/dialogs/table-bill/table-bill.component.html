@@ -1,0 +1,20 @@
+<div mat-dialog-content>
+	<mm-bill
+		[show]="true"
+		[bill]="data.bill"
+		(editBill)="edit = $event"
+	></mm-bill>
+</div>
+<div mat-dialog-actions align="end" class="padding-h padding-b">
+	<button mat-button mat-dialog-close tabindex="-1">Close</button>
+
+	<button
+		*ngIf="edit"
+		type="submit"
+		class="btn btn-brand btn-bold"
+		cdkFocusInitial
+		(click)="updateBill()"
+	>
+		Update
+	</button>
+</div>

@@ -1,0 +1,159 @@
+.hero {
+  background: center/cover url(assets/media/landing-page-imgs/sign-up-back.jpg) no-repeat !important;
+}
+
+@media (min-width: 768px) {
+  section.hero {
+    min-height: 439px !important;
+  }
+}
+
+.hero-content-wrap {
+  height: 300px !important;
+}
+
+.hero-text-content h4 {
+  text-align: left;
+  font: Bold 53px/64px 'Montserrat';
+  letter-spacing: 0;
+  color: #ffffff;
+  opacity: 1;
+  transition: all 0.4s ease-in;
+}
+
+.hero-text-content p {
+  text-align: left;
+  font: Semibold 20px/27px 'Open Sans';
+  letter-spacing: 0;
+  color: #ffffff;
+  opacity: 1;
+  transition: all 0.4s ease-in;
+}
+
+.signup-form form input[type='text'],
+.signup-form form select,
+input[type='checkbox'] {
+  margin-bottom: 46px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 4px #00000012;
+  border: 0.5px solid #e4e4e4;
+  border-radius: 8px;
+  opacity: 1;
+  height: 65px;
+}
+
+.signup-form form input[type='checkbox'] {
+  width: 33px;
+  height: 33px;
+  background: #f2f2f2 0% 0% no-repeat padding-box;
+  border-radius: 3px;
+  opacity: 1;
+}
+
+/* Hide the browser's default checkbox */
+.signup-form form input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.signup-form form select {
+  background: url(assets/media/landing-page-imgs/down-arrow.svg) no-repeat right;
+  -webkit-appearance: none;
+  background-position-x: 95%;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 33px;
+  width: 33px;
+  background: #f2f2f2 0% 0% no-repeat padding-box;
+}
+
+/* On mouse-over, add a grey background color */
+input ~ .checkmark {
+  background-color: #ccc;
+  transition: all 0.4s ease-in;
+}
+
+/* When the checkbox is checked, add a blue background */
+input:checked ~ .checkmark {
+  background-color: #ffa000;
+  transition: all 0.4s ease-in;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkmark:after {
+  top: 3px;
+  left: 11px;
+  height: 20px;
+  width: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  transition: all 0.4s ease-in;
+}
+
+.check-label {
+  display: block;
+  margin-left: 4%;
+}
+
+.signup-form form input[type='text']::placeholder,
+.signup-form form select,
+label {
+  text-align: left;
+  font: lighter 16px/22px 'Open Sans';
+  letter-spacing: 0;
+  color: #555555;
+  opacity: 1;
+}
+
+.btn-primary-color {
+  margin-top: 46px;
+  height: 81px;
+  text-align: center;
+  font: Bold 16px/22px 'Open Sans';
+  letter-spacing: 0;
+  color: #ffffff;
+  background: transparent linear-gradient(180deg, #ffbb47 0%, #ffa000 100%) 0% 0% no-repeat padding-box;
+  border-radius: 3px;
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    background: transparent linear-gradient(180deg, #ffbb47 0%, #ffa000 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 4px #00000080;
+    opacity: 1;
+    border-bottom: 0;
+  }
+
+  header {
+    min-height: 130px;
+  }
+}
+@media (min-width: 200px) and (max-width: 768px) {
+  header {
+    min-height: 80px;
+  }
+}

@@ -1,0 +1,172 @@
+<!--begin::Head-->
+<div class="kt-login__head">
+	<span class="kt-login__signup-label">
+		{{ "AUTH.GENERAL.NO_ACCOUNT" | translate }} </span
+	>&nbsp;&nbsp;
+	<a
+		href="javascript:;"
+		routerLink="/auth/register"
+		class="kt-link kt-login__signup-link"
+	>
+		{{ "AUTH.GENERAL.SIGNUP_BUTTON" | translate }}
+	</a>
+</div>
+<!--end::Head-->
+
+<!--begin::Body-->
+<div class="kt-login__body">
+	<!--begin::Signin-->
+	<div class="kt-login__form">
+		<div class="kt-login__title">
+			<h3 class="kt-font-bold">
+				{{ "AUTH.LOGIN.TITLE" | translate }}
+			</h3>
+		</div>
+
+		<kt-auth-notice></kt-auth-notice>
+
+		<!--begin::Form-->
+		<form
+			class="kt-form"
+			(ngSubmit)="submit()"
+			[formGroup]="loginForm"
+			autocomplete="off"
+		>
+			<div class="form-group margin-b">
+				<label>{{ "AUTH.INPUT.EMAIL" | translate }}</label>
+				<input
+					type="email"
+					class="form-control n-margin-t"
+					placeholder="{{ 'AUTH.INPUT.EMAIL' | translate }}"
+					formControlName="email"
+					[ngClass]="{
+						'is-invalid':
+							isControlHasError('email', 'required') ||
+							isControlHasError('email', 'email') ||
+							isControlHasError('email', 'minLength') ||
+							isControlHasError('email', 'maxLength')
+					}"
+				/>
+				<span
+					*ngIf="isControlHasError('email', 'required')"
+					class="invalid-feedback kt-font-bold"
+				>
+					{{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+				</span>
+				<span
+					*ngIf="isControlHasError('email', 'email')"
+					class="invalid-feedback kt-font-bold"
+				>
+					{{ "AUTH.VALIDATION.INVALID_FIELD" | translate }} 3
+				</span>
+				<span
+					*ngIf="isControlHasError('email', 'minLength')"
+					class="invalid-feedback kt-font-bold"
+				>
+					{{ "AUTH.VALIDATION.MIN_LENGTH_FIELD" | translate }} 3
+				</span>
+				<span
+					*ngIf="isControlHasError('email', 'maxLength')"
+					class="invalid-feedback kt-font-bold"
+				>
+					{{ "AUTH.VALIDATION.MAX_LENGTH_FIELD" | translate }} 320
+				</span>
+			</div>
+			<div class="form-group margin-b">
+				<label>{{ "AUTH.INPUT.PASSWORD" | translate }}</label>
+				<input
+					type="password"
+					class="form-control n-margin-t"
+					placeholder="{{ 'AUTH.INPUT.PASSWORD' | translate }}"
+					formControlName="password"
+					[ngClass]="{
+						'is-invalid':
+							isControlHasError('password', 'required') ||
+							isControlHasError('password', 'minLength') ||
+							isControlHasError('password', 'maxLength')
+					}"
+				/>
+				<span
+					*ngIf="isControlHasError('password', 'required')"
+					class="invalid-feedback kt-font-bold"
+				>
+					{{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+				</span>
+				<span
+					*ngIf="isControlHasError('password', 'minLength')"
+					class="invalid-feedback kt-font-bold"
+				>
+					{{ "AUTH.VALIDATION.MIN_LENGTH_FIELD" | translate }} 3
+				</span>
+				<span
+					*ngIf="isControlHasError('password', 'maxLength')"
+					class="invalid-feedback kt-font-bold"
+				>
+					{{ "AUTH.VALIDATION.MAX_LENGTH_FIELD" | translate }} 100
+				</span>
+			</div>
+
+			<!--begin::Action-->
+			<div class="kt-login__actions">
+				<a
+					href="javascript:;"
+					routerLink="/auth/forgot-password"
+					class="kt-link kt-login__link-forgot"
+				>
+					{{ "AUTH.GENERAL.FORGOT_BUTTON" | translate }}
+				</a>
+				<button
+					(click)="submit()"
+					[ngClass]="{
+						'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading
+					}"
+					id="kt_login_signin_submit"
+					class="btn btn-primary btn-elevate kt-login__btn-primary"
+				>
+					{{ "AUTH.LOGIN.BUTTON" | translate }}
+				</button>
+			</div>
+			<!--end::Action-->
+		</form>
+		<!--end::Form-->
+
+		<!--begin::Divider-->
+		<!-- <div class="kt-login__divider">
+			<div class="kt-divider">
+				<span></span>
+				<span>OR</span>
+				<span></span>
+			</div>
+		</div> -->
+		<!--end::Divider-->
+
+		<!--begin::Options-->
+		<!-- <div class="kt-login__options">
+			<a
+				href="https://www.facebook.com/keenthemes/"
+				target="_blank"
+				class="btn btn-primary kt-btn"
+			>
+				<i class="fab fa-facebook-f"></i>
+				Facebook
+			</a>
+
+			<a
+				href="https://twitter.com/keenthemes/"
+				target="_blank"
+				class="btn btn-info kt-btn"
+			>
+				<i class="fab fa-twitter"></i>
+				Twitter
+			</a>
+
+			<a href="javascript:;" class="btn btn-danger kt-btn">
+				<i class="fab fa-google"></i>
+				Google
+			</a>
+		</div> -->
+		<!--end::Options-->
+	</div>
+	<!--end::Signin-->
+</div>
+<!--end::Body-->

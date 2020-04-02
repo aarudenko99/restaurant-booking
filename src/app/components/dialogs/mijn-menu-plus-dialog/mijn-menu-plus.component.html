@@ -1,0 +1,257 @@
+<kt-portlet>
+	<kt-portlet-body class="n-padding">
+		<mat-horizontal-stepper
+			#stepper
+			[linear]="isLinear"
+			[perfectScrollbar]="{ wheelPropagation: false }"
+			[ngStyle]="{ 'max-height': '50vh', position: 'relative' }"
+		>
+			<mat-step [completed]="termsAccepted">
+				<ng-template matStepLabel>
+					<span class="kt-font-normal step-title">
+						Terms of Service
+					</span>
+				</ng-template>
+				<div class="kt-section padding-t">
+					<div class="kt-section__title">
+						Mijn Menu Terms of Service
+					</div>
+					<kt-notice
+						[icon]="'flaticon2-information kt-font-primary'"
+						[classes]="'padding-l'"
+					>
+						The layout builder helps to configure the layout with
+						preferred options and preview it in real time. The
+						configured layout options will be saved until you change
+						or reset them. To use the layout builder choose the
+						layout options and click the <code>Preview</code> button
+						to preview the changes.
+					</kt-notice>
+					<div class="kt-section__desc">
+						Section description text.
+					</div>
+					<div class="kt-section__content">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+						sed do eiusmod tempor incididunt ut labore et dolore
+						magna aliqua consectetur adipiscing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua.
+					</div>
+
+					<div
+						class="kt-separator kt-separator--space-lg kt-separator--border-dashed"
+					></div>
+
+					<div class="kt-section__desc">
+						Other info text.
+					</div>
+
+					<div class="kt-section__content">
+						Aipiscing ipsum dolor sit amet, consectetur adipiscing
+						elit, sed do eiusmod tempor, sed do eiusmod tempor
+						incididunt ut labore et dolore magna aliqua. Aadipiscing
+						elit, sed do eiusmod tempor, sed do eiusmod tempor
+						incididunt ut labore et dolore magna aliqua.
+					</div>
+
+					<div
+						class="kt-separator kt-separator--space-lg kt-separator--border-solid"
+					></div>
+
+					<div class="kt-section__desc">
+						Other description text.
+					</div>
+
+					<div class="kt-section__content">
+						Aipiscing ipsum dolor sit amet, consectetur adipiscing
+						elit, sed do eiusmod tempor, sed do eiusmod tempor
+						incididunt ut labore et dolore magna aliqua. Aadipiscing
+						elit, sed do eiusmod tempor, sed do eiusmod tempor
+						incididunt ut labore et dolore magna aliqua.
+					</div>
+				</div>
+			</mat-step>
+			<!-- [stepControl]="secondFormGroup" -->
+			<mat-step [completed]="stepper.selectedIndex > 1">
+				<ng-template matStepLabel>
+					<span class="kt-font-normal step-title">
+						Connect Mollie
+					</span>
+				</ng-template>
+				<div class="kt-section padding-t">
+					<div class="kt-section__title">
+						Set up Mollie
+					</div>
+					<div class="kt-section__desc">
+						Section description text.
+					</div>
+					<div class="kt-section__content">
+						We use Mollie to make sure you get paid on time and to
+						keep your personal bank and details secure. Click
+						<strong>Login met Mollie</strong> to set up your Mollie
+						account.
+					</div>
+
+					<div
+						class="kt-separator kt-separator--space-lg kt-separator--border-solid"
+					></div>
+
+					<div class="kt-section__content">
+						<mm-mollie-connect-btn
+							[redirectUrl]="'dashboard/home'"
+						></mm-mollie-connect-btn>
+					</div>
+				</div>
+			</mat-step>
+			<mat-step [stepControl]="data ? menuItemForm : null">
+				<ng-template matStepLabel>
+					<span class="kt-font-normal step-title">
+						User Information
+					</span>
+				</ng-template>
+				<div class="kt-section padding-t">
+					<div class="kt-section__title">
+						User Information
+					</div>
+
+					<form [formGroup]="menuItemForm">
+						<div class="col-xl-6 form-group margin-b n-padding-h">
+							<label>Customer Name</label>
+							<input
+								type="text"
+								class="form-control"
+								formControlName="Name"
+								name="height"
+								placeholder="Enter Menu Item Name"
+								[ngClass]="{
+									'is-invalid': submitted && f.Name.errors
+								}"
+							/>
+							<div
+								*ngIf="submitted && f.Name.errors"
+								class="invalid-feedback"
+							>
+								<div *ngIf="f.Name.errors.required">
+									Name is required
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-6 form-group margin-b n-padding-h">
+							<label>IBAN</label>
+							<input
+								type="text"
+								class="form-control"
+								formControlName="Iban"
+								placeholder="Enter Menu Item Name"
+								[ngClass]="{
+									'is-invalid': submitted && f.Iban.errors
+								}"
+								ibanValidator
+							/>
+							<div
+								*ngIf="submitted && f.Iban.errors"
+								class="invalid-feedback"
+							>
+								<div *ngIf="f.Iban.errors.required">
+									IBAN is required
+								</div>
+								<div *ngIf="f.Iban.errors.iban">
+									IBAN is invalid
+								</div>
+							</div>
+							<div
+								*ngIf="
+									f.Iban.valid &&
+									(f.Iban.dirty || f.Iban.touched)
+								"
+								class="kt-font-success kt-font-bold xs-padding-t"
+							>
+								IBAN is valid.
+							</div>
+						</div>
+
+						<div class="col-xl-6 form-group margin-b n-padding-h">
+							<label>BIC Code (Optional)</label>
+							<input
+								type="text"
+								class="form-control"
+								formControlName="Name"
+								name="height"
+								placeholder="Enter Menu Item Name"
+								[ngClass]="{
+									'is-invalid': submitted && f.Name.errors
+								}"
+							/>
+						</div>
+					</form>
+
+					<div class="kt-section__desc">
+						Other info text.
+					</div>
+
+					<div class="kt-section__content">
+						Aipiscing ipsum dolor sit amet, consectetur adipiscing
+						elit, sed do eiusmod tempor, sed do eiusmod tempor
+						incididunt ut labore et dolore magna aliqua. Aadipiscing
+						elit, sed do eiusmod tempor, sed do eiusmod tempor
+						incididunt ut labore et dolore magna aliqua.
+					</div>
+				</div>
+			</mat-step>
+		</mat-horizontal-stepper>
+	</kt-portlet-body>
+	<kt-portlet-footer class="s-padding-v">
+		<div class="row">
+			<div
+				*ngIf="stepper.selectedIndex <= 0"
+				class="col-12 margin-auto xs-padding-v"
+			>
+				<mat-checkbox
+					[(ngModel)]="termsAccepted"
+					class="example-ripple-checkbox"
+					>I have read and agree to the Mijn Menu Terms of
+					Service.</mat-checkbox
+				>
+			</div>
+			<div class="col-12">
+				<div
+					mat-dialog-actions
+					[align]="stepper.selectedIndex <= 0 ? 'start' : 'end'"
+				>
+					<!-- <button mat-button *ngIf="stepper.selectedIndex <= 0" mat-dialog-close tabindex="-1" type="button" class="kt-font-transform-u">cancel</button> -->
+					<button
+						mat-button
+						*ngIf="stepper.selectedIndex > 0"
+						class="kt-font-transform-u"
+						(click)="goBack(stepper)"
+					>
+						Back
+					</button>
+
+					<button
+						mat-raised-button
+						color="primary"
+						type="submit"
+						class="kt-font-transform-u"
+						(click)="
+							stepper.selectedIndex < 2
+								? goForward(stepper)
+								: confirm(stepper)
+						"
+						[disabled]="
+							!termsAccepted ||
+							stepper.selectedIndex === stepper?._steps?.length
+						"
+					>
+						{{
+							stepper.selectedIndex <= 0
+								? "I Agree"
+								: stepper.selectedIndex === 2
+								? "Confirm"
+								: "Next"
+						}}
+					</button>
+				</div>
+			</div>
+		</div>
+	</kt-portlet-footer>
+</kt-portlet>

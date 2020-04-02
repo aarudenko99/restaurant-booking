@@ -1,0 +1,38 @@
+<div class="mat-table__empty l-margin-t">
+	<div class="mat-table__message--loading">
+		<div class="row text-center">
+			<div class="col-12 s-margin-b">
+				<div class="empty-img margin-auto-all">
+					<img
+						src="./assets/media/logos/MijnRestaurant-logo.svg"
+						class="no-result-img margin-auto-all"
+						alt="image"
+					/>
+				</div>
+			</div>
+			<div class="col-12 margin-b">
+				<p *ngIf="!message" class="text-center kt-font-bold">
+					No Results
+				</p>
+				<ng-container *ngIf="message">
+					<h4 class="kt-subheader__desc">No Results</h4>
+					<p class="text-center kt-font-bold">
+						{{ message }}
+					</p>
+				</ng-container>
+			</div>
+			<div *ngIf="type === 'menu'" class="col-12">
+				<button
+					matTooltip="Click here to create a menu category"
+					class="btn btn-label-brand-o2 btn-bold btn-sm kt-font-transform-u s-padding l-padding-h"
+					(click)="createMenu.emit(true)"
+				>
+					<span href="javascript:;" class="kt-nav__link kt-font-bold">
+						<i class="kt-nav__link-icon fa fa-plus"></i>
+						Create Menu
+					</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

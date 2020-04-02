@@ -1,0 +1,19 @@
+::ng-deep .mat-tab-body-content {
+  padding-top: 0 !important;
+}
+
+::ng-deep .mat-tab-header {
+  color: var(--ng-color-primary);
+  background: var(--ng-color-primary-inverse);
+}
+
+::ng-deep .mat-tab-body {
+  .mat-tab-header {
+    color: var(--ng-color-primary);
+    background: var(--ng-color-light-blue);
+  }
+}
+
+.kt-portlet__body {
+  position: relative;
+}

@@ -1,0 +1,22 @@
+<svg id="calendar" xmlns="http://www.w3.org/2000/svg" width="32" height="34.286" viewBox="0 0 32 34.286">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <rect id="Rectangle" class="cls-1" width="4" height="4" transform="translate(11.429 24.571)"/>
+  <rect id="Rectangle-2" data-name="Rectangle" class="cls-1" width="4" height="4" transform="translate(11.429 14.286)"/>
+  <rect id="Rectangle-3" data-name="Rectangle" class="cls-1" width="4" height="4" transform="translate(11.429 19.429)"/>
+  <rect id="Rectangle-4" data-name="Rectangle" class="cls-1" width="4" height="4" transform="translate(6.286 19.429)"/>
+  <rect id="Rectangle-5" data-name="Rectangle" class="cls-1" width="4" height="4" transform="translate(6.286 14.286)"/>
+  <rect id="Rectangle-6" data-name="Rectangle" class="cls-1" width="4" height="4" transform="translate(6.286 24.571)"/>
+  <rect id="Rectangle-7" data-name="Rectangle" class="cls-1" width="4" height="4" transform="translate(21.714 14.286)"/>
+  <path id="Shape" class="cls-1" d="M31.429,34.285H.572A.572.572,0,0,1,0,33.714V2.857a.572.572,0,0,1,.572-.572h4V.571A.572.572,0,0,1,5.143,0h4a.572.572,0,0,1,.571.571V2.286H22.286V.571A.572.572,0,0,1,22.857,0h4a.572.572,0,0,1,.571.571V2.286h4A.572.572,0,0,1,32,2.857V33.714A.572.572,0,0,1,31.429,34.285ZM5.143,13.143V29.714H26.857V13.143H5.143Zm-4-9.714V8.572H30.857V3.429H27.428V5.143a.572.572,0,0,1-.571.572h-4a.572.572,0,0,1-.571-.572V3.429H9.715V5.143a.572.572,0,0,1-.571.572h-4a.572.572,0,0,1-.571-.572V3.429Z"/>
+  <rect id="Rectangle-8" data-name="Rectangle" class="cls-1" width="4" height="4" transform="translate(21.714 19.429)"/>
+  <rect id="Rectangle-9" data-name="Rectangle" class="cls-1" width="4" height="4" transform="translate(21.714 24.571)"/>
+  <rect id="Rectangle-10" data-name="Rectangle" class="cls-1" width="4" height="4" transform="translate(16.571 24.571)"/>
+  <rect id="Rectangle-11" data-name="Rectangle" class="cls-1" width="4" height="4" transform="translate(16.571 19.429)"/>
+  <rect id="Rectangle-12" data-name="Rectangle" class="cls-1" width="4" height="4" transform="translate(16.571 14.286)"/>
+</svg>

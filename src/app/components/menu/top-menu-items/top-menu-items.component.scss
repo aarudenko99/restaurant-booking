@@ -1,0 +1,42 @@
+.mat-table {
+  overflow: auto;
+  // max-height: 465px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-column-orders {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-row {
+  border-bottom: 1px dashed #ebefff;
+  max-height: 150px;
+}
+
+.description {
+  max-height: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.table-scroll::-webkit-scrollbar {
+  width: 0 !important;
+}
+.price-box {
+  background: rgba(255, 160, 0, 0.1);
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.price-color {
+  color: #ffa000;
+}
+.order-box {
+  background: #f4f6fc;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

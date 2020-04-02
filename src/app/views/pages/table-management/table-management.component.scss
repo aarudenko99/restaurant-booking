@@ -1,0 +1,19 @@
+.kt-portlet__head {
+  border-bottom: 0;
+}
+
+.floor-plan-wrapper {
+  width: 100%;
+}
+
+
+@media(max-width: 1024px) {
+  .col-lg-12 {
+    width: 1024px;
+  }
+
+  .floor-plan-wrapper {
+    width: 100%;
+    overflow-x: scroll;
+  }
+}

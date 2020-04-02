@@ -1,0 +1,74 @@
+<kt-portlet
+	[class]="'kt-portlet--height-fluid kt-portlet--border-bottom-brand'"
+>
+	<kt-portlet-header
+		[title]="'COMMON.REVIEWS' | translate"
+		class="kt-portlet-light-blue"
+	>
+		<ng-container ktPortletTools>
+			<kt-context-menu2
+				[class]="'btn-label-brand'"
+				[title]="rating + ' Stars'"
+				[menuItems]="menuItems"
+				(menuItemClicked)="loadRestauranReviews($event.value)"
+			></kt-context-menu2>
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body>
+		<!-- Empty data table -->
+		<mm-empty-table *ngIf="isEmpty" class="mm-empty-table"></mm-empty-table>
+
+		<mat-card
+			*ngFor="let review of reviews | async"
+			class="n-box-shadow padding-b n-padding-h n-padding-t"
+		>
+			<mat-card-header
+				[ngClass]="!review.userdetails[0].Avatar ? 'no-avatar' : null"
+			>
+				<div
+					*ngIf="review.userdetails[0].Avatar"
+					mat-card-avatar
+					class="user-avatar"
+				></div>
+				<mat-card-title>
+					<div class="row">
+						<div class="col-8 kt-font-bold">
+							{{ review.userdetails[0].FullName }}
+						</div>
+						<div class="col-4 sub-title text-right kt-font-regular">
+							{{ review.CreatedDate | date: "dd/MM/yyyy" }}
+						</div>
+					</div>
+				</mat-card-title>
+				<mat-card-subtitle>
+					<div class="kt-section__content">
+						<ng-template #fontAwesome let-fill="fill">
+							<span class="star2" [class.full]="fill === 100">
+								<i
+									class="kt-nav__link-icon star-icon fa fa-star half"
+									[style.width.%]="fill"
+								></i>
+							</span>
+						</ng-template>
+						<ngb-rating
+							[rate]="review.Stars"
+							[starTemplate]="fontAwesome"
+							[readonly]="true"
+							max="5"
+						></ngb-rating>
+					</div>
+				</mat-card-subtitle>
+			</mat-card-header>
+			<mat-card-content>
+				<p>{{ review.Review }}</p>
+			</mat-card-content>
+		</mat-card>
+	</kt-portlet-body>
+	<kt-portlet-footer class="n-padding">
+		<mat-paginator
+			[pageSizeOptions]="[3, 10, 25, 100]"
+			[pageSize]="3"
+			[showFirstLastButtons]="true"
+		></mat-paginator>
+	</kt-portlet-footer>
+</kt-portlet>

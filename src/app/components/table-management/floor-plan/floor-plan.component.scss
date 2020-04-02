@@ -1,0 +1,21 @@
+$floor-height: var(--floor-height);
+
+.floorplan-boundary {
+  height: $floor-height;
+  max-width: 100%;
+}
+
+.zoom-controls {
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  height: 200px;
+}
+
+.mat-icon {
+  vertical-align: top !important;
+  height: 28px;
+  width: 28px;
+}

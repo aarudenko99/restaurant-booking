@@ -1,0 +1,26 @@
+<div
+	data-placement="bottom"
+	ngbTooltip="Filter de data"
+	class="grey-slot kt-border-radius s-padding-v text-center"
+	(click)="picker.open()"
+>
+	<i class="fa fa-calendar-alt kt-font-primary xs-margin-r"></i>
+	<span class="xs-margin-l">
+		{{ currentFilter }}
+	</span>
+</div>
+<mat-form-field style="visibility:hidden;" class="datepicker-form-field">
+	<input
+		matInput
+		[min]="minDate"
+		[max]="maxDate"
+		[matDatepicker]="picker"
+		(dateChange)="chosenDayHandler($event.value)"
+		placeholder="Choose a date"
+	/>
+	<mat-datepicker
+		#picker
+		startView="multi-year"
+		(monthSelected)="chosenMonthHandler($event)"
+	></mat-datepicker>
+</mat-form-field>

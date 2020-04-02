@@ -1,0 +1,369 @@
+<div class="padding-b">
+	<div class="row">
+		<div class="col-12">
+			<!-- TO DO Create table-action.component -->
+			<div class="row l-padding-l s-margin-v">
+				<div class="col-2 kt-margin-bottom-10-mobile">
+					<div class="kt-form__control">
+						<mat-form-field class="mat-form-field-fluid">
+							<mat-select
+								[(value)]="filterStatus"
+								(selectionChange)="applyFilter(filterStatus)"
+							>
+								<mat-option value="">All</mat-option>
+								<ng-container *ngIf="tab?.SubCategories">
+									<mat-option
+										*ngFor="
+											let subCategory of tab.SubCategories
+										"
+										[value]="subCategory.SubCategoryName"
+									>
+										{{ subCategory.SubCategoryName }}
+									</mat-option>
+								</ng-container>
+							</mat-select>
+							<mat-hint align="start">
+								<strong>Filter</strong> by Subcategory
+							</mat-hint>
+						</mat-form-field>
+					</div>
+				</div>
+
+				<div class="col-2 kt-margin-bottom-10-mobile">
+					<mat-form-field class="mat-form-field-fluid">
+						<input
+							matInput
+							(keyup)="applyFilter($event.target.value)"
+							placeholder="Search in Category"
+						/>
+						<mat-hint align="start">
+							<strong>Search</strong> in all fields
+						</mat-hint>
+					</mat-form-field>
+				</div>
+				<div class="col-8 text-right">
+					<button
+						*ngIf="edit"
+						(click)="update()"
+						mat-raised-button
+						matTooltip="Update {{ tab?.CategoryName }} menu items"
+						class="mat-button-mt-4 margin-r"
+					>
+						Update
+					</button>
+
+					<button
+						matTooltip="Add an item in {{ tab.CategoryName }}"
+						class="btn btn-label-brand-o2 btn-bold btn-sm kt-font-transform-u s-padding padding-h s-margin-t margin-r"
+						(click)="openAddMenuItemDialog('add', tab)"
+					>
+						<span
+							href="javascript:;"
+							class="kt-nav__link kt-font-bold"
+						>
+							<i class="kt-nav__link-icon fa fa-plus"></i>
+							Add item
+						</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- start::GROUP ACTIONS -->
+	<!-- Group actions list: 'Delete selected' | 'Fetch selected' | 'Update status for selected' -->
+	<!-- Group actions are shared for all LISTS | See '../../_shared' folder -->
+	<div
+		class="row align-items-center collapse kt-form__group-actions kt-margin-top-20 kt-margin-bottom-20"
+		[ngClass]="{ show: selection.selected.length > 0 }"
+	>
+		<!-- We show 'Group Actions' div if smth are selected -->
+		<div class="col-xl-12">
+			<div class="kt-form__group kt-form__group--inline">
+				<div class="kt-form__label kt-form__label-no-wrap">
+					<label class="kt--font-bold kt-font-danger-">
+						<span
+							translate="ECOMMERCE.COMMON.SELECTED_RECORDS_COUNT"
+						></span>
+						{{ selection.selected.length }}
+					</label>
+					<!-- selectedCountsTitle => function from codeBehind (customer-list.component.ts file) -->
+					<!-- selectedCountsTitle => just returns title of selected items count -->
+					<!-- for example: Selected records count: 4 -->
+				</div>
+				<div class="kt-form__control kt-form__group--inline">
+					<ng-template ngxPermissionsOnly="canDeleteECommerceData">
+						<button
+							(click)="deleteCustomers()"
+							mat-raised-button
+							color="accent"
+							matTooltip="Delete selected customers"
+							class="mat-button-mt-4"
+						>
+							<mat-icon>delete</mat-icon>
+							Delete All</button
+						>&nbsp;<!-- Call 'delete-entity-dialog' from _shared folder -->
+					</ng-template>
+
+					<button
+						mat-raised-button
+						matTooltip="Fetch selected customers"
+						class="mat-button-mt-4"
+					>
+						<mat-icon>clear_all</mat-icon>
+						Fetch Selected</button
+					>&nbsp;<!-- Call 'fetch-entity-dialog' from _shared folder -->
+					<button
+						mat-raised-button
+						matTooltip="Update status for selected customers"
+						class="mat-button-mt-4"
+					>
+						<mat-icon>update</mat-icon>
+						Update status</button
+					><!-- Call 'update-stated-dialog' from _shared folder -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end::GROUP ACTIONS -->
+	<!-- Checkbox Column -->
+	<!-- <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef class="mat-column-checkbox">
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [color]="'primary'">
+                </mat-checkbox>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" class="mat-column-checkbox" [ngClass]="edit ? 'padding-l-10' : null">
+            
+                <div *ngIf="edit" class="handle" cdkDragHandle>
+                    <i class="fa fa-align-justify"></i>
+                </div>
+                <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [color]="'primary'">
+                </mat-checkbox>
+            </mat-cell>
+        </ng-container> -->
+
+	<!-- id Column -->
+	<!-- TO DO Make mat-sort-header optional -->
+	<mat-table
+		#table
+		matSort
+		cdkDropList
+		#list="cdkDropList"
+		[dataSource]="dataSource"
+		[cdkDropListData]="dataSource.data"
+		(cdkDropListDropped)="onListDrop($event)"
+		matSortActive="_index"
+		matSortDirection="asc"
+	>
+		<ng-container matColumnDef="_index">
+			<mat-header-cell *matHeaderCellDef mat-sort-header>
+				Index
+			</mat-header-cell>
+			<mat-cell
+				*matCellDef="let menuItem; let i = index"
+				[ngClass]="edit ? 'padding-l-10' : null"
+			>
+				<span class="mobile-label">Index:</span>
+				<div *ngIf="edit" class="handle" cdkDragHandle>
+					<i class="fa fa-align-justify"></i>
+				</div>
+				{{ menuItem._index }}
+			</mat-cell>
+		</ng-container>
+
+		<!-- item Column -->
+		<ng-container matColumnDef="Name">
+			<mat-header-cell *matHeaderCellDef mat-sort-header>
+				Name
+			</mat-header-cell>
+			<mat-cell *matCellDef="let menuItem">
+				<span class="mobile-label">Name:</span>
+				<span>{{ menuItem.Name }}</span>
+			</mat-cell>
+		</ng-container>
+
+		<!-- MenuRestrictionType Column -->
+		<ng-container matColumnDef="MenuRestrictionType">
+			<mat-header-cell *matHeaderCellDef>
+				Dag Delen
+			</mat-header-cell>
+			<mat-cell *matCellDef="let menuItem">
+				<span class="mobile-label">MenuRestrictionType:</span>
+				<div class="row">
+					<div
+						class="col-4"
+						*ngFor="
+							let restrictionType of menuItem.MenuRestrictionType
+						"
+					>
+						<i
+							class="kt-svg-icon kt-font-md kt-svg-icon--primary s-margin-r"
+							[inlineSVG]="
+								restrictionType === 'Breakfast'
+									? './assets/media/icons/svg/Weather/Sunset.svg'
+									: restrictionType === 'Lunch'
+									? './assets/media/icons/svg/Weather/Sun.svg'
+									: restrictionType === 'Dinner'
+									? './assets/media/icons/svg/Weather/Cloudy-night.svg'
+									: null
+							"
+						></i>
+					</div>
+				</div>
+				<span>
+					<i
+						class="kt-svg-icon kt-font-md kt-svg-icon--primary s-margin-r"
+						[inlineSVG]="
+							menuItem.MenuRestrictionType === 'Breakfast'
+								? './assets/media/icons/svg/Weather/Sunset.svg'
+								: item === 'Lunch'
+								? './assets/media/icons/svg/Weather/Sun.svg'
+								: item === 'Dinner'
+								? './assets/media/icons/svg/Weather/Cloudy-night.svg'
+								: null
+						"
+					></i>
+				</span>
+			</mat-cell>
+		</ng-container>
+
+		<!-- subcategory Column -->
+		<ng-container matColumnDef="SubCategory">
+			<mat-header-cell
+				*matHeaderCellDef
+				mat-sort-header
+				class="kt-font-transform-u"
+			>
+				Sub Category
+			</mat-header-cell>
+			<mat-cell *matCellDef="let menuItem">
+				<span class="mobile-label">Subcategory:</span>
+				<span>{{ menuItem.SubCategory?.name }}</span>
+			</mat-cell>
+		</ng-container>
+
+		<!-- price Column -->
+		<ng-container matColumnDef="Price">
+			<mat-header-cell *matHeaderCellDef mat-sort-header>
+				Price
+			</mat-header-cell>
+			<mat-cell *matCellDef="let menuItem">
+				<span class="mobile-label">Price:</span>
+				<span>{{ menuItem.Price | currency: "EUR" }}</span>
+			</mat-cell>
+		</ng-container>
+
+		<!-- ExtraOptions Column -->
+		<ng-container matColumnDef="ExtraOptions">
+			<mat-header-cell *matHeaderCellDef mat-sort-header>
+				Extra Options
+			</mat-header-cell>
+			<mat-cell *matCellDef="let menuItem">
+				<span class="mobile-label">Extra Options:</span>
+				<div
+					class="row extra-options-row"
+					*ngFor="let extraOptions of menuItem.ExtraOptions"
+				>
+					<div class="col-12">
+						<span>{{ extraOptions.name }}</span>
+					</div>
+					<div class="col-12">
+						<span>{{ extraOptions.price | currency: "EUR" }}</span>
+					</div>
+				</div>
+			</mat-cell>
+		</ng-container>
+
+		<!-- Action Column -->
+		<ng-container matColumnDef="actions">
+			<mat-header-cell *matHeaderCellDef width="106px" class="kt-pl-13">
+				<!-- <button mat-icon-button (click)="refresh()">
+                    <mat-icon mat-icon>refresh</mat-icon>
+                </button> -->
+			</mat-header-cell>
+			<mat-cell *matCellDef="let menuItem">
+				<span class="mobile-label">Actions:</span>
+
+				<button
+					mat-mini-fab
+					autoClose="true"
+					container="body"
+					#p1="ngbPopover"
+					[ngbPopover]="popContent"
+					data-placement="bottom"
+					ngbTooltip="More Actions"
+					class="more-action-fab n-box-shadow kt-font-11 s-margin-r"
+				>
+					<mat-icon>more_horiz</mat-icon>
+				</button>
+				<ng-template #popContent let-language="language">
+					<button
+						mat-menu-item
+						class="kt-btn-bottom-border popover-menu-item"
+						(click)="reorderItems(menuItem._id)"
+					>
+						<mat-icon color="primary">
+							<i class="fa fa-align-justify"></i>
+						</mat-icon>
+						<span>Reorder items</span>
+					</button>
+					<button
+						mat-menu-item
+						class="kt-btn-bottom-border popover-menu-item"
+						(click)="editItem(menuItem)"
+					>
+						<mat-icon color="primary">create</mat-icon>
+						<span>Edit</span>
+					</button>
+					<button
+						mat-menu-item
+						class="kt-btn-bottom-border popover-menu-item"
+						(click)="delete(menuItem)"
+					>
+						<mat-icon color="primary">delete</mat-icon>
+						<span>Delete</span>
+					</button>
+					<button
+						mat-menu-item
+						class="kt-btn-bottom-border popover-menu-item"
+					>
+						<mat-icon color="primary">
+							<i class="flaticon-price-tag"></i>
+						</mat-icon>
+						<span>Create Discount</span>
+					</button>
+				</ng-template>
+			</mat-cell>
+		</ng-container>
+
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row
+			*matRowDef="let row; columns: displayedColumns"
+			class="kt-font-bold"
+			cdkDrag
+			[cdkDragDisabled]="!edit"
+		>
+			<div class="custom-placeholder" *cdkDragPlaceholder></div>
+		</mat-row>
+	</mat-table>
+	<!-- Message for empty data  -->
+	<div class="mat-table__message" *ngIf="!dataSource">No records found</div>
+	<div class="mat-table__message" *ngIf="!dataSource">Please wait....</div>
+</div>
+
+<!-- start: BOTTOM -->
+<div class="mat-table__bottom mat-table__bottom--padding">
+	<mat-spinner [diameter]="20" *ngIf="!menu"></mat-spinner>
+	<mat-paginator
+		[length]="menu?.length"
+		[pageSizeOptions]="[5, 10, 25, 100]"
+		[pageSize]="5"
+		[showFirstLastButtons]="true"
+	></mat-paginator>
+</div>
+<!-- end: BOTTOM -->

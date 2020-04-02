@@ -1,0 +1,65 @@
+<div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+	<mm-user-profile-aside
+		[selected]="navItem"
+		[user]="userSubject.value"
+		(selectedNavItem)="selectedNav($event)"
+	></mm-user-profile-aside>
+
+	<div class="kt-grid__item kt-grid__item--fluid kt-app__content">
+		<span [ngSwitch]="navItem">
+			<ng-container *ngSwitchCase="'personal-info'">
+				<mm-user-personal-information
+					[userManagement]="false"
+					[(userSubject)]="userSubject"
+				></mm-user-personal-information>
+			</ng-container>
+			<ng-container *ngSwitchCase="'mm-plus'">
+				<div class="row">
+					<div class="col-xl-12">
+						<kt-portlet>
+							<div class="kt-portlet__head">
+								<div class="kt-portlet__head-label full-width">
+									<h3
+										class="kt-portlet__head-title full-width"
+									>
+										Mijn Menu Plus
+										<small>information</small>
+									</h3>
+									\
+
+									<button
+										class="btn btn-label-light-blue btn-bold btn-sm kt-font-transform-u pull-right"
+										(click)="edit = !edit"
+									>
+										<a
+											href="javascript:;"
+											class="kt-nav__link"
+										>
+											<span
+												class="kt-nav__link-text kt-font-bold"
+											>
+												{{ !edit ? "Edit" : "Save" }}
+											</span>
+										</a>
+									</button>
+								</div>
+							</div>
+							<kt-portlet-body>
+								<div class="kt-section kt-section--first">
+									<div class="kt-section__body">
+										<mm-mollie-subscription
+											[edit]="edit"
+										></mm-mollie-subscription>
+									</div>
+								</div>
+							</kt-portlet-body>
+						</kt-portlet>
+					</div>
+				</div>
+			</ng-container>
+			<ng-container *ngSwitchCase="'change-pass'">
+				<mm-change-password></mm-change-password>
+			</ng-container>
+		</span>
+	</div>
+</div>

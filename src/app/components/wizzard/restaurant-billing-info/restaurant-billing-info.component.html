@@ -1,0 +1,70 @@
+<div class="kt-heading kt-heading--md">Mijn Menu Plus</div>
+<div class="kt-form__section kt-form__section--first">
+	<form class="kt-form">
+		<div class="kt-wizard-v1__form">
+			<div class="form-group">
+				<label>
+					Name
+					<ng-template #tipContent>
+						Try to find your restaurant in the predictions and
+						select it.
+					</ng-template>
+					<i
+						class="flaticon2-information s-margin-l"
+						placement="top"
+						[ngbTooltip]="tipContent"
+					></i>
+				</label>
+
+				<input
+					type="text"
+					class="form-control"
+					name="address"
+					required
+				/>
+				<!-- <ng-container
+					*ngFor="let validation of validationMessages.name"
+					class="s-margin-t invalid-feedback"
+				>
+					<div
+						*ngIf="
+							wizardService.isControlHasError(
+								'name',
+								validation.type
+							)
+						"
+						class="kt-font-bold s-margin-t error-message"
+					>
+						{{ validation.message }}
+					</div>
+				</ng-container> -->
+				<!-- <span class="form-text text-muted">Please enter your Restaurant Name.</span> -->
+			</div>
+			<div class="form-group">
+				<label>Business bank account</label>
+				<input
+					type="text"
+					class="form-control"
+					name="address"
+					required
+				/>
+				<!-- <ng-container
+					*ngFor="let validation of validationMessages.address"
+					class="s-margin-t invalid-feedback"
+				>
+					<div
+						*ngIf="
+							wizardService.isControlHasError(
+								'address',
+								validation.type
+							)
+						"
+						class="kt-font-bold s-margin-t error-message"
+					>
+						{{ validation.message }}
+					</div>
+				</ng-container> -->
+			</div>
+		</div>
+	</form>
+</div>

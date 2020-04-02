@@ -1,0 +1,304 @@
+<kt-portlet [class]="'kt-portlet--tabs kt-portlet--height-fluid'">
+	<kt-portlet-header
+		*ngIf="!categories.length"
+		[title]="'Create Menu Categories'"
+		text-center
+	></kt-portlet-header>
+	<kt-portlet-body [ngClass]="edit ? 'n-padding-b' : 'n-padding'">
+		<mat-tab-group
+			*ngIf="edit"
+			animationDuration="0ms"
+			mat-stretch-tabs
+			(selectedIndexChange)="typeChange($event)"
+		>
+			<mat-tab>
+				<ng-template mat-tab-label>
+					<div class="kt-font-16 kt-font-bolder">
+						Food
+						<span
+							class="mm-card__icon s-margin-l"
+							inlineSVG="assets/media/icons/food-icon.svg"
+						></span>
+					</div>
+				</ng-template>
+				<mat-tab-group
+					(selectedIndexChange)="tabChange($event)"
+					mat-stretch-tabs
+				>
+					<mat-tab
+						*ngFor="
+							let category of menuService.foodItems.value;
+							let index = index
+						"
+					>
+						<ng-template mat-tab-label>
+							<span class="kt-font-bold">
+								{{ category?.CategoryName }}
+							</span>
+						</ng-template>
+						<mm-edit-category
+							[category]="category"
+							[categories]="categories"
+							[selectedIndex]="selectedIndex"
+							(addSubCat)="addSubCategory()"
+						></mm-edit-category>
+					</mat-tab>
+				</mat-tab-group>
+			</mat-tab>
+			<mat-tab>
+				<ng-template mat-tab-label class="test">
+					<div class="kt-font-16 kt-font-bolder">
+						Drinks
+						<span
+							class="mm-card__icon s-margin-l"
+							inlineSVG="assets/media/icons/drinks-icon.svg"
+						></span>
+					</div>
+				</ng-template>
+				<mat-tab-group
+					(selectedIndexChange)="tabChange($event)"
+					mat-stretch-tabs
+				>
+					<mat-tab
+						*ngFor="
+							let category of menuService.drinks.value;
+							let index = index
+						"
+					>
+						<ng-template mat-tab-label>
+							<span class="kt-font-bold">
+								{{ category?.CategoryName }}
+							</span>
+						</ng-template>
+						<mm-edit-category
+							[category]="category"
+							[categories]="categories"
+							[selectedIndex]="selectedIndex"
+							(addSubCat)="addSubCategory()"
+						></mm-edit-category>
+					</mat-tab>
+				</mat-tab-group>
+			</mat-tab>
+		</mat-tab-group>
+		<div *ngIf="!edit" class="kt-section padding-v l-padding-h">
+			<div class="form-group row">
+				<label class="col-lg-3 col-form-label margin-auto">
+					Menu Type
+				</label>
+				<div class="col-lg-6">
+					<div class="kt-checkbox-inline">
+						<mat-radio-group
+							aria-label="Select an option"
+							[ngModel]="
+								!edit
+									? menuCategory?.Type
+									: categories[selectedIndex]?.Type
+							"
+							(ngModelChange)="
+								!edit
+									? (menuCategory.Type = $event)
+									: (categories[selectedIndex].Type = $event)
+							"
+						>
+							<div class="row">
+								<div class="col-6 margin-auto">
+									<label>
+										<img
+											src="assets/media/icons/food-icon.svg"
+											class="d-block category-type-icon"
+										/>
+										<mat-radio-button
+											class="n-padding-r padding-t"
+											value="Food"
+										></mat-radio-button>
+									</label>
+								</div>
+								<div class="col-6 margin-auto">
+									<label>
+										<img
+											src="assets/media/icons/drinks-icon.svg"
+											class="d-block category-type-icon drinks-icon"
+										/>
+										<mat-radio-button
+											class="n-padding-r padding-t"
+											value="Drinks"
+										></mat-radio-button>
+									</label>
+								</div>
+							</div>
+						</mat-radio-group>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-12 l-margin-v n-padding-h">
+				<mat-divider></mat-divider>
+			</div>
+			<div *ngIf="!categories.length && !edit">
+				<div class="kt-section__body">
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label"
+							>Main Category Name</label
+						>
+
+						<div class="col-lg-6">
+							<input
+								type="text"
+								name="height"
+								class="form-control"
+								[(ngModel)]="menuCategory.CategoryName"
+								placeholder="Enter Category Name"
+							/>
+							<span class="form-text text-muted"
+								>Please enter the name of your menu
+								category.</span
+							>
+						</div>
+					</div>
+					<div
+						class="form-group row"
+						*ngFor="let item of subCategories; let i = index"
+					>
+						<label class="col-lg-3 col-form-label">
+							Sub Category (Optional)
+
+							<ng-template #tipContent>
+								Add subcategories according to your category,
+								for example a main category Drinks with the
+								following subcategories: Soda, Beers, Wines.
+							</ng-template>
+							<i
+								*ngIf="i < 1"
+								class="flaticon2-information s-margin-l"
+								placement="top"
+								[ngbTooltip]="tipContent"
+							></i>
+						</label>
+
+						<div class="col-lg-6">
+							<input
+								type="text"
+								class="form-control col-xl-10"
+								[(ngModel)]="subCategories[i].SubCategoryName"
+								placeholder="Enter Subcategory Name"
+							/>
+						</div>
+
+						<div class="col-lg-3 text-center">
+							<button
+								mat-icon-button
+								color="primary"
+								(click)="deleteSubCat(i)"
+							>
+								<mat-icon mat-icon>close</mat-icon>
+							</button>
+						</div>
+
+						<div class="col-xl-12 l-margin-v">
+							<mat-divider></mat-divider>
+						</div>
+					</div>
+					<a
+						href="javascript:;"
+						class="kt-font-bold"
+						(click)="addSubCategory()"
+						>Add Sub Category</a
+					>
+				</div>
+			</div>
+
+			{{ categories | json }}
+			<!-- <div *ngIf="categories.length">
+				<div class="form-group row">
+					<label class="col-lg-3 col-form-label">Main Category</label>
+					<div class="col-lg-6">
+						<input
+							type="text"
+							name="height"
+							class="form-control"
+							[(ngModel)]="categories[selectedIndex].CategoryName"
+							placeholder="Enter Category Name"
+						/>
+						<span class="form-text text-muted"
+							>Please enter the name of your menu category.</span
+						>
+					</div>
+				</div>
+
+				<div class="col-xl-12 l-margin-v n-padding-h">
+					<mat-divider></mat-divider>
+				</div>
+				<ng-container
+					*ngFor="let subcategory of subCategories; let i = index"
+				>
+					WAAAAR KOMT DIT NU DAN??????????????????????????????
+					<span *ngIf="selectedIndex === i">
+						<div
+							class="form-group row"
+							*ngFor="let subCat of subcategory.SubCategories"
+						>
+							<label class="col-lg-3 col-form-label"
+								>Sub Category</label
+							>
+							<div class="col-lg-6">
+								<input
+									type="text"
+									name="height"
+									class="form-control"
+									[(ngModel)]="subCat.SubCategoryName"
+									placeholder="Enter Category Name"
+								/>
+								<span class="form-text text-muted"
+									>Please enter the name of your menu
+									category.</span
+								>
+							</div>
+							<div class="col-lg-3">
+								{{ subcategory | json }}
+								<button
+									mat-icon-button
+									color="primary"
+									class="col-xl-1"
+									(click)="deleteSubCategory(i, subCat._id)"
+								>
+									<mat-icon mat-icon>close</mat-icon>
+								</button>
+								{{ subCat | json }}
+							</div>
+						</div>
+					</span>
+				</ng-container>
+				<a
+					href="javascript:;"
+					class="kt-font-bold"
+					(click)="addSubCategory()"
+					>Add Sub Category</a
+				>
+			</div> -->
+		</div>
+	</kt-portlet-body>
+	<kt-portlet-footer class="s-padding-v">
+		<div mat-dialog-actions align="end">
+			<button mat-button mat-dialog-close tabindex="-1">Cancel</button>
+			<button
+				mat-raised-button
+				*ngIf="!edit"
+				color="primary"
+				type="submit"
+				(click)="addCategories()"
+				cdkFocusInitial
+			>
+				Add
+			</button>
+			<button
+				mat-raised-button
+				*ngIf="edit"
+				color="primary"
+				type="submit"
+				(click)="updateCategory()"
+				cdkFocusInitial
+			>
+				Update
+			</button>
+		</div>
+	</kt-portlet-footer>
+</kt-portlet>

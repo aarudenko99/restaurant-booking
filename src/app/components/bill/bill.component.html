@@ -1,0 +1,124 @@
+<kt-portlet
+	class="kt-portlet--height-fluid order-ticket mm-border-bottom-{{
+		bill.BillStatus
+	}}"
+>
+	<kt-portlet-header
+		[title]="bill.TableNr ? 'Table ' + bill.TableNr : 'Table --'"
+		class="s-padding-r mm-order-header kt-portlet-light-blue"
+	>
+		<ng-container ktPortletTools>
+			<div class="header-time xs-margin-t l-margin-r">
+				<span
+					class="order-qty padding-h kt-font-custom-white kt-font-bolder text-center {{
+						bill.BillStatus
+					}}-bg s-padding kt-font-bold"
+					>{{ bill.TotalBill | currency: "EUR":"symbol":"1.0-2" }}
+				</span>
+			</div>
+			<div
+				class="header-time xs-margin-t margin-r text-{{
+					bill.BillStatus
+				}}"
+			>
+				<mat-icon mat-icon class="clock-icon">access_time</mat-icon>
+				<span class="xs-padding-b kt-font-bold"
+					>{{ bill.OrderTime }}
+				</span>
+			</div>
+			<button
+				*ngIf="show"
+				class="btn btn-clean"
+				(click)="editBill.emit(true)"
+			>
+				<i class="la la-edit xs-padding-b"></i>
+				<span class="kt-hidden-mobile">Edit</span>
+			</button>
+			<kt-context-menu
+				*ngIf="!show"
+				[menuItems]="orderMenuItems"
+				(menuItemClicked)="changeStatus(bill, $event.text)"
+			></kt-context-menu>
+			<!-- (menuItemClicked)="changeStatus(tableOrder, $event.text)" -->
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body
+		class="n-padding"
+		[perfectScrollbar]="{ wheelPropagation: true }"
+		[ngStyle]="{
+			'max-height': '50vh',
+			position: 'relative',
+			overflow: 'hidden'
+		}"
+	>
+		<div *ngIf="bill.PaymentDetails?.length > 0">
+			<div *ngFor="let user of bill.PaymentDetails">
+				<div *ngFor="let userOrders of bill.Orders; let i = index">
+					<div *ngIf="userOrders.userId == user.UserId">
+						<div
+							class="kt-portlet__head mm-order-header kt-portlet-light-blue padding-r"
+						>
+							<div class="row margin-auto full-width">
+								<div class="col-1 n-padding-l xs-padding-t">
+									<i
+										class="fa fa-user-circle kt-font-18 text-{{
+											user.PaymentStatus
+										}}"
+									></i>
+								</div>
+								<div class="col-7">
+									<div class="kt-portlet__head-label">
+										<h3 class="kt-portlet__head-title">
+											{{ user.UserName }}
+										</h3>
+										<span class="flex-basis">
+											{{ user.TotalItems }} items
+										</span>
+									</div>
+								</div>
+								<div
+									class="col-4 margin-auto n-padding-r text-right"
+								>
+									<div
+										class="margin-auto kt-font-bolder kt-font-20 text-{{
+											user.PaymentStatus
+										}}"
+									>
+										{{
+											user.PersonalBill
+												| currency
+													: "EUR"
+													: "symbol"
+													: "1.0-2"
+										}}
+									</div>
+								</div>
+							</div>
+						</div>
+						<mm-order-items
+							[bill]="bill"
+							[userOrders]="userOrders"
+						></mm-order-items>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div
+			*ngIf="
+				bill.PaymentDetails == undefined ||
+				bill.PaymentDetails?.length === 0
+			"
+		>
+			<div *ngFor="let userOrders of bill.Orders; let i = index">
+				<mm-order-items
+					[show]="show"
+					[bill]="bill"
+					[userOrders]="userOrders"
+				></mm-order-items>
+			</div>
+		</div>
+	</kt-portlet-body>
+	<kt-portlet-footer class="s-padding-v">
+		<span class="kt-font-bolder"> #{{ bill.ReservationCode }} </span>
+	</kt-portlet-footer>
+</kt-portlet>

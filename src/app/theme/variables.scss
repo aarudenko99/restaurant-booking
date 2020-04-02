@@ -1,0 +1,98 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+
+/** Ionic CSS Variables **/
+:root {
+  /** primary **/
+  --ng-color-primary: #ffa000;
+  --ng-color-primary-rgba: rgba(255, 186, 71, 0.3);
+  --ng-color-primary-rgba-6: rgba(255, 186, 71, 0.6);
+  --ng-color-primary-shade: #e08d00;
+  --ng-color-primary-tint: #ffaa1a;
+
+  /** primary-inverse **/
+  --ng-color-primary-inverse: #fff6e6;
+  --ng-color-primary-inverse-rgb: 255, 210, 151;
+  --ng-color-primary-inverse-contrast: #ffa000;
+  --ng-color-primary-inverse-contrast-rgb: 255, 160, 0;
+  --ng-color-primary-inverse-shade: #ffa000;
+  --ng-color-primary-inverse-tint: #ffffff;
+
+  /** white **/
+  --ng-color-light: #ffffff;
+  --ng-color-light-rgb: 244, 244, 244;
+  --ng-color-light-contrast: #005fff;
+  --ng-color-light-contrast-rgb: 0, 0, 0;
+  --ng-color-light-shade: #d7d8da;
+  --ng-color-light-tint: #f5f6f9;
+
+  //** common colors **//
+  --ng-color-base-font: #434349;
+  --ng-color-grey: #e2e2e2;
+  --ng-color-light-grey: #f6f6f6;
+  --ng-color-warm-grey: #919191;
+  --ng-color-disabled: rgba(216, 216, 216, 0.16);
+  --ng-color-disabled-icon: #bfc5d2;
+
+  /** green **/
+  --ng-color-green: #0abb87;
+  --ng-color-green-rgba: rgba(10, 187, 135, 0.6);
+  --ng-color-light-green: #eaf9f2;
+
+  //** blue ** //
+  --ng-color-light-blue: rgba(224, 231, 255, 0.2);
+  --ng-color-darken-blue: rgba(239, 242, 255, 0.99);
+
+  /** purple **/
+  --ng-color-purple: #8c54ff;
+  --ng-color-light-purple: #f3edff;
+
+  /** red **/
+  --ng-color-red: #fe5354;
+  --ng-color-light-red: #ffd9d9;
+
+  /** turqoise **/
+  --ng-color-turqoise: #00c1d4;
+  --ng-color-light-turqoise: #d3f8fb;
+
+  //** yellow **//
+  --ng-color-yellow: #ffeda1;
+  --ng-color-light-yellow: #fffdf5;
+
+  // Border radius
+  --ng-border-radius-xs: 3px;
+  --ng-border-radius-s: 6px;
+  --ng-border-radius-m: 12px;
+  --ng-border-radius-lm: 15px;
+  --ng-border-radius-l: 16px;
+  --ng-border-radius-xl: 25px;
+
+  // Font-weights
+  --ng-font-weight-light: 300;
+  --ng-font-weight-regular: 400;
+  --ng-font-weight-medium: 500;
+  --ng-font-weight-semibold: 600;
+  --ng-font-weight-bold: 700;
+
+  // Font-sizes
+  --ng-font-size-9: 0.9rem;
+  --ng-font-size-10: 1rem;
+  --ng-font-size-12: 1.2rem;
+  --ng-font-size-14: 1.4rem;
+  --ng-font-size-16: 1.6rem;
+  --ng-font-size-18: 1.8rem;
+  --ng-font-size-20: 2rem;
+  --ng-font-size-22: 2.2rem;
+  --ng-font-size-24: 2.4rem;
+  --ng-font-size-28: 2.8rem;
+  --ng-font-size-30: 3rem;
+  --ng-font-size-32: 3.2rem;
+  --ng-font-size-34: 3.4rem;
+
+  --ng-text-center: center;
+
+  // Margins
+  --ng-margin-xs: 4px;
+  --ng-margin-s: 8px;
+  --ng-margin: 16px;
+}

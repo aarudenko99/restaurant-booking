@@ -1,0 +1,182 @@
+<kt-portlet [class]="'kt-portlet--height-fluid'">
+	<kt-portlet-header
+		[title]="'Edit Order #' + tableOrder.ReservationCode"
+		[class]="'kt-portlet-light-blue text-center'"
+		text-center
+	>
+		<ng-container ktPortletTools> </ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body
+		[perfectScrollbar]="{ wheelPropagation: true }"
+		[ngStyle]="{
+			'max-height': '50vh',
+			position: 'relative',
+			overflow: 'hidden'
+		}"
+	>
+		<div class="row">
+			<div
+				class="col-12"
+				*ngFor="let foodItem of tableOrder.OrderdItems.FoodItems"
+			>
+				<div class="row">
+					<div class="col-1">
+						<div
+							class="btn btn-label-light-blue btn-sm qty-btn n-padding"
+							(click)="increment(foodItem)"
+						>
+							<i
+								class="kt-svg-icon kt-font-md kt-svg-icon--primary"
+								[inlineSVG]="
+									'./assets/media/icons/svg/Navigation/Angle-up.svg'
+								"
+							></i>
+						</div>
+						<div
+							class="order-qty text-center kt-font-bold s-margin-v {{
+								tableOrder.OrderStatus
+							}}-light-bg"
+						>
+							{{ foodItem?.Quantity }}x
+						</div>
+
+						<div
+							class="btn btn-label-light-blue btn-sm qty-btn n-padding"
+							(click)="decrement(foodItem)"
+						>
+							<i
+								class="kt-svg-icon kt-font-md kt-svg-icon--primary"
+								[inlineSVG]="
+									'./assets/media/icons/svg/Navigation/Angle-down.svg'
+								"
+							></i>
+						</div>
+					</div>
+					<div class="col-md-8 col-sm-8 col-xs-8  margin-auto">
+						<div
+							class="kt-font-bolder text-{{
+								tableOrder.OrderStatus
+							}}"
+						>
+							{{ foodItem.Name }}
+						</div>
+						<div *ngIf="foodItem.SideMenu">
+							{{ foodItem.SideMenu }}
+						</div>
+
+						<div
+							*ngIf="foodItem.ExtraOptions?.length"
+							class="row s-margin-t"
+						>
+							<div
+								*ngFor="let extras of foodItem.ExtraOptions"
+								class="extra-options col-5 xs-padding xs-margin-r text-center {{
+									tableOrder.OrderStatus
+								}}-light-bg"
+							>
+								{{ extras.name }}
+							</div>
+						</div>
+						<div
+							*ngIf="foodItem.OrderComment"
+							class="order-comment s-margin-t xs-padding s-padding-l"
+						>
+							{{ foodItem.OrderComment }}
+						</div>
+					</div>
+					<div class="col-2 margin-auto-all">
+						<div
+							class="btn btn-label-light-blue btn-sm s-padding"
+							(click)="deleteItem(foodItem)"
+						>
+							<i
+								class="kt-svg-icon kt-font-md kt-svg-icon--danger n-padding-r"
+								[inlineSVG]="
+									'./assets/media/icons/svg/General/Trash.svg'
+								"
+							></i>
+						</div>
+					</div>
+
+					<div class="col-xl-12 l-margin-v">
+						<mat-divider></mat-divider>
+					</div>
+				</div>
+			</div>
+			<div
+				class="col-12"
+				*ngFor="let drinkItem of tableOrder.OrderdItems.Drinks"
+			>
+				<div class="row">
+					<div class="col-1">
+						<div
+							class="btn btn-label-light-blue btn-sm qty-btn n-padding"
+							(click)="increment(drinkItem)"
+						>
+							<i
+								class="kt-svg-icon kt-font-md kt-svg-icon--primary"
+								[inlineSVG]="
+									'./assets/media/icons/svg/Navigation/Angle-up.svg'
+								"
+							></i>
+						</div>
+						<div
+							class="order-qty text-center kt-font-bold s-margin-v {{
+								tableOrder.OrderStatus
+							}}-light-bg"
+						>
+							{{ drinkItem.Quantity }}x
+						</div>
+
+						<div
+							class="btn btn-label-light-blue btn-sm qty-btn n-padding"
+							(click)="decrement(drinkItem)"
+						>
+							<i
+								class="kt-svg-icon kt-font-md kt-svg-icon--primary"
+								[inlineSVG]="
+									'./assets/media/icons/svg/Navigation/Angle-down.svg'
+								"
+							></i>
+						</div>
+					</div>
+					<div
+						class="col-md-8 col-sm-8 col-xs-8 kt-font-bold margin-auto"
+					>
+						{{ drinkItem.Name }}
+					</div>
+					<div class="col-2 margin-auto-all">
+						<div
+							class="btn btn-label-light-blue btn-sm s-padding"
+							(click)="deleteItem(drinkItem)"
+						>
+							<i
+								class="kt-svg-icon kt-font-md kt-svg-icon--danger n-padding-r"
+								[inlineSVG]="
+									'./assets/media/icons/svg/General/Trash.svg'
+								"
+							></i>
+						</div>
+					</div>
+					<div class="col-xl-12 l-margin-v">
+						<mat-divider></mat-divider>
+					</div>
+				</div>
+			</div>
+		</div>
+	</kt-portlet-body>
+	<kt-portlet-footer class="s-padding-v">
+		<div mat-dialog-actions align="end">
+			<button mat-button mat-dialog-close tabindex="-1">Cancel</button>
+
+			<button
+				class="btn btn-label-brand-o2 btn-bold btn-sm kt-font-transform-u s-padding padding-h s-margin-l"
+				(click)="dismissDialog()"
+			>
+				<span class="kt-nav__link kt-font-bold">
+					Update Order
+				</span>
+			</button>
+		</div>
+	</kt-portlet-footer>
+</kt-portlet>

@@ -1,0 +1,12 @@
+<kt-portlet [class]="'kt-portlet--tabs'">    
+    <kt-portlet-header [title]="'Create Menu Categories'" text-center></kt-portlet-header>
+    <kt-portlet-body>
+        <mm-google-map [setupLocation]="true" (selectedLocation)="location($event)"></mm-google-map>
+    </kt-portlet-body>
+    <kt-portlet-footer class="s-padding-v">
+        <div mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close tabindex="-1">Cancel</button>
+            <button mat-raised-button color="primary" type="submit" (click)="setLocation()" cdkFocusInitial>Set Location</button>
+        </div>
+    </kt-portlet-footer>
+</kt-portlet>

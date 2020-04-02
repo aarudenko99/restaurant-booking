@@ -1,0 +1,148 @@
+$border: var(--border);
+
+.gray-icon {
+  color: var(--ng-color-disabled-icon);
+}
+
+.color-blue-darken {
+  color: #c7d1fffc;
+}
+
+.popover-text {
+  vertical-align: bottom;
+}
+
+.table-nr {
+  color: var(--ng-color-light);
+}
+
+.table-status {
+  border-radius: var(--ng-border-radius-l);
+}
+
+.kt-btn-bottom-border {
+  border-bottom: 1px solid var(--ng-color-light-blue);
+}
+
+button.mat-menu-item:hover {
+  background-color: var(--ng-color-light-blue) !important;
+}
+
+.more-action-fab {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 25px !important;
+  height: 25px !important;
+  line-height: 32px;
+  border-radius: 50%;
+  z-index: 1;
+
+  &.round-table {
+    // top: 30px !important;
+  }
+
+  &.rectangle-table {
+    right: auto;
+    left: 10px;
+  }
+}
+
+.table-container {
+  display: inline-flex;
+  .table-component {
+    color: rgba(0, 0, 0, 0.87);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #fff;
+    box-sizing: border-box;
+    transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+    box-shadow: 0 2px 40px 0 rgba(0, 0, 0, 0.05);
+
+    &:active {
+      box-shadow: 0 2px 40px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .seat {
+      position: absolute;
+      z-index: -1 !important;
+    }
+  }
+
+  .table-informations {
+    .table-seats {
+      letter-spacing: -1.5px;
+    }
+    .clock-icon {
+      height: 0 !important;
+      width: 18px !important;
+    }
+    .table-edit-controls {
+      position: absolute;
+      display: inline-flex;
+      bottom: 0px;
+
+      .edit-icons {
+        position: absolute;
+        left: 30px;
+        top: 30px;
+        margin: 0 auto;
+
+        .mat-icon {
+          @media only screen and (max-width: 2000px) {
+            font-size: 38px !important;
+          }
+          @media only screen and (max-width: 1500px) {
+            font-size: 24px !important;
+          }
+          @media only screen and (max-width: 1250px) {
+            font-size: 20px !important;
+          }
+          @media only screen and (max-width: 1000px) {
+            font-size: 18px !important;
+          }
+          @media only screen and (max-width: 500px) {
+            font-size: 10px !important;
+          }
+          @media only screen and (max-width: 250px) {
+            font-size: 5px !important;
+          }
+        }
+      }
+    }
+
+    .table-status {
+      display: inline-flex;
+      font-weight: 500;
+    }
+
+    .toolbar {
+      position: absolute;
+      color: black;
+      bottom: 0px;
+      left: 0px;
+      margin: 0 auto;
+      display: inline-flex;
+      width: 500px;
+
+      .mat-icon-button {
+        // width: 20px;
+        // height: 20px;
+
+        .mat-icon {
+          line-height: 3px;
+
+          &.delete-icon {
+            line-height: 0px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.round {
+  border-radius: 50% !important;
+}

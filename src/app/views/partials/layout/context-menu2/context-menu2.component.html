@@ -1,0 +1,35 @@
+<a
+	autoClose="true"
+	container="body"
+	[ngbPopover]="popContent"
+	data-placement="bottom"
+	#p1="ngbPopover"
+	[ngbTooltip]="toolTip ? toolTip : null"
+	href="javascript:;"
+	class="btn {{
+		class
+	}} btn-bold btn-sm kt-font-transform-u dropdown-toggle s-padding"
+>
+	<a href="javascript:;" class="kt-nav__link">
+		<i
+			class="kt-nav__link-icon {{ menuItems ? menuItems[0]?.icon : '' }}"
+		></i>
+		<span class="kt-nav__link-text kt-font-bold">{{ title }}</span>
+	</a>
+</a>
+<ng-template #popContent let-language="language">
+	<button
+		mat-menu-item
+		*ngFor="let menuItem of menuItems"
+		class="kt-btn-bottom-border  popover-menu-item"
+		(click)="itemClicked(menuItem)"
+	>
+		<mat-icon *ngIf="menuItem.icon" color="primary">
+			<i class="kt-nav__link-icon {{ menuItem.icon }}"></i>
+		</mat-icon>
+		<span class="kt-nav__link-text">
+			{{ menuItem?.value ? menuItem.value : "" }}
+			{{ menuItem.text ? menuItem.text : menuItem.Name }}
+		</span>
+	</button>
+</ng-template>

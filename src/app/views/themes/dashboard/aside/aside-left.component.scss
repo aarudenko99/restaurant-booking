@@ -1,0 +1,19 @@
+:host {
+  .kt-aside {
+    height: 100%;
+  }
+
+  .kt-aside-menu-wrapper {
+    height: 200px;
+    background-image: url('../../../../../assets/media/bg/sidemenu-bg.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    .selected-restaurant-name {
+      height: 55px;
+      background: var(--ng-color-disabled);
+      // border-bottom: 1px solid #eff0f6;
+    }
+  }
+}

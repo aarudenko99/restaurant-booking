@@ -1,0 +1,160 @@
+$base-color: #ffa000;
+$btn-background: #fff;
+$btn-border: #e2e5ec;
+$btn-text-color: #333;
+$btn-arrow: #e2e5ec;
+
+$token-background: $base-color;
+$token-text-color: #fff;
+$token-remove-color: #fff;
+
+$box-shadow-color: #dedede;
+$list-hover-background: rgba(224, 231, 255, 0.2);
+$label-color: #000;
+$selected-background: rgba(224, 231, 255, 0.2);
+$darken-blue: rgba(239, 242, 255, 0.99);
+// --ng-color-light-blue: rgba(224, 231, 255, 0.2);
+// --ng-color-darken-blue: rgba(239, 242, 255, 0.99);
+
+.c-btn {
+	background: $btn-background;
+	border: 1px solid $btn-border;
+	color: $btn-text-color;
+	border-radius: 4px !important;
+
+	span {
+		font-size: 12px;
+		font-weight: normal;
+		color: #7885a2;
+	}
+}
+.selected-list {
+	.c-list {
+		.c-token {
+			background: $token-background;
+			.c-label {
+				color: $token-text-color;
+			}
+			.c-remove {
+				svg {
+					fill: $token-remove-color;
+				}
+			}
+		}
+	}
+	.c-angle-down,
+	.c-angle-up {
+		svg {
+			fill: $btn-arrow !important;
+		}
+	}
+}
+.dropdown-list {
+	ul {
+		li:hover {
+			background: $list-hover-background;
+		}
+	}
+}
+.arrow-up,
+.arrow-down {
+	border-bottom: 15px solid $darken-blue !important;
+}
+
+.arrow-2 {
+	border-bottom: 15px solid #ccc;
+}
+.list-area {
+	border: 1px solid $darken-blue !important;
+	background: #fff;
+	box-shadow: 0px 1px 5px $box-shadow-color;
+}
+.select-all {
+	border-bottom: 1px solid $selected-background !important;
+}
+.list-filter {
+	border-bottom: 1px solid $selected-background !important;
+	.c-search {
+		svg {
+			fill: #888;
+		}
+	}
+	.c-clear {
+		svg {
+			fill: #888;
+		}
+	}
+}
+
+.pure-checkbox {
+	input[type="checkbox"]:focus + label:before,
+	input[type="checkbox"]:hover + label:before {
+		border-color: $base-color;
+		background-color: #f2f2f2;
+	}
+	input[type="checkbox"] + label {
+		color: $label-color;
+	}
+	input[type="checkbox"] + label:before {
+		color: $base-color;
+		border: 1px solid $base-color;
+	}
+	input[type="checkbox"] + label:after {
+		background-color: $base-color;
+	}
+	input[type="checkbox"]:disabled + label:before {
+		border-color: #cccccc;
+	}
+	input[type="checkbox"]:disabled:checked + label:before {
+		background-color: #cccccc;
+	}
+	input[type="checkbox"] + label:after {
+		border-color: #ffffff;
+	}
+	input[type="radio"]:checked + label:before {
+		background-color: white;
+	}
+	input[type="checkbox"]:checked + label:before {
+		background: $base-color;
+	}
+}
+.single-select-mode .pure-checkbox {
+	input[type="checkbox"]:focus + label:before,
+	input[type="checkbox"]:hover + label:before {
+		border-color: $base-color;
+		background-color: #f2f2f2;
+	}
+	input[type="checkbox"] + label {
+		color: $label-color;
+	}
+	input[type="checkbox"] + label:before {
+		color: transparent !important;
+		border: 0px solid $base-color;
+	}
+	input[type="checkbox"] + label:after {
+		background-color: transparent !important;
+	}
+	input[type="checkbox"]:disabled + label:before {
+		border-color: #cccccc;
+	}
+	input[type="checkbox"]:disabled:checked + label:before {
+		background-color: #cccccc;
+	}
+	input[type="checkbox"] + label:after {
+		border-color: $base-color;
+	}
+	input[type="radio"]:checked + label:before {
+		background-color: white;
+	}
+	input[type="checkbox"]:checked + label:before {
+		background: none !important;
+	}
+}
+.selected-item {
+	background: $selected-background;
+}
+.btn-iceblue {
+	background: $base-color;
+	border: 1px solid $btn-border;
+	color: #fff;
+}

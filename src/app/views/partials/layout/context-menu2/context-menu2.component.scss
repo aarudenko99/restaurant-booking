@@ -1,0 +1,11 @@
+.btn {
+	border-radius: var(--ng-border-radius-xs);
+}
+
+.kt-btn-bottom-border {
+	border-bottom: 1px solid var(--ng-color-light-blue);
+}
+
+button.mat-menu-item:hover {
+	background-color: var(--ng-color-light-blue) !important;
+}

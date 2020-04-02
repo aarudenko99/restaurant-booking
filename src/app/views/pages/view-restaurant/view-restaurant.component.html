@@ -1,0 +1,292 @@
+<div *ngIf="restaurant">
+	<div class="kt-portlet transparent n-box-shadow">
+		<div class="col-xl-12 n-padding-h">
+			<kt-portlet-header
+				[title]="'Restaurant ' + restaurant.Name"
+				class="n-border n-padding-h"
+			>
+				<ng-container ktPortletTools>
+					<div class="float-right">
+						<!-- <button mat-raised-button color="primary" class="s-padding-l margin-l" routerLink="../create-restaurant">
+                            Update Restaurant
+                        </button> -->
+						<div class="row">
+							<div class="col-xl-12">
+								<button
+									type="button"
+									class="btn btn-label-danger btn-bold btn-block kt-margin-t-5 kt-margin-b-5"
+									(click)="deleteRestaurant(restaurant)"
+								>
+									Delete restaurant
+								</button>
+							</div>
+						</div>
+					</div>
+				</ng-container>
+			</kt-portlet-header>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xl-8">
+			<kt-portlet [class]="'kt-portlet--height-fluid'">
+				<kt-portlet-body class="n-padding">
+					<div class="restaurant-info row form-group">
+						<div class="col-xl-12">
+							<ngb-carousel
+								*ngIf="restaurant.Images"
+								interval="5000"
+							>
+								<ng-template
+									*ngFor="let image of restaurant.Images"
+									ngbSlide
+								>
+									<div class="img-overlay"></div>
+									<div class="picsum-img-wrapper">
+										<img
+											[src]="image.Path"
+											style="width: 100%; height: 40vh"
+											class="restaurant-img-carousel"
+											alt="restaurant image"
+										/>
+									</div>
+									<div class="carousel-caption">
+										<h3>{{ restaurant.Name }}</h3>
+										<p>{{ restaurant.Description }}</p>
+										<div class="row">
+											<div class="col-4">
+												<p>
+													Category:
+													{{
+														restaurant.RestaurantCategoryName
+													}}
+												</p>
+											</div>
+											<div class="col-6">
+												<span
+													class="status-indicator primary-dot margin-r"
+												></span>
+												<p class="d-inline">
+													Total Seats:
+													{{ restaurant.TotalSeats }}
+												</p>
+											</div>
+										</div>
+									</div>
+								</ng-template>
+							</ngb-carousel>
+						</div>
+					</div>
+					<div class="kt-section kt-section--first xxl-padding-l">
+						<ng-container
+							*ngIf="restaurant.RestaurantFeatures.length"
+						>
+							<h3 class="kt-section__title kt-font-bold">
+								Restaurant Features
+							</h3>
+							<div class="kt-section__body xs-padding-l">
+								<div class="row">
+									<div
+										*ngFor="
+											let feature of restaurant.RestaurantFeatures;
+											let i = index
+										"
+										class="col-3"
+									>
+										<div *ngIf="i <= 5">
+											<span
+												class="status-indicator primary-square xs-margin-r"
+											></span>
+											{{ feature.Name }}
+										</div>
+										<div *ngIf="i > 5 && i <= 10">
+											<span
+												class="status-indicator primary-square xs-margin-r"
+											></span>
+											{{ feature.Name }}
+										</div>
+										<div *ngIf="i > 10">
+											<span
+												class="status-indicator primary-square xs-margin-r"
+											></span>
+											{{ feature.Name }}
+										</div>
+									</div>
+								</div>
+							</div>
+						</ng-container>
+
+						<div *ngIf="DietaryTypes?.length" class="xl-margin-v">
+							<h3 class="kt-section__title kt-font-bold">
+								Dietary Types
+							</h3>
+
+							<div class="kt-section__body row">
+								<div
+									*ngFor="let dietaryType of DietaryTypes"
+									class="col-2"
+								>
+									<div
+										class="grey-slot s-padding-v text-center kt-border-radius"
+									>
+										{{ dietaryType.Name }}
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="xl-margin-t">
+							<h3 class="kt-section__title kt-font-bold">
+								Time Slots
+							</h3>
+
+							<div *ngIf="TimeSlots" class="kt-section__body row">
+								<div
+									*ngFor="let timeSlot of TimeSlots"
+									class="col-2"
+								>
+									<div class="xs-padding">
+										<i
+											class="kt-svg-icon kt-font-md kt-svg-icon--primary s-margin-r"
+											[inlineSVG]="
+												timeSlot.title === 'Breakfast'
+													? './assets/media/icons/svg/Weather/Sunset.svg'
+													: timeSlot.title === 'Lunch'
+													? './assets/media/icons/svg/Weather/Sun.svg'
+													: timeSlot.title ===
+													  'Dinner'
+													? './assets/media/icons/svg/Weather/Cloudy-night.svg'
+													: null
+											"
+										></i>
+										{{ timeSlot.title }}
+									</div>
+									<div
+										class="grey-slot s-padding-v text-center kt-border-radius"
+									>
+										{{ timeSlot.value[0] }} -
+										{{
+											timeSlot.value[
+												timeSlot.value.length - 1
+											]
+										}}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</kt-portlet-body>
+			</kt-portlet>
+		</div>
+
+		<div class="col-xl-4">
+			<kt-portlet [class]="'kt-portlet--height-fluid'">
+				<kt-portlet-body>
+					<div class="l-padding-h">
+						<mm-google-map
+							*ngIf="restaurant"
+							[setupLocation]="false"
+							[position]="{
+								lat: restaurant.Lat,
+								lng: restaurant.Long
+							}"
+						></mm-google-map>
+						<div class="row n-padding-l padding l-padding-t">
+							<div class="col-6">
+								<p class="kt-font-bold xs-margin-b">
+									Restaurant Address
+								</p>
+								<p class="">{{ restaurant.Address }}</p>
+							</div>
+							<div class="col-6">
+								<p class="kt-font-bold xs-margin-b">
+									Phone Number
+								</p>
+								<p class="">{{ restaurant.PhoneNumber }}</p>
+							</div>
+							<div class="col-6">
+								<p class="kt-font-bold xs-margin-b">Email</p>
+								<p class="">{{ restaurant.Email }}</p>
+							</div>
+
+							<div class="col-6">
+								<p class="kt-font-bold xs-margin-b">
+									Mijn Menu Plus
+								</p>
+								<p>
+									<span
+										class="status-indicator primary-dot xs-margin-r"
+										[ngClass]="
+											restaurant.MijnMenuPlus
+												? 'active'
+												: 'disabled'
+										"
+									></span>
+									{{
+										restaurant.MijnMenuPlus
+											? "Active"
+											: "Disabled"
+									}}
+								</p>
+							</div>
+							<div class="col-12">
+								<p class="kt-font-bold xs-margin-b">
+									Opening hours
+								</p>
+								<div
+									class="row"
+									*ngFor="
+										let day of restaurant.OpeningHours;
+										let i = index
+									"
+								>
+									<div class="col-6">
+										<span
+											class=" status-indicator primary-dot xs-margin-r"
+											[ngClass]="
+												!day.isClosed
+													? 'active'
+													: 'disabled'
+											"
+										></span>
+										{{ day.day }}
+									</div>
+									<div class="col-4">
+										<div *ngIf="!day.isClosed" class="row">
+											<div class="col-5">
+												{{ day.openingTime }}
+											</div>
+											<div class="col-2 text-center">
+												-
+											</div>
+											<div class="col-5">
+												{{ day.closingTime }}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-12 margin-v">
+								<mat-divider></mat-divider>
+							</div>
+							<div
+								*ngIf="restaurant.MijnMenuPlus"
+								class="kt-section"
+							>
+								<h3 class="kt-section__title kt-font-bold">
+									Billing Information
+								</h3>
+								<div class="kt-section__body">
+									<mm-mollie-subscription
+										[edit]="edit"
+										[restaurantId]="restaurant._id"
+										(cancelSubscription)="closeDialog()"
+									></mm-mollie-subscription>
+								</div>
+							</div>
+						</div>
+					</div>
+				</kt-portlet-body>
+			</kt-portlet>
+		</div>
+	</div>
+</div>

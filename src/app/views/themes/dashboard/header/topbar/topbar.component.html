@@ -1,0 +1,78 @@
+<!-- begin:: Header Topbar -->
+<div class="kt-header__topbar">
+	<div
+		class="padding-v kt-header__topbar-item kt-header__topbar-item--quick-panel kt-header__topbar-wrapper"
+	>
+		<button
+			*ngIf="!mijnMenuPlus; else mijnMenuPlusBtn"
+			mat-raised-button
+			color="primary"
+			class="chip-btn l-padding-h n-box-shadow"
+			(click)="openMijnMenuPlusDialog()"
+		>
+			{{ "COMMON.SUBSCRIBE" | translate }}
+		</button>
+		<ng-template #mijnMenuPlusBtn>
+			<div
+				class="kt-header__topbar-item kt-header__topbar-item--user"
+				(click)="openPaymentInformation()"
+			>
+				<div class="kt-header__topbar-wrapper">
+					<div
+						class="kt-header__topbar-user mijn-menu-plus-btn"
+						data-placement="bottom"
+						ngbTooltip="Mijn Menu Plus informatie"
+					>
+						<span
+							class="kt-header__topbar-welcome kt-hidden-mobile"
+						>
+							<span
+								class="status-indicator active primary-dot"
+							></span
+						></span>
+						<span
+							class="kt-header__topbar-username kt-hidden-mobile"
+						>
+							Mijn Menu Plus
+						</span>
+					</div>
+				</div>
+			</div>
+		</ng-template>
+	</div>
+
+	<!--begin: Search -->
+	<kt-search-dropdown
+		[icon]="'./assets/media/icons/svg/General/Search.svg'"
+		[useSVG]="true"
+	></kt-search-dropdown>
+	<!--end: Search -->
+
+	<!--begin: Quick panel toggler -->
+	<div
+		class="kt-header__topbar-item kt-header__topbar-item--quick-panel kt-header__topbar-wrapper"
+		data-placement="bottom"
+		ngbTooltip="Notificaties"
+	>
+		<span
+			id="kt_quick_panel_toggler_btn"
+			class="kt-header__topbar-icon kt-pulse kt-pulse--brand"
+		>
+			<i class="flaticon-bell color-primary"></i>
+			<span class="kt-pulse__ring"></span>
+		</span>
+		<!-- <span
+			class="kt-badge kt-badge--dot kt-badge--notify kt-badge--sm kt-badge--brand"
+		></span> -->
+	</div>
+	<!--end: Quick panel toggler -->
+
+	<!--begin: Language bar -->
+	<kt-language-selector></kt-language-selector>
+	<!--end: Language bar -->
+
+	<!--begin: User bar -->
+	<kt-user-profile></kt-user-profile>
+	<!--end: User bar -->
+</div>
+<!-- end:: Header Topbar -->

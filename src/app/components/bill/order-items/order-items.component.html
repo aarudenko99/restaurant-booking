@@ -1,0 +1,79 @@
+<!-- <div class="l-padding-h"> -->
+<div
+	class="row"
+	[ngClass]="
+		foodItems.length < 1 || drinkItems.length < 1
+			? 'padding-v'
+			: 's-padding-t'
+	"
+>
+	<div class="col-md-12 col-sm-12 col-xs-12 n-padding-h font-bold-500">
+		<ng-container *ngIf="foodItems">
+			<div class="xs-margin-h" *ngFor="let food of foodItems">
+				<div class="row margin-l l-margin-r">
+					<div class="col-2 kt-font-bold">
+						<div
+							[ngClass]="
+								show
+									? 'margin-r xs-padding-v'
+									: 'xs-margin-h xs-padding-v'
+							"
+							class="order-qty kt-font-bolder text-center {{
+								bill.BillStatus
+							}}-light-bg"
+						>
+							{{ food.Quantity }} x
+						</div>
+					</div>
+					<div class="col-6 text-left margin-auto kt-font-bolder">
+						{{ food.Name }}
+					</div>
+					<div class="col-2 text-right margin-auto n-padding-h">
+						{{ food.Price }}
+					</div>
+					<div class="col-2 text-right margin-auto n-padding-h">
+						{{ food.Quantity * food.Price }}
+					</div>
+				</div>
+
+				<div *ngIf="foodItems.length > 1" class="col-xl-12 margin-v">
+					<mat-divider></mat-divider>
+				</div>
+			</div>
+		</ng-container>
+
+		<ng-container *ngIf="drinkItems">
+			<div class="xs-margin-h" *ngFor="let drinks of drinkItems">
+				<div class="row margin-l l-margin-r">
+					<div class="col-2 kt-font-bold">
+						<div
+							[ngClass]="
+								show
+									? 'margin-r xs-padding-v'
+									: 'xs-margin-h xs-padding-v'
+							"
+							class="order-qty kt-font-bold text-center {{
+								bill.BillStatus
+							}}-light-bg"
+						>
+							{{ drinks.Quantity }} x
+						</div>
+					</div>
+					<div class="col-6 text-left margin-auto kt-font-bolder">
+						{{ drinks.Name }}
+					</div>
+					<div class="col-2 text-right margin-auto n-padding-h">
+						{{ drinks.Price }}
+					</div>
+					<div class="col-2 text-right margin-auto n-padding-h">
+						{{ drinks.Quantity * drinks.Price }}
+					</div>
+				</div>
+				<div *ngIf="drinkItems.length > 1" class="col-xl-12 margin-v">
+					<mat-divider></mat-divider>
+				</div>
+			</div>
+		</ng-container>
+	</div>
+</div>
+<!-- </div> -->

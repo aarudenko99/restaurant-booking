@@ -1,0 +1,27 @@
+.kt-mat-dialog-container__wrapper .mat-dialog-container {
+  padding: 24px;
+}
+
+.category-name-label:hover {
+  cursor: pointer;
+}
+
+.mat-form-field {
+  display: block;
+}
+
+.category-type-icon {
+  width: 25px;
+
+  &.drinks-icon {
+    width: 28px !important;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.kt-portlet__body {
+  padding: 0 !important;
+}

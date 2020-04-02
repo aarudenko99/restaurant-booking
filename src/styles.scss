@@ -1,0 +1,514 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'app/theme/variables.scss';
+@import 'app/theme/defaults.scss';
+@import 'app/theme/font-sizes.scss';
+@import 'app/theme/vendors/Montserrat/montserrat.scss';
+@import 'assets/vendors/global/vendors.bundle.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~material-design-icons/iconfont/material-icons.css';
+@import '~highlight.js/styles/googlecode.css';
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+@import '~@fullcalendar/list/main.css';
+@import '~@fullcalendar/timegrid/main.css';
+@import '../node_modules/ngx-toastr/toastr.css';
+*,
+body {
+  font-family: 'Montserrat';
+  font-weight: 500;
+}
+html {
+  overflow-x: hidden;
+}
+body {
+  overflow-x: hidden;
+}
+// .mat-raised-button.mat-primary {
+// 	background-color: var(--ion-color-primary) !important;
+// }
+
+// .mat-raised-button.mat-secondary {
+// 	background-color: var(--ion-color-secondary) !important;
+// }
+
+//** Buttons **//
+.btn {
+  border-radius: var(--ng-border-radius-s) !important;
+  &:hover {
+    cursor: pointer !important;
+    &.btn-label-brand {
+      .kt-nav__link {
+        color: white;
+      }
+    }
+
+    &.btn-label-light {
+      background: var(--ng-color-darken-blue) !important;
+      .kt-nav__link {
+        color: var(--ng-color-primary);
+      }
+    }
+  }
+
+  &:focus {
+    &.btn-label-brand {
+        color: white !important;
+        .kt-nav__link {
+            color: white !important;
+        }
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 250px;
+}
+// hide bootstrap dropdown arrow globally
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.mat-header-row {
+  background: var(--ng-color-light-blue);
+  border-top: 1px solid var(--ng-color-light-blue);
+  border-bottom: 1px solid var(--ng-color-light-blue);
+}
+
+.mat-table__wrapper--dashboard .mat-table {
+  min-width: 600px !important;
+  width: 100% !important;
+}
+
+.popover {
+  border-radius: 10px !important;
+}
+
+.popover-body {
+  padding: 0px !important;
+  width: 200px !important;
+  &.reservation-popover {
+    padding: var(--ng-border-radius-l) !important;
+  }
+}
+
+.popover-menu-item {
+  border: none !important;
+  padding: 10px 15px !important;
+  border-bottom: 1px solid var(--ng-color-light-blue) !important;
+  width: 100% !important;
+  text-align: left !important;
+}
+
+.mat-divider {
+  align-items: center;
+  display: flex !important;
+  border-top-width: 2px !important;
+  border-top-style: dashed !important;
+  border-top-color: var(--ng-color-darken-blue) !important;
+  justify-content: space-between;
+}
+
+.mat-icon {
+  display: inline-flex;
+  vertical-align: sub;
+}
+
+.kt-border-radius {
+  border-radius: var(--ng-border-radius-xs);
+}
+
+.grey-slot {
+  background: var(--ng-color-light-grey);
+}
+
+.order-comment {
+  background: var(--ng-color-light-blue);
+  border-radius: var(--ng-border-radius-s);
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  background-color: var(--ng-color-primary);
+
+  &.active {
+    background-color: var(--ng-color-green);
+  }
+  &.disabled {
+    background-color: var(--ng-color-red);
+  }
+}
+
+.primary-dot {
+  border-radius: 50%;
+}
+
+.extra-options {
+  border-radius: var(--ng-border-radius-m);
+}
+
+.primary-square {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.position-static {
+  position: static;
+}
+
+.transparent {
+  background: transparent !important;
+
+  &.kt-portlet {
+    border-bottom: 2px dashed #ebedf2 !important;
+  }
+}
+
+.n-border {
+  border: 0 !important;
+}
+
+.n-box-shadow {
+  box-shadow: none !important;
+}
+
+.sub-title {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 30px;
+}
+
+.mat-checkbox-layout .mat-checkbox-label {
+  font-weight: 500 !important;
+}
+
+.form-group label {
+  font-weight: 500 !important;
+}
+
+.fc-toolbar .fc-button {
+  margin-left: 0 !important;
+}
+
+.mat-sort-header-arrow {
+  color: var(--ng-color-primary) !important;
+  opacity: 1 !important;
+}
+
+.warm-grey {
+  color: var(--ng-color-warm-grey);
+}
+
+.color-primary,
+.text-Prepared {
+  color: var(--ng-color-primary) !important;
+}
+
+.color-primary-bg,
+.Prepared-bg,
+.Checkedin-bg {
+  background-color: var(--ng-color-primary) !important;
+}
+
+.UpComing-bg {
+  background-color: #9eacac !important;
+}
+
+.Done-bg,
+.Paid-bg,
+.green-bg {
+  background-color: var(--ng-color-green) !important;
+}
+
+.Delayed-bg,
+.Cancelled-bg,
+.red-bg,
+.Serving-bg {
+  background-color: var(--ng-color-red) !important;
+}
+
+.left-border-primary {
+  border-left: 3px solid var(--ng-color-primary);
+}
+
+.left-border-green {
+  border-left: 3px solid var(--ng-color-green);
+}
+
+.left-border-purple {
+  border-left: 3px solid var(--ng-color-purple);
+}
+
+.left-border-turqoise {
+  border-left: 3px solid var(--ng-color-turqoise);
+}
+
+.left-border-red {
+  border-left: 3px solid var(--ng-color-red);
+}
+
+.left-border-yellow {
+  border-left: 3px solid var(--ng-color-yellow);
+}
+
+.color-green,
+.text-Checkedin,
+.text-Paid {
+  color: var(--ng-color-green);
+}
+
+.color-purple {
+  color: var(--ng-color-purple);
+}
+
+.color-turqoise,
+.text-Received {
+  color: var(--ng-color-turqoise);
+}
+
+.color-red,
+.text-Serving,
+.error-message {
+  color: var(--ng-color-red);
+}
+
+.yellow-bg {
+  background-color: var(--ng-color-yellow) !important;
+}
+
+.yellow-light-bg {
+  background-color: var(--ng-color-light-yellow) !important;
+}
+
+.purple-bg {
+  background: var(--ng-color-purple);
+}
+
+.purple-light-bg {
+  background-color: var(--ng-color-light-purple) !important;
+}
+
+.turqoise-bg,
+.Received-bg {
+  background: var(--ng-color-turqoise) !important;
+}
+
+.Vacant-light-bg {
+  color: var(--ng-color-warm-grey);
+  background: var(--ng-color-grey);
+}
+
+.Received-light-bg {
+  color: var(--ng-color-turqoise);
+  background-color: var(--ng-color-light-turqoise) !important;
+}
+
+.Prepared-light-bg,
+.Reserved-light-bg,
+.primary-inverse {
+  color: var(--ng-color-primary) !important;
+  background: var(--ng-color-primary-inverse) !important;
+}
+
+.Serving-light-bg {
+  color: var(--ng-color-red) !important;
+  background: var(--ng-color-light-red) !important;
+
+  &.btn:hover {
+    background: var(--ng-color-red) !important;
+    .kt-nav__link {
+      color: var(--ng-color-light) !important;
+    }
+  }
+}
+
+.Checkedin-light-bg,
+.Done-light-bg {
+  color: var(--ng-color-green) !important;
+  background-color: var(--ng-color-light-green) !important;
+}
+
+.status-btn {
+  border-radius: 5px !important;
+  line-height: 20px !important;
+}
+
+.white-bg {
+  background: var(--ng-color-light);
+}
+
+// Colored active orders && bills
+.order-qty {
+  border-radius: var(--ng-border-radius-l);
+}
+
+.item-border-bottom {
+  border-bottom: 1px dashed var(--ng-color-grey);
+}
+
+// Global Mat-Checkbox Styling
+.mat-checkbox .mat-checkbox-frame {
+  border: 1px solid #d1d7e2;
+}
+
+.mat-checkbox > label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+// Global ng2-Select styling
+#restaurantCategory {
+  .select2-container {
+    width: 100% !important;
+    height: calc(1.5em + 1.3rem + 2px);
+    padding: 0.45rem 1rem;
+    color: #495057;
+    border: 1px solid #e2e5ec;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    .select2-selection {
+      border: none;
+    }
+
+    .select2-selection__arrow {
+      top: 18px !important;
+    }
+
+    .select2-selection__rendered {
+      padding: 0 !important;
+    }
+  }
+}
+
+.margin-b-15 {
+  margin-bottom: 15px;
+}
+
+.margin-l-10 {
+  margin-left: 10px;
+}
+
+.ngx-toastr {
+  color: var(--ng-color-base-font) !important;
+  box-shadow: 0 0 12px #e3e3e3 !important;
+
+  &.order-toastr {
+    background-position: 10px center !important;
+    background-size: 30px !important;
+  }
+  &.checkin-toastr {
+    background-position: 5px center !important;
+    background-size: 35px !important;
+  }
+  &.checkout-toastr {
+    background-position: 2px center !important;
+    background-size: 40px !important;
+  }
+}
+
+.order-toastr {
+  background-color: var(--ng-color-light-green);
+  background-image: url('assets/media/icons/svg/Notification/Knife&fork2-Toastr.svg');
+}
+
+.checkin-toastr {
+  background-color: var(--ng-color-light-purple);
+  background-image: url('assets/media/icons/svg/Notification/CheckIn-Toastr.svg');
+}
+
+.payment-toastr {
+  background-color: var(--ng-color-light-turqoise);
+  background-image: url('assets/media/icons/svg/Notification/Payment-Toastr.svg');
+}
+
+.call-waiter-toastr {
+  background-color: var(--ng-color-primary-inverse);
+  background-image: url('assets/media/icons/svg/Notification/Notifications-Toastr.svg');
+}
+
+.cash-payment-toastr {
+  background-color: var(--ng-color-light-red);
+  background-image: url('assets/media/icons/svg/Notification/CashPayment-Toastr.svg');
+}
+
+.checkout-toastr {
+  background-color: var(--ng-color-light-yellow);
+  background-image: url('assets/media/icons/svg/Notification/CheckOut-Toastr.svg');
+}
+
+.modal-header {
+  background: #5867de;
+}
+
+.modal .modal-content .modal-header .modal-title {
+  color: white !important;
+}
+
+.modal .modal-content .modal-header .close {
+  color: white !important;
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid #e9ecef;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+.modal-holder {
+  animation-name: example;
+  animation-duration: 0.3s;
+}
+
+.table-bill-dialog .mat-dialog-container {
+  padding: 0 !important;
+}
+
+.mm-plus-signup-form-dialog .mat-dialog-container {
+  z-index: 1030;
+}
+
+@keyframes example {
+  0% {
+    transform: scale(0.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.owl-dots {
+  padding-top: 30px !important;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+}
+
+.owl-theme .owl-dots .owl-dot span {
+  width: 17px !important;
+  height: 17px !important;
+}
+
+.owl-nav {
+  display: none !important;
+}
+
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+  background: #ffa000 !important;
+}
+
+.popover-body {
+	width: 200px
+}

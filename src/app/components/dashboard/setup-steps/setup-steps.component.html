@@ -1,0 +1,148 @@
+<div class="xxxxl-margin-t">
+	<div class="row text-center">
+		<div class="col-12 margin-b">
+			<img
+				src="./assets/media/icons/dashboard-icons/mijn-restaurant-logo.svg"
+				class="no-result-img"
+				alt="image"
+			/>
+		</div>
+		<div class="col-12 margin-b">
+			<h4 class="kt-subheader__desc kt-font-bolder">
+                {{ 'ACC_SETUP.INTRO.TITLE' | translate }}
+			</h4>
+			<p class="text-center kt-font-bold">
+                {{ 'ACC_SETUP.INTRO.SUB_TITLE' | translate }}
+			</p>
+		</div>
+	</div>
+</div>
+<div class="setup-steps margin-t">
+	<div class="kt-notification-v2 l-padding">
+		<a href="javascript:;" class="kt-notification-v2__item">
+			<div class="kt-notification-v2__item-icon Done-light-bg">
+				<i
+					class="kt-svg-icon kt-font-md kt-svg-icon--success"
+					[inlineSVG]="
+						'./assets/media/icons/svg/Cooking/Knife&fork.svg'
+					"
+				></i>
+			</div>
+			<div class="kt-notification-v2__itek-wrapper">
+				<div class="kt-notification-v2__item-title kt-font-bold">
+                    {{ 'ACC_SETUP.RESTAURANT.TITLE' | translate }}
+				</div>
+				<div class="kt-notification-v2__item-desc">
+                    {{ 'ACC_SETUP.RESTAURANT.SUB_TITLE' | translate }}
+				</div>
+			</div>
+			<div>
+				<button
+					mat-raised-button
+					class="chip-btn xs-padding-v padding-h n-box-shadow"
+					[ngClass]="
+						setupSteps.User.RestaurantSetup
+							? 'green-bg kt-font-custom-white l-padding-r'
+							: 'Done-light-bg'
+					"
+					[routerLink]="['/dashboard/create-restaurant']"
+					[disabled]="setupSteps.User.RestaurantSetup"
+				>
+					<i
+						*ngIf="setupSteps.User.RestaurantSetup"
+						class="kt-svg-icon kt-font-md kt-svg-icon--light"
+						[inlineSVG]="
+							'./assets/media/icons/svg/Navigation/Check.svg'
+						"
+					></i>
+					{{
+						setupSteps.User.RestaurantSetup
+							? "Completed"
+							: "Try now!"
+					}}
+				</button>
+			</div>
+		</a>
+
+		<a href="javascript:;" class="kt-notification-v2__item">
+			<div class="kt-notification-v2__item-icon Serving-light-bg">
+				<i
+					class="kt-svg-icon kt-font-md kt-svg-icon--danger"
+					[inlineSVG]="'./assets/media/icons/svg/Home/Book-open.svg'"
+				></i>
+			</div>
+			<div class="kt-notification-v2__itek-wrapper">
+				<div class="kt-notification-v2__item-title kt-font-bold">
+                    {{ 'ACC_SETUP.MENU.TITLE' | translate }}
+				</div>
+				<div class="kt-notification-v2__item-desc">
+                    {{ 'ACC_SETUP.MENU.SUB_TITLE' | translate }}
+				</div>
+			</div>
+			<div>
+				<button
+					mat-raised-button
+					class="chip-btn xs-padding-v padding-h n-box-shadow"
+					[ngClass]="
+						setupSteps.Restaurant.MenuSetup
+							? 'green-bg kt-font-custom-white l-padding-r'
+							: 'Serving-light-bg'
+					"
+					[routerLink]="['/dashboard/menu']"
+					[disabled]="setupSteps.Restaurant.MenuSetup"
+				>
+					<i
+						*ngIf="setupSteps.Restaurant.MenuSetup"
+						class="kt-svg-icon kt-font-md kt-svg-icon--light"
+						[inlineSVG]="
+							'./assets/media/icons/svg/Navigation/Check.svg'
+						"
+					></i>
+					{{
+						setupSteps.Restaurant.MenuSetup
+							? "Completed"
+							: "Try now!"
+					}}
+				</button>
+			</div>
+		</a>
+
+		<a href="javascript:;" class="kt-notification-v2__item">
+			<img
+				src="./assets/media/icons/dashboard-icons/mijn-menu-logo.svg"
+				class="notification-item-icon"
+				alt="image"
+			/>
+			<div class="kt-notification-v2__itek-wrapper">
+				<div class="kt-notification-v2__item-title kt-font-bold">
+                    {{ 'ACC_SETUP.MIJN_MENU_PLUS.TITLE' | translate }}
+				</div>
+				<div class="kt-notification-v2__item-desc">
+                    {{ 'ACC_SETUP.MIJN_MENU_PLUS.SUB_TITLE' | translate }}
+				</div>
+			</div>
+			<div>
+				<button
+					mat-raised-button
+					[color]="!auth.getMijnMenuPlus() ? 'primary' : ''"
+					class="chip-btn xs-padding-v padding-h n-box-shadow"
+					[ngClass]="
+						auth.getMijnMenuPlus()
+							? 'green-bg kt-font-custom-white l-padding-r'
+							: ''
+					"
+					(click)="openMijnMenuPlusDialog()"
+				>
+					<i
+						*ngIf="auth.getMijnMenuPlus()"
+						class="kt-svg-icon kt-font-md kt-svg-icon--light"
+						[inlineSVG]="
+							'./assets/media/icons/svg/Navigation/Check.svg'
+						"
+					></i>
+					{{ auth.getMijnMenuPlus() ? "Completed" : "Try now!" }}
+				</button>
+			</div>
+		</a>
+	</div>
+</div>

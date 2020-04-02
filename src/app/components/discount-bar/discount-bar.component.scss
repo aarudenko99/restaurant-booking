@@ -1,0 +1,36 @@
+
+.discount-bar {
+    min-height: 140px;
+    .discount-value {
+        color: #ffa000;
+    }
+    .btn-outline-white {
+        border: 2px solid white;
+        color: white;
+
+        &:hover{
+            background: white;
+            color: #ffa000;
+        }
+    }
+
+    .kt-widget12__desc {
+        text-decoration: underline;
+    }
+
+    .kt-widget12__value {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #595d6e;
+        display: block;
+        
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    .kt-portlet-mm-body .row {
+        height: 100%;
+    }
+}

@@ -1,0 +1,40 @@
+<h1 mat-dialog-title class="text-center n-margin-b">
+	<img
+		src="./assets/media/logos/MijnRestaurant-logo.svg"
+		style="width: 150px;"
+		alt=""
+	/>
+</h1>
+<p class="text-center">
+	De belangrijkste punten over privacy hebben we voor jou op een rijtje gezet.
+</p>
+<div class="l-padding-h s-padding-v" mat-dialog-content>
+	<ngb-carousel pauseOnHover="true" class="avg-carousel">
+		<!-- -->
+		<ng-template *ngFor="let slide of avgSteps" ngbSlide>
+			<div class="picsum-img-wrapper">
+				<img
+					[src]="slide.img"
+					style="width: 50%; height: 250px; margin: auto; display: block"
+					class="restaurant-img-carousel center-block"
+					alt="restaurant image"
+				/>
+			</div>
+
+			<h3>{{ slide.title }}</h3>
+			<p>{{ slide.message }}</p>
+		</ng-template>
+	</ngb-carousel>
+</div>
+<div mat-dialog-actions align="center">
+	<button
+		mat-raised-button
+		*ngIf="!edit"
+		color="primary"
+		cdkFocusInitial
+		class="btn-block"
+		(click)="acceptAvg()"
+	>
+		Ja, ik ga akkoord
+	</button>
+</div>

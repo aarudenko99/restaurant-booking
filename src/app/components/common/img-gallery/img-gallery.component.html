@@ -1,0 +1,63 @@
+<div class="form-group n-margin-b">
+	<label>{{ title }}</label>
+
+	<div class="upload-component">
+		<div class="row">
+			<div class="col-lg-12 s-margin-b">
+				<span style="color:red;" *ngIf="message">{{ message }}</span>
+				<div class="custom-file">
+					<label class="custom-file-label" for="customFile"
+						>Choose file</label
+					>
+					<input
+						#file
+						[multiple]="false"
+						id="customFile"
+						class="s-padding input custom-file-input"
+						type="file"
+						accept="image/*"
+						(change)="fileChangeEvent($event, file.files)"
+					/>
+					<span class="form-text text-muted"
+						>Please upload image.</span
+					>
+
+					<div
+						style="width: 350px;max-height: 350px;margin: 0 auto;"
+						*ngIf="hasFile"
+					>
+						<image-cropper
+							[imageChangedEvent]="imageChangedEvent"
+							[maintainAspectRatio]="true"
+							[aspectRatio]="2 / 1"
+							[format]="fileFormat"
+							[resizeToWidth]="1200"
+							[resizeToHeight]="600"
+							(imageCropped)="imageCropped($event)"
+						>
+						</image-cropper>
+
+						<div>
+							<button
+								class="chip-btn padding-h n-box-shadow mat-raised-button mat-primary ng-star-inserted"
+								(click)="finishCrop()"
+							>
+								Crop
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div *ngIf="urls.length">
+					<ngx-gallery
+						[options]="galleryOptions"
+						[images]="urls"
+					></ngx-gallery>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

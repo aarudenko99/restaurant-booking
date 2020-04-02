@@ -1,0 +1,28 @@
+<!--begin::Body-->
+<div class="kt-login__body">
+	<!--begin::Signin-->
+	<div class="kt-login__form text-center">
+		<div *ngIf="!cancelled" class="kt-login__title">
+			<h3>{{ "AUTH.CANCEL_RESERVATION.TITLE" | translate }}</h3>
+			<button
+				class="btn btn-label-brand-o2 btn-bold btn-sm kt-font-transform-u s-padding padding-h s-margin-t margin-r"
+				(click)="cancelReservation()"
+			>
+				<span href="javascript:;" class="kt-nav__link kt-font-bold">
+					{{ "AUTH.CANCEL_RESERVATION.BTN" | translate }}
+				</span>
+			</button>
+		</div>
+		<ng-container *ngIf="cancelled">
+			<img
+				src="assets/media/illustrations/emailverified.svg"
+				width="200px"
+				alt=""
+				class="margin-b"
+			/>
+			<div class="kt-login__title">
+				<h3>{{ "AUTH.CANCEL_RESERVATION.SUCCESS" | translate }}</h3>
+			</div>
+		</ng-container>
+	</div>
+</div>

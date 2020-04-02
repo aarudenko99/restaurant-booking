@@ -1,0 +1,21 @@
+::ng-deep .mat-horizontal-stepper-header-container {
+	background: var(--ng-color-light-blue);
+
+	.step-title {
+		color: var(--ng-color-primary);
+	}
+
+	.mat-step-icon {
+		color: var(--ng-color-primary);
+		background-color: var(--ng-color-primary-inverse);
+
+		&.mat-step-icon-selected {
+			color: var(--ng-color-light);
+			background-color: var(--ng-color-primary);
+		}
+	}
+
+	&:hover {
+		background: var(--ng-color-darken-blue);
+	}
+}

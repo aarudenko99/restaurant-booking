@@ -1,0 +1,148 @@
+<kt-portlet
+	[class]="
+		auth.getMijnMenuPlus()
+			? 'kt-portlet kt-portlet--height-fluid kt-portlet--border-bottom-brand'
+			: 'kt-portlet kt-portlet--height-full kt-portlet--border-bottom-brand'
+	"
+>
+	<kt-portlet-header [title]="'Menu'" class="padding-l s-padding-r">
+		<ng-container ktPortletTools>
+			<div>
+				<button
+					*ngIf="menuService.menuChanged.value"
+					mat-raised-button
+					matTooltip="Revert menu"
+					class="kt-font-transform-u rounded-button"
+					(click)="revertMenu()"
+				>
+					<mat-icon>update</mat-icon>
+				</button>
+
+				<button
+					*ngIf="Menu?.length"
+					matTooltip="Add a category to the menu"
+					class="btn btn-label-brand-o2 btn-bold btn-sm kt-font-transform-u s-padding padding-h s-margin-l"
+					(click)="openAddCategoryDialog()"
+				>
+					<span href="javascript:;" class="kt-nav__link kt-font-bold">
+						<i class="kt-nav__link-icon fa fa-plus"></i>
+						Add
+					</span>
+				</button>
+
+				<button
+					*ngIf="Menu?.length"
+					matTooltip="Edit menu"
+					class="btn btn-label-brand btn-bold btn-sm kt-font-transform-u s-padding padding-h s-margin-l"
+					(click)="openAddCategoryDialog(Menu)"
+				>
+					<span href="javascript:;" class="kt-nav__link kt-font-bold">
+						<i class="kt-nav__link-icon fa fa-edit"></i>
+						Edit
+					</span>
+				</button>
+			</div>
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body class="kt-padding-0">
+		<mat-tab-group animationDuration="0ms" mat-stretch-tabs dynamicHeight>
+			<mat-tab>
+				<ng-template mat-tab-label>
+					<div class="kt-font-16 kt-font-bolder">
+						Food
+						<span
+							class="mm-card__icon s-margin-l"
+							inlineSVG="assets/media/icons/food-icon.svg"
+						></span>
+					</div>
+				</ng-template>
+				<mat-tab-group
+					*ngIf="!loading"
+					[selectedIndex]="selected.value"
+					(selectedIndexChange)="tabChange($event)"
+					mat-stretch-tabs
+				>
+					<mat-tab
+						*ngFor="
+							let category of menuService.foodItems.value;
+							let index = index
+						"
+					>
+						<ng-template mat-tab-label>
+							<span class="kt-font-bold">
+								{{ category?.CategoryName }}
+							</span>
+						</ng-template>
+						<mm-menu-item-table
+							[loading]="loading"
+							[tab]="category"
+							[menu]="category?.MenuItems"
+						></mm-menu-item-table>
+					</mat-tab>
+					<!-- <mat-tab *ngIf="!category" class="full-height">
+						<ng-template mat-tab-label></ng-template>
+						<ng-container>
+							No menu items yet.
+
+							<mm-empty-table
+								class="mm-empty-table"
+							></mm-empty-table>
+						</ng-container>
+					</mat-tab> -->
+				</mat-tab-group>
+			</mat-tab>
+			<mat-tab>
+				<ng-template mat-tab-label>
+					<div class="kt-font-16 kt-font-bolder">
+						Drinks
+						<span
+							class="mm-card__icon s-margin-l"
+							inlineSVG="assets/media/icons/drinks-icon.svg"
+						></span>
+					</div>
+				</ng-template>
+				<mat-tab-group
+					*ngIf="!loading"
+					[selectedIndex]="selected.value"
+					(selectedIndexChange)="tabChange($event)"
+					mat-stretch-tabs
+					dynamicHeight
+				>
+					<mat-tab
+						*ngFor="
+							let category of menuService.drinks.value;
+							let index = index
+						"
+					>
+						<ng-template mat-tab-label class="primary-inverse">
+							<span class="kt-font-bold">
+								{{ category?.CategoryName }}
+							</span>
+						</ng-template>
+						<div class="padding-h">
+							<mm-menu-item-table
+								[loading]="loading"
+								[tab]="category"
+								[menu]="category?.MenuItems"
+							></mm-menu-item-table>
+						</div>
+					</mat-tab>
+					<!-- <mat-tab *ngIf="!category.length">
+						<ng-template mat-tab-label></ng-template>
+						<ng-container>
+							No menu items yet.
+						</ng-container>
+					</mat-tab> -->
+				</mat-tab-group>
+			</mat-tab>
+		</mat-tab-group>
+		<div *ngIf="Menu && !Menu?.length">
+			<mm-empty-table
+				class="mm-empty-table"
+				[type]="'menu'"
+				[message]="'Create your menu and it will show up here.'"
+				(createMenu)="openAddCategoryDialog()"
+			></mm-empty-table>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

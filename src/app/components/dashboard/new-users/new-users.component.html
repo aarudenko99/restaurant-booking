@@ -1,0 +1,62 @@
+<kt-portlet [class]="'kt-portlet--height-fluid'" id="newUser">
+	<kt-portlet-header
+		[title]="'COMMON.NEW_USERS' | translate"
+		[class]="'kt-portlet-light-blue'"
+	>
+		<ng-container ktPortletTools>
+			<button
+				class="btn btn-label-light-blue btn-bold btn-sm"
+				[routerLink]="[
+					'/dashboard/user-management/' +
+						SelectedRestaurant?.Restaurant?._id +
+						'/users/add'
+				]"
+			>
+				{{ "COMMON.ADD" | translate }}
+			</button>
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body>
+		<!-- Empty data table -->
+		<mm-empty-table
+			*ngIf="!users?.length"
+			class="mm-empty-table"
+		></mm-empty-table>
+
+		<kt-widget4 *ngIf="users" [data]="users">
+			<ng-template #actionTemplate let-item="item">
+				<button
+					mat-mini-fab
+					autoClose="true"
+					#p1="ngbPopover"
+					[ngbPopover]="popContent"
+					data-placement="bottom"
+					ngbTooltip="More Actions"
+					(click)="togglePopOver(item)"
+					class="more-action-fab n-box-shadow kt-font-11 s-margin-r"
+				>
+					<mat-icon>more_horiz</mat-icon>
+				</button>
+			</ng-template>
+		</kt-widget4>
+		<ng-template #popContent let-language="language">
+			<button
+				class="kt-btn-bottom-border popover-menu-item"
+				mat-menu-item
+				[routerLink]="['/dashboard/user-management/users']"
+			>
+				<mat-icon color="primary">create</mat-icon>
+
+				<span>Edit</span>
+			</button>
+			<button
+				mat-menu-item
+				(click)="deleteUser()"
+				class="popover-menu-item"
+			>
+				<mat-icon color="primary">delete</mat-icon>
+				<span>Delete</span>
+			</button>
+		</ng-template>
+	</kt-portlet-body>
+</kt-portlet>

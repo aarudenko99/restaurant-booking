@@ -1,0 +1,67 @@
+.carousel {
+  border-top-left-radius: var(--ng-border-radius-s);
+  border-top-right-radius: var(--ng-border-radius-s);
+}
+.img-overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4); /* Black see-through */
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+.carousel-caption {
+  bottom: 5px;
+  left: 4%;
+  padding-bottom: 0;
+  text-align: left !important;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 8%;
+
+  .carousel-control-prev-icon {
+    background-color: #ffffff;
+    background-image: none;
+    -webkit-mask: url(assets/media/icons/svg/Navigation/Left-2.svg) no-repeat 100% 100%;
+    mask: url(assets/media/icons/svg/Navigation/Left-2.svg) no-repeat 100% 100%;
+  }
+  .carousel-control-next-icon {
+    background-color: #ffffff;
+    background-image: none;
+    -webkit-mask: url(assets/media/icons/svg/Navigation/Right-2.svg) no-repeat 100% 100%;
+    mask: url(assets/media/icons/svg/Navigation/Right-2.svg) no-repeat 100% 100%;
+  }
+}
+
+.avg-carousel {
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: #ffa000;
+  }
+  .carousel-indicators li {
+    border: 1px solid var(--ng-color-primary);
+  }
+}
+
+.carousel-indicators {
+  left: auto;
+  margin-right: 5%;
+  margin-left: 0;
+
+  li {
+    border-radius: 10px;
+    margin: 1px 3px;
+    border-radius: 3px;
+    height: 10px;
+    max-width: 10px;
+    opacity: 1;
+    background-color: white;
+  }
+
+  .active {
+    background-color: #ffa000;
+  }
+}

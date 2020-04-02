@@ -1,0 +1,37 @@
+<kt-portlet class="n-padding-l">
+	<div class="kt-portlet__head padding-r">
+		<div class="kt-portlet__head-label">
+			<h3 class="kt-portlet__head-title">
+				Active Bills
+				<span class="kt-block-inline margin-l"></span>
+			</h3>
+		</div>
+		<div class="kt-portlet__head-toolbar">
+			<ng-container ktPortletTools>
+				<div class="kt-header__topbar">
+					<kt-search-dropdown
+						[pageType]="'bills'"
+						[icon]="'./assets/media/icons/svg/General/Search.svg'"
+						[useSVG]="true"
+						(filterItems)="filteredBills($event)"
+					></kt-search-dropdown>
+				</div>
+				<kt-context-menu2
+					[title]="selectedState"
+					[class]="'btn-label-light-blue padding-h'"
+					[menuItems]="menuItems"
+					(menuItemClicked)="filterBills($event.filter)"
+				></kt-context-menu2>
+			</ng-container>
+		</div>
+	</div>
+</kt-portlet>
+
+<div *ngIf="bills" class="row">
+	<div class="col-md-6 col-xl-3" *ngFor="let bill of bills">
+		<mm-bill
+			[bill]="bill"
+			(updateBillStatus)="billUpdated($event)"
+		></mm-bill>
+	</div>
+</div>

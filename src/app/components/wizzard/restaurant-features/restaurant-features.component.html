@@ -1,0 +1,24 @@
+<div class="kt-heading kt-heading--md">Restaurant Features</div>
+<div class="kt-form__section kt-form__section--first">
+	<div class="kt-wizard-v1__form">
+		<div class="form-group">
+			<label>Restaurant Total Seats</label>
+			<input
+				type="number"
+				class="form-control"
+				name="totalSeats"
+				placeholder="50"
+				[(ngModel)]="wizardService.formData.TotalSeats"
+			/>
+			<span class="form-text text-muted"
+				>Please enter your Package Height in CM.</span
+			>
+		</div>
+
+		<!-- TO DO Add diatray types -->
+		<mm-restaurant-tags></mm-restaurant-tags>
+		<mm-restaurant-features-checkboxes
+			[features]="features"
+		></mm-restaurant-features-checkboxes>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+.category-type-icon {
+	width: 25px;
+
+	&.drinks-icon {
+		width: 28px !important;
+	}
+
+	&:hover {
+		cursor: pointer;
+	}
+}

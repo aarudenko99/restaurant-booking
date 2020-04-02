@@ -1,0 +1,18 @@
+<!--begin::Body-->
+<div class="kt-login__body">
+	<!--begin::Signin-->
+	<div class="kt-login__form text-center">
+		<kt-auth-notice *ngIf="!verified"></kt-auth-notice>
+		<ng-container *ngIf="verified">
+			<img
+				src="assets/media/illustrations/emailverified.svg"
+				width="200px"
+				alt=""
+				class="margin-b"
+			/>
+			<div class="kt-login__title">
+				<h3>{{ "AUTH.EMAIL.DESC" | translate }}</h3>
+			</div>
+		</ng-container>
+	</div>
+</div>

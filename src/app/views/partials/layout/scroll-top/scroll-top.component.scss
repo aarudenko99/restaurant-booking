@@ -1,0 +1,16 @@
+.kt-scrolltop {
+  display: block;
+  opacity: 1;
+}
+
+.show-scrollTop {
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+.ic-middle {
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+  text-align: center;
+}

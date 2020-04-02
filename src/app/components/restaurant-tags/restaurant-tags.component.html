@@ -1,0 +1,26 @@
+
+
+<div class="form-group">
+    <label>
+        Restaurant Tags
+        <ng-template #tipContent>
+            Type in your restaurant tags after completion press tab or enter
+        </ng-template>
+        <i class="flaticon2-information s-margin-l" placement="top" [ngbTooltip]="tipContent"></i>
+    </label>
+    <div class="form-control chip-control">
+        <mat-chip-list #chipList>
+            <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                [removable]="removable" (removed)="remove(tag)">
+                {{tag.name}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+                placeholder="Add new tag"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)" />
+        </mat-chip-list>
+    </div>
+</div>

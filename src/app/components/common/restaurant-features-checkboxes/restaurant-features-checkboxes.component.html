@@ -1,0 +1,21 @@
+<div class="form-group row">
+    <label class="col-3 col-form-label">Inline Checkboxes</label>
+    <div class="col-9">
+        <div class="kt-checkbox-inline">
+            <div class="row">
+                <div *ngFor="let item of features; let i = index" class="col-4">
+                    <div *ngIf="i <= 5">
+                        <mat-checkbox [(ngModel)]="item.checked" (change)="checkCheckBox()">{{ item.Name }}</mat-checkbox>
+                    </div>
+                    <div *ngIf="i > 5 && i <= 10">
+                        <mat-checkbox [(ngModel)]="item.checked" (change)="checkCheckBox()">{{ item.Name }}</mat-checkbox>
+                    </div>
+                    <div *ngIf="i > 10">
+                        <mat-checkbox [(ngModel)]="item.checked" (change)="checkCheckBox()">{{ item.Name }}</mat-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span class="form-text text-muted">Some help text goes here</span>
+    </div>
+</div>

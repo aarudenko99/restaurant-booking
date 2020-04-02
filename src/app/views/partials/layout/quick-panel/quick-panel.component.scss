@@ -1,0 +1,11 @@
+:host {
+  ::ng-deep {
+    ngb-tabset > .nav-tabs {
+      display: none;
+    }
+  }
+  .notification-svg-icon {
+    width: 30px;
+    height: 30px;
+  }
+}

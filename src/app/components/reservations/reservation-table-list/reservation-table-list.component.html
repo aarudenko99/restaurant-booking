@@ -1,0 +1,198 @@
+<kt-portlet [class]="'kt-portlet--height kt-portlet--border-bottom-brand'">
+	<kt-portlet-header [title]="'Reservations'"></kt-portlet-header>
+
+	<kt-portlet-body class="kt-padding-0">
+		<div class="padding-b">
+			<div class="row padding-l">
+				<div class="col-2 kt-margin-bottom-10-mobile">
+					<div class="kt-form__control">
+						<mat-form-field class="mat-form-field-fluid">
+							<mat-select
+								[(value)]="filterType"
+								(selectionChange)="applyFilter(filterType)"
+							>
+								<mat-option value="" selected>All</mat-option>
+								<mat-option
+									*ngFor="let type of reservationType"
+									[value]="type"
+								>
+									{{ type }}
+								</mat-option>
+							</mat-select>
+							<mat-hint align="start">
+								<strong>Filter</strong> by Reservation Type
+							</mat-hint>
+						</mat-form-field>
+					</div>
+				</div>
+
+				<div class="col-2 kt-margin-bottom-10-mobile">
+					<mat-form-field class="mat-form-field-fluid">
+						<input
+							matInput
+							(keyup)="applyFilter($event.target.value)"
+							placeholder="Search in Reservations"
+						/>
+						<mat-hint align="start">
+							<strong>Search</strong> in all fields
+						</mat-hint>
+					</mat-form-field>
+				</div>
+			</div>
+
+			<div class="loading-shade" *ngIf="isLoadingResults">
+				<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+				<div class="rate-limit-reached" *ngIf="isRateLimitReached">
+					GitHub's API rate limit has been reached. It will be reset
+					in one minute.
+				</div>
+			</div>
+
+			<mat-table
+				#table
+				[dataSource]="reservations"
+				matSort
+				matSortActive="TableReservationDate"
+				matSortDirection="desc"
+			>
+				<!-- Index Column -->
+				<ng-container matColumnDef="BookingType">
+					<mat-header-cell *matHeaderCellDef>
+						Type
+					</mat-header-cell>
+					<mat-cell *matCellDef="let reservation">
+						{{ reservation.BookingType }}
+					</mat-cell>
+				</ng-container>
+
+				<!-- Date Column -->
+				<ng-container matColumnDef="TableReservationDate">
+					<mat-header-cell *matHeaderCellDef mat-sort-header>
+						Date
+					</mat-header-cell>
+					<mat-cell *matCellDef="let reservation">
+						{{
+							reservation.TableReservationDate
+								| date: "dd MMMM y, HH:mm"
+						}}
+					</mat-cell>
+				</ng-container>
+
+				<!-- Name Column -->
+				<ng-container matColumnDef="name">
+					<mat-header-cell *matHeaderCellDef mat-sort-header>
+						Name
+					</mat-header-cell>
+					<mat-cell *matCellDef="let reservation">
+						{{ reservation.FirstName }}
+						{{ reservation.LastName }}</mat-cell
+					>
+				</ng-container>
+
+				<!-- ReservationCode Column -->
+				<ng-container matColumnDef="ReservationCode">
+					<mat-header-cell *matHeaderCellDef>
+						Reservation Code
+					</mat-header-cell>
+					<mat-cell *matCellDef="let reservation">
+						#{{ reservation.ReservationCode }}</mat-cell
+					>
+				</ng-container>
+
+				<!-- TableReservationQuantity Column -->
+				<ng-container matColumnDef="TableReservationQuantity">
+					<mat-header-cell *matHeaderCellDef mat-sort-header>
+						No. of people
+					</mat-header-cell>
+					<mat-cell *matCellDef="let reservation">
+						{{ reservation.TableReservationQuantity }}</mat-cell
+					>
+				</ng-container>
+
+				<!-- VisitStatus Column -->
+				<ng-container matColumnDef="VisitStatus">
+					<mat-header-cell *matHeaderCellDef>
+						Status
+					</mat-header-cell>
+					<mat-cell *matCellDef="let reservation">
+						<!-- TO DO GET Reservation status: Upcoming, Canceled, Expired, CheckedIn, Delayed -->
+						<button
+							mat-raised-button
+							class="mat-raised-button status-btn s-padding-h n-box-shadow kt-font-11 kt-text-uppercase kt-font-custom-white {{
+								reservation.VisitStatus
+							}}-bg"
+						>
+							{{ reservation.VisitStatus }}
+						</button>
+					</mat-cell>
+				</ng-container>
+
+				<!-- Action Column -->
+				<ng-container matColumnDef="action">
+					<mat-header-cell *matHeaderCellDef></mat-header-cell>
+					<mat-cell *matCellDef="let reservation">
+						<button
+							mat-mini-fab
+							autoClose="true"
+							container="body"
+							#p1="ngbPopover"
+							[ngbPopover]="popContent"
+							data-placement="bottom"
+							ngbTooltip="More Actions"
+							class="more-action-fab n-box-shadow kt-font-11 s-margin-r"
+						>
+							<mat-icon>more_horiz</mat-icon>
+						</button>
+						<ng-template #popContent let-language="language">
+							<button
+								mat-menu-item
+								class="kt-btn-bottom-border popover-menu-item"
+								(click)="
+									openReservationDialog('view', reservation)
+								"
+							>
+								<mat-icon color="primary">date_range</mat-icon>
+								<span>Details</span>
+							</button>
+							<button
+								mat-menu-item
+								class="kt-btn-bottom-border popover-menu-item"
+								(click)="
+									openReservationDialog('edit', reservation)
+								"
+							>
+								<mat-icon color="primary">
+									create
+								</mat-icon>
+								<span>Edit</span>
+							</button>
+							<button
+								mat-menu-item
+								class="kt-btn-bottom-border popover-menu-item"
+								(click)="deleteReservationDialog(reservation)"
+							>
+								<mat-icon color="primary">
+									delete
+								</mat-icon>
+								<span>Delete</span>
+							</button>
+						</ng-template>
+					</mat-cell>
+				</ng-container>
+
+				<mat-header-row
+					*matHeaderRowDef="displayedColumns"
+				></mat-header-row>
+				<mat-row
+					*matRowDef="let row; columns: displayedColumns"
+				></mat-row>
+			</mat-table>
+			<mat-paginator
+				[length]="resultsLength"
+				[pageSizeOptions]="[5, 10, 25, 100]"
+				[pageSize]="10"
+				[showFirstLastButtons]="true"
+			></mat-paginator>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

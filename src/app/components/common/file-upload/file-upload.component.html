@@ -1,0 +1,49 @@
+<kt-portlet>
+    <kt-portlet-body>
+        <div class="row">
+            <div class="col-4 upload-container">
+                <div class="drop-container" ngFileDrop [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" [ngClass]="{ 'is-drop-over': dragOver }">
+                    <div class="upload-overlay text-center">
+                        <i class="flaticon-upload"></i>
+                        <p> Drag files to Upload</p>
+                    </div>
+                </div>
+                
+                <label type="button" class="display-none ">
+                    <input type="file" #fileInput ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>
+                    Choose file(s)
+                </label>
+                
+                <button mat-raised-button type="button" class="upload-button margin-v" color="primary" (click)="fileInput.click()">
+                    Choose file(s)
+                </button>
+            </div>
+            <div class="col-8">
+                <mat-list class="n-padding">
+                    <h3 mat-subheader class="n-padding">Uploading</h3>
+                    <mat-list-item *ngFor="let file of files" class="s-margin-b">
+                        <i mat-list-icon class="file-icon" [ngClass]="file.iconClass"></i>
+                        <h4 mat-line>{{file.name}} <small class="float-right">{{file.formattedSize}}</small></h4>
+                        <button mat-icon-button color="primary" (click)="removeFile(file.id)">
+                            <mat-icon mat-icon>close</mat-icon>
+                        </button>
+                        <span mat-line class="s-margin-t">
+                            <mat-progress-bar
+                                class="example-margin"
+                                [color]="color"
+                                [mode]="mode"
+                                [value]="file.value"></mat-progress-bar>
+                            <p>{{file.status}}</p>
+                        </span>
+                        <mat-divider></mat-divider>
+                    </mat-list-item>
+                </mat-list>
+                <pre>{{files | json}}</pre>
+            </div>
+        </div>
+    </kt-portlet-body>
+</kt-portlet>
+
+<button type="button" class="start-upload-btn" (click)="startUpload()">
+    Start Upload
+</button>

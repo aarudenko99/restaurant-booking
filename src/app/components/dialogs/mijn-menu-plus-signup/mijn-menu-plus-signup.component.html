@@ -1,0 +1,187 @@
+<kt-portlet [class]="'kt-portlet--height-fluid padding-v l-padding-h'">
+	<kt-portlet-body class="n-padding">
+		<div class="kt-section">
+			<div class="kt-section__title text-center">
+				Mijn Menu Plus
+			</div>
+
+			<div class="kt-section__desc">
+				Vul onderstaande gegevens zo goed mogelijk in zo dat wij een
+				goed beeld kunnen schetsen van de horeca onderneming die u
+				heeft.
+			</div>
+
+			<form [formGroup]="signUpForm">
+				<div class="col-xl-12 form-group margin-b n-padding-h">
+					<label>Voor- en achternaam</label>
+					<input
+						type="text"
+						class="form-control"
+						formControlName="Name"
+						placeholder="Henk Jansen"
+						[ngClass]="{
+							'is-invalid': submitted && f.Name.errors
+						}"
+					/>
+					<div
+						*ngIf="submitted && f.Name.errors"
+						class="invalid-feedback"
+					>
+						<div *ngIf="f.Name.errors.required">
+							Naam is vereist
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-12 form-group margin-b n-padding-h">
+					<label>Emailadres</label>
+					<input
+						type="email"
+						class="form-control"
+						formControlName="Email"
+						placeholder="example@email.com"
+						[ngClass]="{
+							'is-invalid': submitted && f.Email.errors
+						}"
+					/>
+					<div
+						*ngIf="submitted && f.Email.errors"
+						class="invalid-feedback"
+					>
+						<div *ngIf="f.Email.errors.required">
+							{{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+						</div>
+						<div *ngIf="f.Email.errors.email">
+							{{ "AUTH.VALIDATION.INVALID_FIELD" | translate }} 3
+						</div>
+						<div *ngIf="f.Email.errors.minLength">
+							{{ "AUTH.VALIDATION.MIN_LENGTH_FIELD" | translate }}
+							3
+						</div>
+
+						<div *ngIf="f.Email.errors.maxLength">
+							{{ "AUTH.VALIDATION.MAX_LENGTH_FIELD" | translate }}
+							320
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-12 form-group margin-b n-padding-h">
+					<label>Telefoon Nummer</label>
+					<input
+						type="number"
+						class="form-control"
+						formControlName="PhoneNumber"
+						placeholder="0612345678"
+						[ngClass]="{
+							'is-invalid': submitted && f.PhoneNumber.errors
+						}"
+					/>
+					<div
+						*ngIf="submitted && f.PhoneNumber.errors"
+						class="invalid-feedback"
+					>
+						<div *ngIf="f.PhoneNumber.errors.required">
+							{{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-12 form-group margin-b n-padding-h">
+					<label>Naam Onderneming</label>
+					<input
+						type="text"
+						class="form-control"
+						formControlName="Company"
+						placeholder="Mijn Menu"
+						[ngClass]="{
+							'is-invalid': submitted && f.Company.errors
+						}"
+					/>
+					<div
+						*ngIf="submitted && f.Company.errors"
+						class="invalid-feedback"
+					>
+						<div *ngIf="f.Company.errors.required">
+							{{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-12 form-group margin-b n-padding-h">
+					<label>Aantal Zitplaatsen</label>
+					<input
+						type="number"
+						class="form-control"
+						formControlName="AmountOfSeats"
+						placeholder="150"
+						[ngClass]="{
+							'is-invalid': submitted && f.AmountOfSeats.errors
+						}"
+					/>
+					<div
+						*ngIf="submitted && f.AmountOfSeats.errors"
+						class="invalid-feedback"
+					>
+						<div *ngIf="f.AmountOfSeats.errors.required">
+							{{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-12 form-group margin-b n-padding-h">
+					<label>Huidige POS Systeem</label>
+					<input
+						type="text"
+						class="form-control"
+						formControlName="CurrPosSystem"
+						placeholder="Mplus"
+						[ngClass]="{
+							'is-invalid': submitted && f.CurrPosSystem.errors
+						}"
+					/>
+					<div
+						*ngIf="submitted && f.CurrPosSystem.errors"
+						class="invalid-feedback"
+					>
+						<div *ngIf="f.CurrPosSystem.errors.required">
+							{{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-12 form-group margin-b n-padding-h">
+					<label>Hoe heb je ons gevonden?</label>
+					<select
+						class="custom-select form-control"
+						(change)="changeSearchCriteria($event)"
+						formControlName="SearchCriteria"
+					>
+						<option
+							*ngFor="let option of Options"
+							[ngValue]="option"
+						>
+							{{ option }}
+						</option>
+					</select>
+					<div
+						*ngIf="submitted && f.SearchCriteria.errors"
+						class="invalid-feedback"
+					>
+						<div *ngIf="f.SearchCriteria.errors.required">
+							{{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</kt-portlet-body>
+	<kt-portlet-footer class="s-padding-v">
+		<div class="row">
+			<div class="col-12">
+				<a
+					href="javascript:;"
+					class="btn btn-block color-primary-bg text-white text-uppercase kt-font-bold"
+					(click)="confirm()"
+				>
+					Aanmelden
+				</a>
+			</div>
+		</div>
+	</kt-portlet-footer>
+</kt-portlet>

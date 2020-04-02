@@ -1,0 +1,310 @@
+<div
+	id="{{ elementIndex }}"
+	class="table-container {{table.Shape}}"
+	(mousedown)="onTableClick($event)"
+	[style.position]="'absolute'"
+	[style.top.px]="y"
+	[style.left.px]="x"
+	[style.width.px]="width"
+	[style.height.px]="height"
+	[ngStyle]="{
+		transform: 'rotate(' + degree + 'deg)',
+		'-moz-transform': 'rotate(' + degree + 'deg)',
+		'-webkit-transform': 'rotate(' + degree + 'deg)',
+		'-o-transform': 'rotate(' + degree + 'deg)',
+		'-ms-transform': 'rotate(' + degree + 'deg)'
+	}"
+>
+	<button
+		*ngIf="table?.QrCodeUrl"
+		mat-mini-fab
+		autoClose="true"
+		#p1="ngbPopover"
+		container="body"
+		[ngbPopover]="popContent"
+		data-placement="bottom"
+		ngbTooltip="More Actions"
+		class="more-action-fab n-box-shadow"
+		[ngClass]="table.Shape + '-table'"
+		[style.top.px]="
+			(((floorSize / 100) * 12) / 100) * getMoreBtnOffset(table.Shape)
+		"
+		[style.right.px]="
+			(((floorSize / 100) * 12) / 100) * getMoreBtnOffset(table.Shape)
+		"
+		[ngStyle]="{
+			transform: 'rotate(' + -degree + 'deg)',
+			'-moz-transform': 'rotate(' + -degree + 'deg)',
+			'-webkit-transform': 'rotate(' + -degree + 'deg)',
+			'-o-transform': 'rotate(' + -degree + 'deg)',
+			'-ms-transform': 'rotate(' + -degree + 'deg)'
+		}"
+	>
+		<mat-icon class="kt-font-16">more_horiz</mat-icon>
+	</button>
+	<ng-template #popContent let-language="language">
+		<button
+			mat-menu-item
+			class="kt-btn-bottom-border popover-menu-item"
+			(click)="getTableQrCode(table)"
+		>
+			<mat-icon color="primary">
+				<span
+					class="kt-svg-icon kt-svg-icon--sm"
+					inlineSVG="./assets/media/icons/svg/Shopping/Barcode-read.svg"
+					[ngClass]="{
+						'kt-svg-icon--success': iconType === 'success'
+					}"
+					alt="image"
+				></span>
+			</mat-icon>
+			<span class="popover-text s-margin-l">QR-Code</span>
+		</button>
+		<button
+			*ngIf="table.SeatsOccupied > 0"
+			mat-menu-item
+			class="kt-btn-bottom-border popover-menu-item"
+			(click)="getTableBill(table)"
+		>
+			<mat-icon color="primary">
+				<span
+					class="kt-svg-icon kt-svg-icon--sm"
+					inlineSVG="./assets/media/icons/svg/Communication/Clipboard-list.svg"
+					[ngClass]="{
+						'kt-svg-icon--success': iconType === 'success'
+					}"
+					alt="image"
+				></span>
+			</mat-icon>
+			<span
+				[translate]="'COMMON.BILL'"
+				class="popover-text s-margin-l"
+			></span>
+		</button>
+		<button
+			*ngIf="table.SeatsOccupied > 0"
+			mat-menu-item
+			class="kt-btn-bottom-border popover-menu-item"
+			(click)="checkoutTable(table)"
+		>
+			<!-- (click)="checkoutTable(table.CheckInReservationCode)" -->
+			<mat-icon color="primary">
+				<span
+					class="kt-svg-icon kt-svg-icon--sm"
+					inlineSVG="./assets/media/icons/svg/Shopping/Sign-out.svg"
+					[ngClass]="{
+						'kt-svg-icon--success': iconType === 'success'
+					}"
+					alt="image"
+				></span>
+			</mat-icon>
+			<span
+				[translate]="'COMMON.CHECKOUT'"
+				class="popover-text s-margin-l"
+			></span>
+		</button>
+	</ng-template>
+	<div
+		class="table-component {{ table.Shape }}"
+		[style.width.px]="width"
+		[style.height.px]="height"
+		[style.border-radius.px]="border"
+	>
+		<div
+			class="table-informations padding-t"
+			[ngClass]="table?.emptyFloorPlan ? 'padding margin-t' : null"
+			[style.width.px]="
+				!table.emptyFloorPlan
+					? (((floorSize / 100) * 12) / 100) * 65
+					: '100%'
+			"
+			[style.height.px]="
+				!table.emptyFloorPlan
+					? (((floorSize / 100) * 12) / 100) * 80
+					: '100%'
+			"
+			[ngStyle]="{
+				transform: 'rotate(' + -degree + 'deg)',
+				'-moz-transform': 'rotate(' + -degree + 'deg)',
+				'-webkit-transform': 'rotate(' + -degree + 'deg)',
+				'-o-transform': 'rotate(' + -degree + 'deg)',
+				'-ms-transform': 'rotate(' + -degree + 'deg)'
+			}"
+		>
+			<div class="row">
+				<div
+					*ngIf="!table.emptyFloorPlan; else imageTemp"
+					class="kt-img-rounded margin-auto-all table-nr kt-font-bold {{
+						table.Status
+					}}-bg"
+					[style.width.px]="tableInnerSize"
+					[style.height.px]="tableInnerSize"
+					[style.font-size.px]="fontSize"
+					[style.background-color]="'#BFC5D2'"
+					[style.line-height.px]="tableInnerSize"
+				>
+					{{ table.TableNr }}
+				</div>
+				<ng-template #imageTemp>
+					<img
+						width="50"
+						class="margin-auto-all"
+						src="assets/media/icons/table-management-icons/empty-floorplan.svg"
+					/>
+				</ng-template>
+			</div>
+			<div class="row xs-margin-v">
+				<div class="table-seats margin-auto-all">
+					<ng-container
+						*ngIf="!table.emptyFloorPlan; else emptyTable"
+					>
+						<span
+							class="color-primary kt-font-bolder"
+							[style.font-size.px]="tableInnerSize"
+						>
+							{{ table.SeatsOccupied }}
+						</span>
+						<span
+							class="kt-font-bold warm-grey kt-font-bolder"
+							[style.font-size.px]="fontSize"
+						>
+							/ {{ table.Seats }}
+						</span>
+					</ng-container>
+					<ng-template #emptyTable>
+						<div
+							class="color-primary kt-font-bolder"
+							[style.font-size.px]="tableInnerSize"
+						>
+							{{ table.title }}
+						</div>
+						<div
+							class="kt-font-bold warm-grey kt-font-bolder"
+							[style.font-size.px]="fontSize"
+						>
+							{{ table.text }}
+						</div>
+
+						<button
+							class="btn btn-label-brand-o2 btn-bold btn-sm kt-font-transform-u s-padding s-margin-t kt-border-radius"
+							(click)="setTable(table.type)"
+                        >
+							<span
+								href="javascript:;"
+								class="kt-nav__link kt-font-11 kt-font-bold"
+							>
+								{{ table.btnText }}
+							</span>
+						</button>
+					</ng-template>
+				</div>
+			</div>
+			<!-- <div class="row">
+				<div
+					class="table-name margin-auto-all kt-font-bolder"
+					[style.font-size.px]="
+						((((floorSize / 100) * 12) / 100) * 65) / 7
+					"
+				>
+					{{ table.Name }}
+				</div>
+			</div> -->
+			<div class="row">
+				<div
+					*ngIf="table?.CheckInDateTime"
+					class="table-name margin-auto-all kt-font-bolder text-{{
+						table.Status
+					}}"
+					[style.font-size.px]="
+						((((floorSize / 100) * 12) / 100) * 65) / 8
+					"
+				>
+					<mat-icon class="clock-icon" [style.font-size.px]="fontSize"
+						>access_time</mat-icon
+					>
+					<span class="kt-font-bold">
+						{{ table.CheckInDateTime | date: "HH:mm" }}
+					</span>
+				</div>
+			</div>
+			<div class="table-order-status xs-margin-t">
+				<div
+					class="table-status xs-padding-v s-padding-h kt-font-bold {{
+						table.Status
+					}}-light-bg"
+					[style.font-size.px]="statusFontSize"
+				>
+					{{ table.Status }}
+				</div>
+			</div>
+
+			<div
+				class="table-edit-controls row"
+				[style.margin-left.px]="-width / 1.55"
+				[style.bottom.px]="-width / 10"
+				[style.width.px]="width * 5"
+			>
+				<div class="edit-icons" *ngIf="el && editFloorplan">
+					<button
+						mat-icon-button
+						[style.width.px]="width / 3.2"
+						[style.height.px]="width / 3.2"
+						[style.line-height.px]="width / 3.2"
+					>
+						<mat-icon
+							aria-label="Rotate Table"
+							class="gray-icon"
+							[innerHTML]="'rotate_right'"
+							(click)="rotate45()"
+						></mat-icon>
+					</button>
+
+					<button
+						mat-icon-button
+						[style.width.px]="width / 3.2"
+						[style.height.px]="width / 3.2"
+						[style.line-height.px]="width / 3.2"
+					>
+						<mat-icon
+							aria-label="Delete Table"
+							class="color-red"
+							[innerHTML]="'delete'"
+							(click)="deleteTable()"
+						></mat-icon>
+					</button>
+
+					<button
+						mat-icon-button
+						[style.width.px]="width / 3.2"
+						[style.height.px]="width / 3.2"
+						[style.line-height.px]="width / 3.2"
+					>
+						<mat-icon
+							aria-label="Rotate Table"
+							class="color-blue-darken"
+							[innerHTML]="'edit'"
+							(click)="editTable()"
+						></mat-icon>
+					</button>
+				</div>
+			</div>
+		</div>
+		<ng-container>
+			<div
+				class="seat"
+				[style.position]="'absolute'"
+				[style.width.px]="chairWidth"
+				[style.height.px]="chairHeight"
+				[ngStyle]="{ transform: rectangleChairs(i) }"
+				[style.backgroundImage]="
+					table.SeatsOccupied > i
+						? 'url(./assets/media/seats/active-seat.svg)'
+						: 'url(./assets/media/seats/seat.svg)'
+				"
+				[style.backgroundRepeat]="'no-repeat'"
+				[style.backgroundSize]="'100%'"
+				*ngFor="let seats of countSeats(table?.Seats); let i = index"
+			></div>
+		</ng-container>
+	</div>
+</div>

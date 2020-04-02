@@ -1,0 +1,33 @@
+<div class="kt-mat-alert kt-mat-alert--{{ type }}" role="alert">
+	<div class="kt-mat-alert__icon">
+		<i *ngIf="!iconSvg" class="la la-warning"></i>
+
+		<i
+			*ngIf="iconSvg"
+			class="kt-svg-icon kt-font-md kt-svg-icon--primary"
+			[inlineSVG]="iconSvg"
+		></i>
+	</div>
+	<div class="kt-mat-alert__text">
+		<ng-content></ng-content>
+	</div>
+	<div class="kt-mat-alert__close" *ngIf="showCloseButton">
+		<button
+			type="button"
+			mat-icon-button
+			color="warn"
+			(click)="closeAlert()"
+		>
+			<mat-icon class="material-icons">clear</mat-icon>
+		</button>
+	</div>
+	<div class="kt-mat-alert__close" *ngIf="showActionButton">
+		<button
+			mat-raised-button
+			class="chip-btn xs-padding-v padding-h n-box-shadow primary-inverse"
+			(click)="action()"
+		>
+			Try now!
+		</button>
+	</div>
+</div>
